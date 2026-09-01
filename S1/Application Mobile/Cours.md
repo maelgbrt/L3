@@ -1,61 +1,69 @@
-# Application Mobile ( Wayntal )
+# Application Mobile (Wayntal)
 
-
-### Choix Pédagogique : 
-
-* Application native ace Kotlin
-* Créer les vues en utilisant le framework Jetpack Compose
-* Suivre via sa machine ou via celle de son binôme
-* Tester va son android
-* Eviter le "bête" copier / coller
+### Choix pédagogiques
+* Application native avec **Kotlin**
+* Création des vues avec le framework **Jetpack Compose**
+* Suivi sur sa propre machine ou celle de son binôme
+* Tests directement sur son appareil Android
+* Éviter le simple « copier-coller »
 
 ### Objectifs
-* Savoir se situer dans le monde mobile
-* Comprendre que le developpement mobile n'est pas magique
-* Connaitre le fonctionnement d'un environement de développement
+* Savoir se situer dans l'écosystème mobile
+* Démystifier le développement mobile (comprendre que ce n'est pas magique)
+* Comprendre le fonctionnement d'un environnement de développement (IDE, SDK, émulateur)
 * Être capable de concevoir une application mobile de bout en bout
 
+---
 
-## INTRODUCTION
+## 1. Introduction au Développement Mobile
 
-### C'est quoi une application mobile ?
-#### Une application...
-Logiciel applicatif ou programme utilisé pour réalisé une tâche (Navigateur web, Editeur Texte, Jeu Video)
+### Qu'est-ce qu'une application mobile ?
+* **Application :** Logiciel applicatif ou programme conçu pour réaliser une tâche précise (navigateur web, éditeur de texte, jeu vidéo).
+* **Mobile :** Appareil informatique portable et autonome (smartphone, tablette).
 
-#### Mobile...
-Appareil informatique et portable autonome (Smartphone, Tablette)
+---
 
+## 2. Typologie des Applications
 
-### Les applications natives
-Sont développées dans le langage de programmation propre à l'OS
-* Sur Android, Kotlin ( & Java)
-* Sur IOS, Swift (& Objective-C anciennement)
+| Type d'application | Technologies / Langages | Accès matériel | Distribution |
+| :--- | :--- | :--- | :--- |
+| **Native** | Kotlin / Java (Android)<br>Swift / Objective-C (iOS) | **Complet et direct** (caméra, capteurs, Bluetooth, appels, etc.) | Stores officiels (Google Play Store, App Store) |
+| **Hybride** | HTML, CSS, JavaScript (via un conteneur *WebView*) | **Limité** (dépend des ponts/plugins natifs) | Stores officiels (Google Play Store, App Store) |
+| **PWA** *(Progressive Web App)* | Technologies Web modernes (HTML5, Manifest, Service Workers) | **Très restreint** (limité aux API du navigateur) | Directement via le navigateur (sans store) |
 
-Beneficient directement à toutes les fonctionnalités du smartphone 
+> **Guidelines :** Chaque système d'exploitation impose ses propres règles d'interface utilisateur (*Material Design* pour Android, *Human Interface Guidelines* pour iOS).
 
-* Appareil Photo
-* Appel vocal
-* Envoi mail
-* ect..
+---
 
-Des propres guidelines ( règles d'interface utilisateur ).
+## 3. UI Design vs UX Design
 
-### Les application hybrides
+### UI Design (*User Interface*)
+* S'intéresse à l'aspect visuel et esthétique de l'application (couleurs, typographies, icônes, animations).
+* Améliore l'engagement de l'utilisateur à travers ses émotions.
 
-Embarque le conteneur du navigateur web intégré au smartphone
-* Appelé "WebView" avec comme technologies : HMTL,CSS & JavaScript
+### UX Design (*User Experience*)
+* Décrit et structure l'ensemble des interactions de l'utilisateur.
+* Optimise l'accessibilité, la simplicité et la fluidité des parcours.
 
-Beaucoup plus limités pour les fonctionnalités du téléphone
+---
 
-S'intallent sur des applications natives (Google Play Store)
+## 4. Règles d'Ergonomie Mobile
 
-### Les applications web Progressives (PWA)
+### L'Affordance
+* Informer visuellement l'utilisateur qu'une action est possible.
+* *Exemple :* Une icône de menu accompagnée d'un libellé explicite sous l'icône, bouton surélevé avec ombre.
 
-Utilisent les technologies web d'HTML5
-* Fichier Manifeste - desc de l'appli
-* workers - Service HTTPS en arrière plan
+### La Lisibilité
+* Limiter l'information à l'essentiel pour éviter la surcharge cognitive.
+* Structurer la hiérarchie visuelle des textes.
 
-Ne peuvent accéder qu'aux focntionnalités du navigateur
+### Design pour le pouce (*Thumb Zone*)
+* Prise en compte de la tenue du smartphone à une main.
+* Adaptation à la taille croissante des écrans.
+* Placement des zones d'interaction clés dans la zone naturellement accessible par le pouce.
 
-
-Voir table difficultés sur le diaporama n°1
+### Gestes tactiles standards
+* **Tap :** Pression simple (sélection, validation).
+* **Swipe :** Balayage horizontal ou vertical.
+* **Pinch to zoom :** Pincement pour zoomer / dézoomer.
+* **Long press :** Appui prolongé pour afficher des actions contextuelles.
