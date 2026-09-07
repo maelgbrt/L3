@@ -67,3 +67,159 @@
 * **Swipe :** Balayage horizontal ou vertical.
 * **Pinch to zoom :** Pincement pour zoomer / dézoomer.
 * **Long press :** Appui prolongé pour afficher des actions contextuelles.
+
+#### Idées
+* 99design
+* Pinterest
+* Drible
+
+##  Environnement
+### Un seul IDE : **Android Studio**
+* Java / Kotlin
+* Generer un executable (.apk)
+
+SDK (Software Development Kit)
+* Debogueur (ADB)
+* Emulateur (AVD)
+* Java Development Kit (JDK)
+
+## **Vue global**
+* Le manifeste
+* Les Sources
+     * Les fichiers Kotlin
+* Les Ressources
+    * Les images
+    * les vues
+    * les mipmaps
+    * les valeurs
+* Le script Gradle
+
+
+<br>
+
+`AndroidManifest.xml`
+* Sauvegarde l'état via ADB
+* Règle sur les données
+* L'icône
+* Le nom
+
+<u>Repertoire "kotlin - java"</u>
+* Andoridtest : test unitaires impliquand framework
+* Mes tests : test purs sur la partie metier
+
+<u>Repertoire "res"</u>
+<br>
+Dossier : 
+* drawable (image vectorielle)
+* mipmap (image binaire)
+* values
+    * colors (charte graphique)
+    * strings (chaine de charactères affichées)
+    * styles (Thème et styles spécifiques)
+
+<u>Répertoire Gradle</u>
+
+Dossier qui regroupe fichier de compilation
+* Vers SDK
+* Nm package
+* N° Version
+* Dépendances liées au Projet
+
+**Gradle** 
+Moteur de production
+
+
+
+# Kotlin
+### Open Source
+
+Russie et Americain : Best friends ever
+
+**Langage objet ET fonctionnel**
+
+* Objet ...
+    * Performance
+    * Fiabilité
+    * Efficacité
+
+* Fonctionnelle ...
+    * "First class function" : focntion en tant que valeur
+    * Immuabilité : Variables créées non modifiable
+
+### Les variables
+```
+val message = "Hello world!"
+val message : String = "Hello world!"
+var message : String = "Hello world!"
+```
+
+* __val__ ne peut pas etre modifié (final en java)
+* __var__ peut être modifié
+
+```
+val nom : String = "David"
+val age : Int = 42
+estVraiAge : Boolean = False
+
+Ou
+
+val nom = "David"
+val age  = 42
+estVraiAge  = False
+```
+
+## NullPointerExeption
+Par defaut, les variable ne peuvent pas déclarer valeur nulle
+```
+var message : String? = "Hello world!" 
+
+
+message.isEmpty() //Error
+
+if ((messag != null) massage.isEmpty) /Solution 1
+
+message?.isEmpty //Solution 2
+```
+
+## Concaténation
+```
+val mot : String = "small"
+val message1 : String = "Hello" + mot + " world!"
+val message2 : String = "Hello" $mot  world!"
+val message3 : String = "Hello" ${mot}  world!"
+```
+
+## Fonctions
+```
+fun affiche(message : String) = println(message)*
+```
+
+## Heritage
+* public
+(Visible dasns ensemble projet)
+* private ( Visible uniquement dans la classe)
+* protected ( Visible uniquement dans la classe et celle qui en herite)
+* internal ( Visible uniquement dans la classe et meme module)
+
+```
+class Chien(age : Int): 
+    Animal("chien", age)
+    {
+        fun moi() {
+            println(" je suis un $famille")
+        }
+    }
+
+
+fun main() {
+    val medor = Chien(8)
+    medor.moi()
+    medor.affiche()
+}
+```
+mot clé constructor quand plusieur constructeur
+```
+Your codeclass Chien: Aniaml {
+    constructor(age : Int)
+}
+```
