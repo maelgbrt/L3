@@ -1,4 +1,4 @@
-Projet qui rassemble toutes les notes de L3 Info.\
+Projet qui rassemble toutes les notes de L3 Info.
 > Force et  honneur.
 
 
