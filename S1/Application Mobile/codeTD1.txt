@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gradient xmlns:android="http://schemas.android.com/apk/res/android"
+    android:startColor="@color/..."
+    android:centerColor="..."
+    android:endColor="..."
+    android:angle="90"
+    android:startX="30"
+    android:endX="70"
+    android:startY="30"
+    android:endY="70"
+    android:type="linear"
+    />
+
+
+    .
+    .
+    .
+
+3 - Les couleurs (le retour)
+
+    Dans ui.theme.Color.kt
+
+    import android.compose.ui.graphics.Color
+
+    val White = 0xFFFFFFFF
+    val Black = Color(0xFF000000)
+    val Gray400 = Color(0xFFD9E2EA)
+    val Gray500 = Color(0xFF8B95A8)
+    val Gray700 = Color(0xFF6B6D70)
+    val Blue100 = Color(0xFFF3FAFF)
+    val Blue300 = (Color0xFF008FF9)
+    val Blue400 = (Color0xFF3DA5FF)
+    val Blue600 = Color(0xFF182238)
+    val Blue800 = Color(0xFF0D1526)
+
+
+5- Le thème
+
+Dans Theme.kt :
+
+private val DarkColorScheme = darkColorScheme(
+    background = Blue800,
+    surface = Blue600,
+    primary = Blue300,
+    primaryContainer = Blue600,
+    secondary = White,
+    onSecondary = White,
+    tertiary = Gray500
+)
+
+private val LightColorScheme = lightColorScheme(
+    background = Gray400,
+    surface = White,
+    primary = Blue400,
+    primaryContainer = Blue100,
+    secondary = Black,
+    onSecondary = White,
+    tertiary = Gray700
+)
+
+@Composable
+fun MyWeatherTheme(
+    darkTheme:Bool = isSystemInDarkTheme
+    content:Composable () -> Unit
+) {
+    val colorScheme = if (darkTheme) {
+        DarkColorScheme
+    } else {
+        LightColorScheme
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme
+        typography = Typography
+        content = content
+    )
+}
