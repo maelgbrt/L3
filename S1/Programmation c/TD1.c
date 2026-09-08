@@ -56,7 +56,7 @@ void scheduling(){
         }
     }
 
-    printf("\n--- Ordre des tâches après tri (marge croissante) ---\n");
+    printf("\n--- Ordre des tâches après tri ---\n");
     for (int i = 0; i < NB_ELEMENTS; i++){
         printf("Position %d -> Tâche %d (Marge: %d)\n", i + 1, tasks[i], resultat[i]);
     }
