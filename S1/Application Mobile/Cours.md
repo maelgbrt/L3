@@ -219,7 +219,34 @@ fun main() {
 ```
 mot clé constructor quand plusieur constructeur
 ```
-Your codeclass Chien: Aniaml {
+Your codeclass Chien: Animal {
     constructor(age : Int)
 }
+```
+
+```
+
+<ressources>
+    <color name ="purple_200"></color>
+    <color name ="purple_500"></color>
+    <color name="blue_100">#FFF3FAFF</color>
+    <color name="blue_400">#FF3DA5FF</color>
+    <color name="blue_600">#FF182238</color>
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<gradient xmlns:android="http://schemas.android.com/apk/res/android"
+    android:startColor="@color/blue_100"
+    android:centerColor="blue_400"
+    android:endColor="blue_600"
+    android:angle="90"
+    android:startX="30"
+    android:endX="70"
+    android:startY="30"
+    android:endY="70"
+    android:type="linear"
+
+
+    />
 ```
