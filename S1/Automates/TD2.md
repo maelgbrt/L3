@@ -156,17 +156,63 @@ E =  (b*a + b).(aab+bb*a+bb)*
 R/a
 
 Soit: 
-(aaa) / a . (aaa)*
-aaa / a = aa
+(aaa)*/a  =>  aaa/a . (aaa)*
+aa.(aaa)*
 
-donc on pose aa.(aaa)*
+
 
 R/b
-Soit :
-(aaa) / b = ∅
+
+(aaa)*/a => aaa/b.(aaa)*
+
 ∅.(aaa)*
- = ∅
+=> ∅
 
 
+ Soit R/a = aa.(aaa)* alors
+
+ (R/a)/b donc (aa.(aaa)*)/b = 
+
+
+
+comme aa = ∅ alors 
+
+(R/a)/b = aa/b.(aaa)*+(aaa)*/b
+
+partie 1 : 
+aa/b = ∅
+aa/b.(aaa)* = ∅
+
+partie 2 : 
+(aaa)*/b => aaa/b.(aaa*)
+aaa/b => ∅
+
+donc => R/ab = ∅
+
+R = (aaa)* + (aaaaa)*
+
+R/a
+
+(aaa)*/a => aa.(aaa)*
+(aaaaaa)* => aaaa.(aaaaa)*
+
+aa.(aaa)* + aaaa.(aaaaa)*
+
+
+R/aa 
+(aaa)*/aa => aaa/aa.(aaa)* = a.(aaa)*
+(aaaaaa)*/aa => aaa.(aaaaa)*
+
+R/aaa
+(aaa)*/aa => aa/aaa.(aaa)* = (aaa)*
+(aaaaaa)*/aa => aa.(aaaaa)*
+
+```
+
+
+### Question 3
+
+```
+R = (aaa)* + (bbbbb)*
 
 ```
