@@ -1,0 +1,204 @@
+GABORIT MAËL
+BOUDJAJ HANIA
+L3 INFORMATIQUE - GRP 3
+TP1 Info502
+
+Question 1
+==========
+
+1.1 Pour obtenir la liste des fichiers dont l'extension est .c ou .h, on utilise la commande :
+
+$ ls *.[ch]
+
+
+1.2 Pour lister tous les fichiers dont l'avant dernier caractère n'est pas le point "." : 
+
+$ *[!.]?
+
+Question 2
+==========
+
+2.1 Le motif shell étendu que l'on peut utiliser pour obtenir la liste de tous les fichiers sauf ceux dont l'extension est .jpg ou .jpeg est : 
+
+$ !(*.jpg|*.jpeg)
+
+
+
+Question 3
+==========
+
+3.1 Les lignes reconnues par l'expression régulière sont toutes celles qui comportent au moins une occurence de "aa", càd :
+aa
+aaaa
+aaaaaa
+aaa
+
+
+3.2 La ligne aaa est reconnue par l'expression régulière car elle comporte une occurence de "aa".
+
+3.3 La correction de la regex est : 
+
+$ grep '^\(aa\)*$' test.txt
+
+
+
+Question 4
+==========
+
+Voici la commande permettant de trouver des mots anglais qui contiennent les lettres a, b, c, d et e dans l'ordre :
+
+$ grep ".*a.*b.*c.*d.*e.*" american-english
+
+>> absconded
+
+
+Question 5
+==========
+
+Voici une expression régulière qui liste tout les mots contenant une lettre doublée, comme "blossom" ou "zoom" :
+
+$ grep '\(.\)\1' fichier
+
+
+Question 6
+==========
+
+Voici les mots anglais contenant une même lettre 6 fois, qui n'est pas le "s" : 
+
+$ grep -E '.*([^s])(.*\1.*){5}' american-english
+
+>> indivisibility
+indivisibility's
+
+
+Question 8
+==========
+
+Voici la liste des mots anglais qui commencent et terminent par la même lettre et qui contiennent une lettre répétée au moins 5 fois : 
+
+>> abracadabra
+dispossessed
+effervescence
+nonintervention
+salaciousness's
+sassafras's
+sassafrases
+schoolmistress's
+schoolmistresses
+seamstress's
+seamstresses
+seasickness's
+secessionist's
+secessionists
+selfishness's
+selflessness
+selflessness's
+senselessness
+senselessness's
+sensitiveness's
+sensuousness
+sensuousness's
+seriousness's
+shapelessness
+shapelessness's
+sheepishness's
+shiftlessness
+shiftlessness's
+shortsightedness's
+sleeplessness
+sleeplessness's
+sluggishness's
+snobbishness's
+spaciousness's
+sparseness's
+spotlessness
+spotlessness's
+spuriousness's
+squeamishness's
+steadfastness's
+strenuousness's
+stylishness's
+sunglasses's
+
+
+On les obtients grâce à la commande : 
+
+$ grep -E '^(.).*\1$' american-english | grep -E '(.)(.*\1.*){4}' 
+
+
+
+Question 9
+==========
+
+Pour afficher la liste des processus des navigateurs internet, on peut utilser la commande :
+
+$ ps aux | grep -E 'firefox|chromium|safari'
+
+Nous pouvons améliorer la commande pour ne pas afficher la ligne qui correspond au processus du grep. Pour cela, on peut utiliser l'argument -v (qui permet de sélectionner les lignes sans correspondances):
+
+$ ps aux | grep -E 'firefox|chromium|safari' | grep -v grep
+
+
+
+Question 10
+===========
+Voici la commande pour visualiser toutres les lignes contenant des caractères blancs (espaces et tabulation) juste avant le retour chariot.
+
+Sur Sublime Text : 
+$ [ ]$
+
+
+De même pour les lignes qui commencent par une tabulation : 
+$ [ ].*
+
+
+Question 11
+=========== 
+
+Les lignes regex necessaires sont (search/replace) : 
+$ '^ '
+$ ''
+
+Question 13
+===========
+
+Pour VSCODE
+-----------
+
+Rechercher : 
+$ ^(.*),(.*)$
+
+Remplacer : 
+$ $2,$1
+
+
+Pour Sublime Text : 
+-------------------
+
+Rechercher : 
+$ (.*),(.*)
+
+Remplacer :
+$ \2, \1
+
+
+Question 14
+===========
+
+Pour effectuer la question précédente avec sed, on peut utiliser la commande suivante : 
+$ sed s/'^ '//' fichier
+
+Le format de base de la commande sed est : $ sed s/[search]/[replace]/ fichier
+Dans la commande précédente, on cherche toutes les lignes qui commencent par un espace. Puis on remplace ces espaces par "rien" (on les supprime).
+
+Pour intervertir la colone des noms avec celle des prénoms, on utilise la commande :
+$ sed -E 's/^(.*),(.*$))/\2,\1/' fichier
+
+Le paramètre -E permet de passer en regex étendue.
+
+Question 15
+===========
+
+En utilisant AWK, on arrive à obtenir une commande qui permet d'afficher en l'utilisation du processeur par les processus de l'utilisteur :
+
+ps aux | LC_NUMERIC="C" awk '/'hania'/{ s+=$3 } END{print $1  "..............."  s "%"} '
