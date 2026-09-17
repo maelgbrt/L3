@@ -49,8 +49,14 @@ def uper(ch):
 
 
 def TODO_translate(line):
-    return re.sub(r"todo.*",uper, line)
+    return re.sub(r"(?i)todo.*",uper, line)
 
+def transfHTML(line):
+    longueur = len(line.group(1))
+    return f"<h{longueur}>{line.group(2)}<h{longueur}>"
+
+def balise_html(line):
+    return re.sub(r"(^=+)(.*)(\1$)",transfHTML,line)
 
 
 ############################################################
@@ -72,6 +78,7 @@ def main():
             line = email(line)
             line = img(line)
             line = TODO_translate(line)
+            line = balise_html(line)
             print(line)
 
         # affichage de la ligne traitée

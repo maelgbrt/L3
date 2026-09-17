@@ -11,11 +11,11 @@ voici un céphalopode octopode <img src='./TP2/pieuvre-small.jpg' /> et un céph
 
 TODO: FINIR LE SUJET DU TP3
 
-<h1> Titre <h1>
-<h2> Sous-titre <h2>
-<h3> Sous-sous-titre <h3>
-<h4> Sous-sous-sous-titre <h4>
-<h5> Sous-sous-sous-sous-titre <h5>
-<h2>a<h2>
-<h1> Preuve que P=NP <h1>
+=
+== Sous-titre ==
+=== Sous-sous-titre ===
+==== Sous-sous-sous-titre ====
+===== Sous-sous-sous-sous-titre =====
+==
+= Preuve que P=NP =
 <!-- ---------------------------------------------------------------------- -->
