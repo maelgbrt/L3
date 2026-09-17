@@ -19,6 +19,7 @@ def process_line(line):
     line = line.replace('<',"&lt;")  #réponse question 2.1
     line = line.replace('>',"&gt;")
 
+
   
     return line
 
@@ -41,6 +42,17 @@ def url(line):
 
 def img(line):
     return re.sub(r"\[([a-zA-Z0-9._%+-/]+)\]", r"<img src='\1' />", line)
+
+
+def uper(ch): 
+    return ch.group().upper()
+
+
+def TODO_translate(line):
+    return re.sub(r"todo.*",uper, line)
+
+
+
 ############################################################
 ## fonction principale, appelée depuis la ligne de commandes
 def main():
@@ -59,6 +71,7 @@ def main():
             line = url(line)
             line = email(line)
             line = img(line)
+            line = TODO_translate(line)
             print(line)
 
         # affichage de la ligne traitée
