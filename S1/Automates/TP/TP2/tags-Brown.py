@@ -59,6 +59,18 @@ def balise_html(line):
     return re.sub(r"(^=+)(.*)(\1$)",transfHTML,line)
 
 
+def detecteur_de_gras(line):  #question 8
+    return re.sub(r"(\*\*)(.*)(\1)",r"<b>\2</b>",line)
+
+def detecteur_de_soulignagement(line): #question 8
+    return re.sub(r"(__)(.*)(\1)",r"<u>\2</u>",line)
+
+
+
+
+
+
+
 ############################################################
 ## fonction principale, appelée depuis la ligne de commandes
 def main():
@@ -79,6 +91,8 @@ def main():
             line = img(line)
             line = TODO_translate(line)
             line = balise_html(line)
+            line = detecteur_de_gras(line)
+            line = detecteur_de_soulignagement(line)
             print(line)
 
         # affichage de la ligne traitée
