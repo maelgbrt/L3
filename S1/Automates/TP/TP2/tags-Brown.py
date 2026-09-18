@@ -8,6 +8,7 @@
 import sys
 import re
 
+from datetime import datetime 
 
 #########################################
 ## fonction à compléter pendant le TP...
@@ -73,13 +74,19 @@ def link(line):
     return re.sub(r"\[(.*)[ ](.*)\]" , r"<a href='\2'>\1</a>",line)
 
 
-def test2passur(line):
-    print(line.group())
-    print(line.group(1))
-    print(line.group(2))
 
 def testparcequelajsuispassurdutous(line):
     return re.sub(r"\[(.*)[ ]<a.*>(.*)(</a>)\]", r"<a href='\2'> \1 </a>", line)
+
+
+def verif_date(line):
+
+
+
+
+
+def detecteur_date(line):
+    return re.sub(r"([0-9]{,2})[-]([0-9]{,2})[-]([0-9]{,4})",verif_date,line)
 
 ############################################################
 ## fonction principale, appelée depuis la ligne de commandes
@@ -105,6 +112,7 @@ def main():
             line = detecteur_de_gras(line)
             line = detecteur_de_soulignagement(line)
             # line = link(line)
+            line = detecteur_date(line)
 
             line = testparcequelajsuispassurdutous(line)
             
