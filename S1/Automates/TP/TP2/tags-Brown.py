@@ -62,13 +62,18 @@ def balise_html(line):
 def detecteur_de_gras(line):  #question 8
     return re.sub(r"(\*\*)(.*)(\1)",r"<b>\2</b>",line)
 
+# def debug(line):
+#     print("le soulignage")
+
 def detecteur_de_soulignagement(line): #question 8
-    return re.sub(r"(__)(.*)(\1)",r"<u>\2</u>",line)
+    return re.sub(r"(__)(.*?)\1", r"<u>\2</u>", line)
 
 
+def link(line): 
+    return re.sub(r"\[(.*)[ ](.*)\]" , r"<a href='\2'>\1</a>",line)
 
 
-
+def 
 
 
 ############################################################
@@ -93,6 +98,7 @@ def main():
             line = balise_html(line)
             line = detecteur_de_gras(line)
             line = detecteur_de_soulignagement(line)
+            line = link(line)
             print(line)
 
         # affichage de la ligne traitée
