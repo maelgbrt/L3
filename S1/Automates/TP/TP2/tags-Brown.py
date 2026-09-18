@@ -73,8 +73,13 @@ def link(line):
     return re.sub(r"\[(.*)[ ](.*)\]" , r"<a href='\2'>\1</a>",line)
 
 
-def 
+def test2passur(line):
+    print(line.group())
+    print(line.group(1))
+    print(line.group(2))
 
+def testparcequelajsuispassurdutous(line):
+    return re.sub(r"\[(.*)[ ]<a.*>(.*)(</a>)\]", r"<a href='\2'> \1 </a>", line)
 
 ############################################################
 ## fonction principale, appelée depuis la ligne de commandes
@@ -90,6 +95,7 @@ def main():
         if not is_comment_2(line) :
         # traitement de la ligne
             
+            
             line = process_line(line)
             line = url(line)
             line = email(line)
@@ -98,7 +104,10 @@ def main():
             line = balise_html(line)
             line = detecteur_de_gras(line)
             line = detecteur_de_soulignagement(line)
-            line = link(line)
+            # line = link(line)
+
+            line = testparcequelajsuispassurdutous(line)
+            
             print(line)
 
         # affichage de la ligne traitée
