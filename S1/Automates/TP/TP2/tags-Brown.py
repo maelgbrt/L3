@@ -69,9 +69,10 @@ def detecteur_date(line):
     return re.sub(r"([0-9]{1,2})-([0-9]{1,2})-([0-9]{4})", verif_date, line, flags=re.S)
 
 def detecteur_italique(line):
-    return re.sub(r"(//)(.*?)\1", r"<i>\2</i>", line, flags=re.S)
+    return re.sub(r"(?<!:)(//)(.*?)\1", r"<i>\2</i>", line, flags=re.S)
 
 
+# en gros le ?<! enleve c'ets lequivalaent de [^ddsqdq] mais je crois dot etre precede pas tous compris
 
 def process_line(line):
     # line = line.upper() # réponse question 1
