@@ -1,0 +1,36 @@
+DES NOTES DE QUALITES QUE J AI PAS ENCORE RELUS C PEUT ETRE FAUX MAIS ONE LIFE
+Magnus Hirshfeld
+
+CM2 - Proccessus
+
+Noyau : Events et ordonnancement
+
+sys call = execute une fnction noyau (dans le mode noyau aps utilisateur(changement de contexte) et peut faire des trucs en plus. Un peu le mod dev, permte de sécurider.
+instruction pour arrêter le fots normal = sys call, puis elle charge le noyaue et met un num appel sys dasn registre spécifique et fait l'appel. puis on revient à l'instruction suivate de l'appel system
+
+------------------------------------
+
+Lire les appels sys basiues du cours
+Les processus :
+
+- = programme rn cours d'exec
+trois notion : 
+
+    - le code source
+    - la compilation qui donne :
+    - des instructions machines (hopcode)
+ 
+Pour l'executer, on charge le prog en Ram (car rapide). On identifie dans un registre spécifique l'@ de la première instruction puis on fait +1 jusqu'à la dernière.
+Da,s la ram y'a deja le noyau et les autres process. Donc dans le proces on aura prog + val initialisée + string (avant même l'éxectution).
+Soit il execute une instruction soit il est en attente.
+On peut résumer les états d'un processus :
+- Prêt
+- En cours d'exécution
+- Bloqué (en gros il est sorit de la file des process en cours d'exec parce qu'ils attentendent une ressource. C asynchrone, on a pas une réponse direct. interuption quand la ress se libère et le noyau intervient pour réveillé le process qui avait besoin de la ressource).
+
+Préemption : permet d'empêcher les boucles infinies. On est sur un system multitache donc on veut que plusieurs process puissent s'exec. Si le process ne rend jamais la main, on a une famine + un sys monotache... Donc un processus s'execute pendant un quantum (unite temps). 
+		
+VOIR DIAGRAMME SUR MOODLE
+
+inode = version bas niv des fichiers
+chaque pross peut pointer sru descri rep root et descri rep travail
