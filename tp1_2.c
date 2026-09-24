@@ -92,38 +92,19 @@ void affichage_tab_vigenere(){
 void main(){
 
     // =============================
-    // tests de l'exercice 1
+    // tests 
     char *msg = "Hello World !\n";
-    printf("Question 1 : printString\n");
-    printString(msg);
-    printf("\n");
+    // printString(msg);
+    // stringLenght(msg);
+    // putchar(toLowerCase('M'));
 
-    printf("Question 2 : stringLenght\n");    
-    stringLenght(msg);
-    printf("\n");
-
-
-    printf("Question 3 : toLowerCase\n");    
-    putchar(toLowerCase('M'));
-    printf("\n");    
-
-    printf("Question 4 : stringCompare\n");
-    int dico = stringCompare("mael","aaaaa");
-    printf("\nle number est : %d", dico);
-    printf("\n");    
-
-    printf("Question 5 : findFirst\n");
-    printf("%p", findFirst("Hhhhellelo world", 'e'));
-    printf("\n");    
-    
-    
-    //tests de l'exercice 2
     //affichage_tab_vigenere();
-
     //putchar(toUpperCase('a'));
     //toUpperString(msg);
-    
-    
+    // int dico = stringCompare("mael","aaaaa");
+    // printf("\nle number est : %d", dico);
+
+    printf("%p", findFirst("Hhhhellelo world", 'e'));
 
 }
 
