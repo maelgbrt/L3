@@ -89,9 +89,9 @@ void affichage_tab_vigenere(){
     printf("tab[a] = %c", *tab['A'-65]);
 }
 
-void valeur_in_tab(int x, int y, char * tab[][])
+const char * valeur_in_tab(int x, int y, char * tab[26][26])
 {
-    printf(tab[x][y]);
+    return tab[x][y];
 }
 
 
