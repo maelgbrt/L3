@@ -46,8 +46,6 @@ int stringCompare (  const char * str1  ,  const char * str2 )
     
 }
 
-
-
 char toUpperCase(char c) {
     if (c >= 'a' && c<='z'){
         return c - 32;
@@ -55,36 +53,71 @@ char toUpperCase(char c) {
     return c;
 }
 
-char toUpperString(const char *str) {
+char *toUpperString(char *str) {
     int taille = stringLength(str);
     for (int i = 0; i < taille; i++) {
-        printf("%c",toUpperCase(str[i]));
+        str[i] = toUpperCase(str[i]);
     }
-    return *str;
+    return str;
 }
 
 
 
-void transcription_key (const char *str , char *key)
 
+int position_char_sur_26(char a)
 {
+    return (a-65);
+}
 
-printf("\n");
-char message[100];
-int key_index = 0;
-    for(int i = 0 ; i < stringLength(str);i++){
-    
-        if (str[i] == ' ' || str[i] == '\''){
-            message[i] = ' ';
-        }else{
-            message[i] = key[key_index % stringLength(key)];
+
+
+void transcription_key(char *str, char *key)
+{
+    int str_len = stringLength(str);
+    int key_len = stringLength(key);
+
+    if (key_len == 0) return;
+
+    str = toUpperString(str);
+    // printf("%s\n", str);
+
+    int key_index = 0;
+    for (int i = 0; i < str_len; i++)
+    {
+        if (str[i] == ' ' || str[i] == '\'')
+        {
+            putchar(' '); 
+        }
+        else
+        {
+
+            char c = toUpperCase(key[key_index % key_len]);
+            // putchar(c);
             key_index++;
+
+            int position_x = position_char_sur_26(str[i]);
+            int position_y = position_char_sur_26(c);
+            // valeur_in_tab(position_x,position_y);
         }
     }
-    message[stringLength(str)] = '\0';
-    printString(str);
-    printf("\n");
-    printString(message);
+    putchar('\n');
+
+// printf("\n");
+// int key_index = 0;
+//     for(int i = 0 ; i < stringLength(str);i++){
+    
+//         if (str[i] == ' ' || str[i] == '\''){
+//             str[i] = ' ';
+//         }else{
+//             str[i] = (key_index % stringLength(key));
+//             printf("le char est : %c",str[i]);
+//             key_index++;
+//         }
+//     }
+//     str[stringLength(str)] = '\0';
+//     printString(str);
+//     printf("\n");
+//     printf("voila");
 }
 
 
@@ -102,24 +135,22 @@ void addition_char (char a, char b)
 
 
 
-int position_char_sur_26(char a)
-{
-    return (a-65);
-}
 
-
-
-
-void encypted_1( char * message , char * key , char vigenereTable1 ){
+void encypted_1( char * message , char * key ){
 
 
 
     // Mettre en Majuscule 
     char * maj_str1 = toUpperString(message);
-    char * maj_key = toUpperString(key);
+    char * maj_key= toUpperString(message);
+    // char * maj_key = toUpperString("azerty");
+
+
+    printString(maj_str1);
+    printString(maj_key);
 
     // Transcription avec la clée
-    transcription_key(maj_str1,maj_key);
+    // transcription_key(maj_str1,maj_key);
 
 }
 
@@ -156,8 +187,10 @@ void main()
     char * key = "perdu";
     char vigenereTable1 [26][26] ;
     transcription_key(message, key);
-    int val = position_char_sur_26('A');
-    printf("\n la val est : %d",val);
+    // int val = position_char_sur_26('A');
+    // printf("\n la val est : %d",val);
+
+    // encypted_1(message,key);
 
 
     
