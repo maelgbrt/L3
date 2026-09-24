@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+
+// ----------------------- EXERCICE 1 -----------------------
+
+
+// Une fonction qui permet d'afficher une chaîne de caractères
 int printString( const char *str) {
     while(*str != '\0'){
         putchar(*str);
@@ -25,13 +30,21 @@ char toLowerCase(char c) {
     return c;
 }
 
+int stringCompare (  const char * str1  ,  const char * str2 )
+{
+    int i = 0;
+    int size_str1 = 0;
+    int size_str2 = 0;
 
-// int stringCompare ( const char * str1 , const char * str2 ){
-//     int res = 0;
-//     if (stringLenght(*str1) == stringLenght(*str2)) {
-        
-//     }
-// }
+    while (str1[i] != '\0' && str2[i] != '\0'){
+        size_str1 += str1[i];
+        size_str2 += str2[i];
+        i++;
+    }
+    return size_str2 - size_str1;
+    
+}
+
 
 // ---------------------- EXERCICE 2 ----------------------
 char toUpperCase(char c) {
@@ -41,12 +54,12 @@ char toUpperCase(char c) {
     return c;
 }
 
-char toUpperString(const char *str) {
+char *toUpperString(char *str) {
     int taille = stringLenght(str);
     for (int i = 0; i < taille; i++) {
         printf("%c",toUpperCase(str[i]));
     }
-    return *str;
+    return str;
 }
 
 
