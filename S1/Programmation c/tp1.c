@@ -46,6 +46,24 @@ int stringCompare (  const char * str1  ,  const char * str2 )
     
 }
 
+
+
+const char * findFirst ( const char * str , char c) {
+    const char * res = NULL;
+    for(int i = 0; str[i]!='\0'; i++){
+        if(c == str[i]) {
+            //printf("La valeur est : %p\n", &str[i]);
+            //printf("Position :%d\n", i);
+            res = &str[i];
+            break;
+        }
+    }
+    return res;
+}
+
+
+
+
 char toUpperCase(char c) {
     if (c >= 'a' && c<='z'){
         return c - 32;
@@ -60,6 +78,7 @@ char *toUpperString(char *str) {
     }
     return str;
 }
+
 
 
 
@@ -79,7 +98,7 @@ void transcription_key(char *str, char *key)
     if (key_len == 0) return;
 
     str = toUpperString(str);
-    // printf("%s\n", str);
+    printf("%s\n", str);
 
     int key_index = 0;
     for (int i = 0; i < str_len; i++)
@@ -92,12 +111,12 @@ void transcription_key(char *str, char *key)
         {
 
             char c = toUpperCase(key[key_index % key_len]);
-            // putchar(c);
+            putchar(c);
             key_index++;
 
             int position_x = position_char_sur_26(str[i]);
             int position_y = position_char_sur_26(c);
-            // valeur_in_tab(position_x,position_y);
+            // valeur_in_tab(position_x,position_y,tab_vignere);
         }
     }
     putchar('\n');
@@ -176,6 +195,10 @@ void main()
     printf("\nle number est : %d", dico);
 
 
+
+    printf("\nQuestion 5 : findFirst\n");
+    printf("%p", findFirst("Hhhhellelo world", 'e'));
+    printf("\n");    
 
 
 
