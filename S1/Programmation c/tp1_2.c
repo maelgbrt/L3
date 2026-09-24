@@ -46,6 +46,20 @@ int stringCompare (  const char * str1  ,  const char * str2 )
 }
 
 
+const char * findFirst ( const char * str , char c) {
+    const char * res = NULL;
+    for(int i = 0; str[i]!='\0'; i++){
+        if(c == str[i]) {
+            //printf("La valeur est : %p\n", &str[i]);
+            //printf("Position :%d\n", i);
+            res = &str[i];
+            break;
+        }
+    }
+    return res;
+}
+
+
 // ---------------------- EXERCICE 2 ----------------------
 char toUpperCase(char c) {
     if (c >= 'a' && c<='z'){
@@ -57,7 +71,7 @@ char toUpperCase(char c) {
 char *toUpperString(char *str) {
     int taille = stringLenght(str);
     for (int i = 0; i < taille; i++) {
-        printf("%c",toUpperCase(str[i]));
+        str[i] = toUpperCase(str[i]);
     }
     return str;
 }
@@ -78,16 +92,39 @@ void affichage_tab_vigenere(){
 void main(){
 
     // =============================
-    // tests 
+    // tests de l'exercice 1
     char *msg = "Hello World !\n";
-    // printString(msg);
-    // stringLenght(msg);
-    // putchar(toLowerCase('M'));
+    printf("Question 1 : printString\n");
+    printString(msg);
+    printf("\n");
 
+    printf("Question 2 : stringLenght\n");    
+    stringLenght(msg);
+    printf("\n");
+
+
+    printf("Question 3 : toLowerCase\n");    
+    putchar(toLowerCase('M'));
+    printf("\n");    
+
+    printf("Question 4 : stringCompare\n");
+    int dico = stringCompare("mael","aaaaa");
+    printf("\nle number est : %d", dico);
+    printf("\n");    
+
+    printf("Question 5 : findFirst\n");
+    printf("%p", findFirst("Hhhhellelo world", 'e'));
+    printf("\n");    
+    
+    
+    //tests de l'exercice 2
     //affichage_tab_vigenere();
-    //putchar(toUpperCase('a'));
 
-    toUpperString(msg);
+    //putchar(toUpperCase('a'));
+    //toUpperString(msg);
+    
+    
+
 }
 
 
