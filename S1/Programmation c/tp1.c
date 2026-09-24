@@ -48,6 +48,21 @@ int stringCompare (  const char * str1  ,  const char * str2 )
 
 
 
+char toUpperCase(char c) {
+    if (c >= 'a' && c<='z'){
+        return c - 32;
+    }
+    return c;
+}
+
+char toUpperString(const char *str) {
+    int taille = stringLength(str);
+    for (int i = 0; i < taille; i++) {
+        printf("%c",toUpperCase(str[i]));
+    }
+    return *str;
+}
+
 
 
 void transcription_key (const char *str , char *key)
@@ -95,13 +110,13 @@ int position_char_sur_26(char a)
 
 
 
-encypted_1( char * message , char * key , char vigenereTable1 ){
+void encypted_1( char * message , char * key , char vigenereTable1 ){
 
 
 
     // Mettre en Majuscule 
-    char * maj_str1 = toUpperString();
-    char * maj_key = ;
+    char * maj_str1 = toUpperString(message);
+    char * maj_key = toUpperString(key);
 
     // Transcription avec la clée
     transcription_key(maj_str1,maj_key);
