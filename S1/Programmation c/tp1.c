@@ -80,6 +80,12 @@ char *toUpperString(char *str) {
 }
 
 
+void valeur_in_tab(int x, int y, char tab[][26])
+{
+    // printf("%c", tab[x][y]);
+    printf("i");
+}
+
 
 
 
@@ -90,7 +96,7 @@ int position_char_sur_26(char a)
 
 
 
-void transcription_key(char *str, char *key)
+void transcription_key(char *str, char *key,char tab[][26])
 {
     int str_len = stringLength(str);
     int key_len = stringLength(key);
@@ -116,7 +122,7 @@ void transcription_key(char *str, char *key)
 
             int position_x = position_char_sur_26(str[i]);
             int position_y = position_char_sur_26(c);
-            // valeur_in_tab(position_x,position_y,tab_vignere);
+            valeur_in_tab(position_x,position_y,tab);
         }
     }
     putchar('\n');
@@ -197,19 +203,20 @@ void main()
 
 
     printf("\nQuestion 5 : findFirst\n");
-    printf("%p", findFirst("Hhhhellelo world", 'e'));
+    char * res = findFirst("Hhhhellelo world", 'e');
+    printf("%c", *res);
     printf("\n");    
 
 
 
 
 
-    // EXERCICE 2 
+    // // EXERCICE 2 
 
     char message [] = "L'escargot se promene avec sa maison" ;
     char * key = "perdu";
     char vigenereTable1 [26][26] ;
-    transcription_key(message, key);
+    transcription_key(message, key,vigenereTable1);
     // int val = position_char_sur_26('A');
     // printf("\n la val est : %d",val);
 
