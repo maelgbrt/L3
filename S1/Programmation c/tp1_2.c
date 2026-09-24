@@ -19,12 +19,12 @@ int stringLenght( const char *str) {
         str++;
         len++;
     }
-    printf("%d\n", len);
+    //printf("%d\n", len);
     return len;
 }
 
 char toLowerCase(char c) {
-    if (c >= 'A' && c<='Z'){
+    if (c >= 'A' && c <='Z'){
         return c + 32;
     }
     return c;
@@ -89,6 +89,12 @@ void affichage_tab_vigenere(){
     printf("tab[a] = %c", *tab['A'-65]);
 }
 
+void valeur_in_tab(int x, int y, char * tab[][])
+{
+    printf(tab[x][y]);
+}
+
+
 void main(){
 
     // =============================
@@ -99,17 +105,18 @@ void main(){
     printf("\n");
 
     printf("Question 2 : stringLenght\n");    
-    stringLenght(msg);
+    printf("%d",stringLenght(msg));
     printf("\n");
 
 
     printf("Question 3 : toLowerCase\n");    
     putchar(toLowerCase('M'));
     printf("\n");    
+    printf("\n");
 
     printf("Question 4 : stringCompare\n");
     int dico = stringCompare("mael","aaaaa");
-    printf("\nle number est : %d", dico);
+    printf("\nle number est : %d\n", dico);
     printf("\n");    
 
     printf("Question 5 : findFirst\n");
