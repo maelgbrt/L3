@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "f0e45fac8e791a5e",
+    "type": "split",
+    "children": [
+      {
+        "id": "96efa581bc6104d4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fa956d008f463c2f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "S1/Programmation c/CM 3 - Structure.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CM 3 - Structure"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "be276ddca7c7d545",
+    "type": "split",
+    "children": [
+      {
+        "id": "f463ffecbd748a3b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c3d617deff261461",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorateur de fichiers"
+            }
+          },
+          {
+            "id": "abc3086ade7041f6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Rechercher"
+            }
+          },
+          {
+            "id": "853a7b696b6c5d33",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Signets"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "492987a08a025a52",
+    "type": "split",
+    "children": [
+      {
+        "id": "b3d10d19060352b5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "63cefde2c3904831",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "S1/OS/TD1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Rétroliens"
+            }
+          },
+          {
+            "id": "ccc31d8d158163f8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "S1/OS/TD1.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Liens sortants"
+            }
+          },
+          {
+            "id": "1b67784ea988b2a6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Mots-clés"
+            }
+          },
+          {
+            "id": "0f7d997b33c1c430",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Toutes les propriétés"
+            }
+          },
+          {
+            "id": "a53e8704ac67fbba",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "S1/OS/TD1.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Plan"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false,
+      "bases:Créer une nouvelle base": false
+    }
+  },
+  "active": "fa956d008f463c2f",
+  "lastOpenFiles": [
+    "S1/Programmation c/CM1.pdf",
+    "S1/Programmation c/CM 3 - Structure.md",
+    "S1/Programmation c/CM2.pdf",
+    "hello.pdf.md",
+    "README.md",
+    "Sans titre 1.md",
+    "2026-09-23.md",
+    "Pasted image 20260922152005.png",
+    "S1/Automates/TD2.md",
+    "S1/Programmation c/Fiche Révision.md",
+    "S1/Programmation c/Fiche_Revision_Langage_C_CM1.pdf",
+    "S1/Automates/TD1.md",
+    "S1/OS/TD1.md",
+    "S1/OS/figue.txt",
+    "S1/OS/hello_32",
+    "S1/OS/hello_32.o",
+    "S1/OS/mylibc.h",
+    "S1/OS/mylibc.c",
+    "S1/OS/main.c",
+    "S1/OS/INFO506_TD1_26.pdf"
+  ]
+}

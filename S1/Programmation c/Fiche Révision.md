@@ -20,6 +20,7 @@ ptr : &i
 ```
 a = 6 , b = 5 , *ptr1 = 6, *ptr2 = 6
 ```
+/buto
 
 ### Question 3
 p -> 4 <br>
