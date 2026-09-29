@@ -80,12 +80,36 @@ char *toUpperString(char *str) {
 }
 
 
-void valeur_in_tab(int x, int y, char tab[][26])
-{
-    // printf("%c", tab[x][y]);
-    printf("i");
+
+
+void affichage_tab_vigenere(){
+    char tab[26][26];
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++){
+            tab[i][j] = 'A' + (i + j) % 26;
+            printf("| %c ", tab[i][j]);
+        }
+    printf("\n---------------------------------------------------------------------------------------------------------\n");
+    }
+    printf("tab[a] = %c", *tab['A'-65]);
 }
 
+
+
+void init_tab_vigenere(char tab[26][26]) {
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++){
+            tab[i][j] = 'A' + (i + j) % 26;
+        }
+    }
+}
+
+
+
+void valeur_in_tab(int x, int y, char tab[26][26])
+{
+    printf("%c", tab[x][y]);
+}
 
 
 
@@ -96,7 +120,7 @@ int position_char_sur_26(char a)
 
 
 
-void transcription_key(char *str, char *key,char tab[][26])
+void transcription_key(char *str, char *key,char tab[26][26])
 {
     int str_len = stringLength(str);
     int key_len = stringLength(key);
@@ -104,20 +128,20 @@ void transcription_key(char *str, char *key,char tab[][26])
     if (key_len == 0) return;
 
     str = toUpperString(str);
-    printf("%s\n", str);
+    // printf("%s\n", str);
 
     int key_index = 0;
     for (int i = 0; i < str_len; i++)
     {
         if (str[i] == ' ' || str[i] == '\'')
         {
-            putchar(' '); 
+            putchar(str[i]); 
         }
         else
         {
 
             char c = toUpperCase(key[key_index % key_len]);
-            putchar(c);
+            // putchar(c);
             key_index++;
 
             int position_x = position_char_sur_26(str[i]);
@@ -186,26 +210,26 @@ void encypted_1( char * message , char * key ){
 
 void main()
 {
-    printString("mael");
-    printf("\n");
+    // printString("mael");
+    // printf("\n");
 
 
-    int nb_lettre = stringLength("mael");
-    printf("nb de lettre : %d \n " , nb_lettre);
+    // int nb_lettre = stringLength("mael");
+    // printf("nb de lettre : %d \n " , nb_lettre);
 
 
-    char minuscule = toLowerCase('M');
-    printf(" la minuscule : %c", minuscule);
+    // char minuscule = toLowerCase('M');
+    // printf(" la minuscule : %c", minuscule);
 
-    int dico = stringCompare("mael","aaaaa");
-    printf("\nle number est : %d", dico);
+    // int dico = stringCompare("mael","aaaaa");
+    // printf("\nle number est : %d", dico);
 
 
 
-    printf("\nQuestion 5 : findFirst\n");
-    char * res = findFirst("Hhhhellelo world", 'e');
-    printf("%c", *res);
-    printf("\n");    
+    // printf("\nQuestion 5 : findFirst\n");
+    // char * res = findFirst("Hhhhellelo world", 'e');
+    // printf("%c", *res);
+    // printf("\n");    
 
 
 
@@ -213,10 +237,12 @@ void main()
 
     // // EXERCICE 2 
 
-    char message [] = "L'escargot se promene avec sa maison" ;
-    char * key = "perdu";
-    char vigenereTable1 [26][26] ;
-    transcription_key(message, key,vigenereTable1);
+    char message[] = "L'escargot se promene avec sa maison";
+char *key = "perdu";
+
+char vigenereTable1[26][26];
+init_tab_vigenere(vigenereTable1);
+transcription_key(message, key, vigenereTable1);
     // int val = position_char_sur_26('A');
     // printf("\n la val est : %d",val);
 

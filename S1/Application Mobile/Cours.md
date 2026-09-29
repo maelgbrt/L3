@@ -250,3 +250,112 @@ Your codeclass Chien: Animal {
 
     />
 ```
+
+
+### Suite du Cours
+
+```mermaid
+
+graph TD
+
+    Screen -->|Event| ViewModel
+    ViewModel -->|Data State| UseCase
+    UseCase --> Data
+```
+
+
+
+### Stockage
+
+* #### Les préférences
+	* Stockage primitif (clé/valeur)
+	
+* #### Les fichiers
+	* Stockage spécifique et privé
+	* Stockage partagé et publique
+
+* #### Les bases de données
+	* Stockage Structuré(SQLite & Room)
+
+### Les préférences
+```kotlin
+val Context.dataStore by preferenceDataStroe(name="settings")
+```
+Infos courtes 
+
+
+### Les Fichiers
+__Stockage interne__, idéal pour le JSON, XML et CSV
+
+```kotlin
+openFileOutput("data.json", MODE_PRIVATE).use {
+	it.write(json.toByteArray())
+} 
+```
+
+### Les bases de données
+On arrête les requete comme : 
+
+```SQL
+CREATE TABLE USERS (id INTEGER PRIMARY KEY, name TEXT, email TEXT)
+```
+
+Plus moderne , on utilise une surcouche métier ave cune api utilisable en __Kotlin__ sans Kotlin avec Room
+
+```Kotlin
+@Entity
+data class User(@PrimaryKey val id: Int, val name : String, val email : String )
+```
+
+
+### Shema mis à jour
+```mermaid
+graph LR
+    %% Styles personnalisés
+    classDef rouge fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#991b1b,rx:8px,ry:8px;
+    classDef vert fill:#dcfce7,stroke:#22c55e,stroke-width:2px,color:#166534,rx:8px,ry:8px;
+    classDef ui fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0369a1,rx:8px,ry:8px;
+
+    %% Couche UI
+    subgraph UI ["📱 Couche UI"]
+        Screen["Screen"]
+        ViewModel["ViewModel"]
+    end
+
+    %% Couche Domain
+    subgraph Domain ["⚙️ Couche Domain"]
+        UseCase["UseCase"]
+        Data[("Database / Data")]
+        
+    end
+
+    %% Couche Data / Local
+    subgraph Local ["💾 Couche Data / Local"]
+        Repository["Repository"]
+        DAO["DAO"]
+        Entity["Entity"]
+    end
+
+    %% Flux et liaisons
+    Screen -->|Event| ViewModel
+    ViewModel -->|Data State| UseCase
+    UseCase --> Repository
+    Repository --> DAO
+    DAO --> Entity
+    Entity --> Data
+
+    %% Application des styles
+    class Screen,ViewModel ui
+    class UseCase,Data vert
+    class Repository,DAO,Entity, rouge
+```
+
+
+
+ 
+
+
+
+
+
+
