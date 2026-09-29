@@ -15,10 +15,21 @@ void question1(void) {
             printf("%d : %s : %s\n", i, name, description);
         }
     }
+
 }
 
+
+
 int main(void) {
-    question1();
+//     question1();
+// 
+// 
+//     const char* errname;
+//     int fd=my_open("toto.txt",0,0644);
+//     int fd=my_open("titi.txt",0,0644);
+//     if(fd<0){
+        // errname = 
+//     }
 
     /* Code fork commenté
     int pid = fork();
