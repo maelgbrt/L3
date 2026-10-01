@@ -16,41 +16,24 @@ public class Automate {
 
 // Question 1.2
     public boolean reconnait (ArrayList<Character> mot){
-        ArrayList<Etat> courants = new ArrayList<>();
-        courants.add(etatInitial);   // au début on peut être que dans l'état initial
+        
+        boolean res = true;
+        // au début on NE peut être que dans l'état initial (aipe)
+        Etat etat_courant = etatInitial;
 
         // On parcours sur les charachters de mot
         for (int i =0; i<mot.size();i++) {
             Character caractere = mot.get(i);   // un objet Character
             char c = caractere.charValue();
-            ArrayList<Etat> suivants = new ArrayList<>();
 
-            for (int j = 0; j<courants.size(); j++){
-                Etat e = courants.get(j);
-
-                for (int x = 0; x < e.getEnsembleTransitions().size(); x++) {
-                    Transition t = e.getEnsembleTransitions().get(x);
-                    if (t.getParametre() == c) {
-                        suivants.add(t.getArriveEtat());    // prbl si non deterministe (partie 2)
-                    }
+            Etat etat_suivant = FindTransition (c, etat_courant); // trouve la transition correspondante en parcourant chaque transition de l'etat courant et peut renvoyer null
+                if (etat_suivant){
+                    etat_courant = etat_suivant;
+                }else {
+                    res = false;
                 }
-                
-
-            }
-
-            courants = suivants;
-            if (courants.isEmpty()) {
-                return false;
-            }
-
         }
-        for (int i = 0; i < courants.size(); i++) {
-            Etat e = courants.get(i);
-            if (e.getEstEtatFinal()) {
-                return true;
-            }
-        }
-        return false;
+        return res;
     }
 
 

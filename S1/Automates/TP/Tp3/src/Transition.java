@@ -1,10 +1,10 @@
 public class Transition {
-    Etat arriveEtat;
+    Etat departEtat;
     Etat finEtat;
     char parametre;
 
-    public Transition(Etat finEtat,Etat arriveEtat,char parametre){
-        this.arriveEtat = arriveEtat;
+    public Transition(Etat finEtat,Etat departEtat,char parametre){
+        this.departEtat = departEtat;
         this.finEtat = finEtat;
         this.parametre = parametre;
     }
@@ -12,8 +12,8 @@ public class Transition {
    
 
 
-    public Etat getArriveEtat() {
-        return arriveEtat;
+    public Etat getdepartEtat() {
+        return departEtat;
     }
     public Etat getFinEtat() {
         return finEtat;
@@ -21,8 +21,8 @@ public class Transition {
     public char getParametre() {
         return parametre;
     }
-    public void setArriveEtat(Etat arriveEtat) {
-        this.arriveEtat = arriveEtat;
+    public void setdepartEtat(Etat departEtat) {
+        this.departEtat = departEtat;
     }
     public void setFinEtat(Etat finEtat) {
         this.finEtat = finEtat;
