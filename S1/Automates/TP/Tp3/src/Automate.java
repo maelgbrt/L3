@@ -12,23 +12,36 @@ public class Automate {
     }
 
     // // Question 1.2
-    // public boolean reconnait(ArrayList<String> mot) {
+    public boolean reconnait(ArrayList<String> Tab_mot) {
 
     //     // au début on NE peut être que dans l'état initial (aipe)
-    //     Etat etat_courant = etatInitial;
+        Etat etat_courant = etatInitial;
         
     //     // On parcours sur les charachters de mot
-    //     for (int i = 0; i < mot.size(); i++) {
-    //         char c = mot.get(i);
+        for (int i = 0; i < Tab_mot.size(); i++) {
+            String c = Tab_mot.get(i);
 
-    //         etat_courant = etat_courant.findTransition(c);
-    //         if (etat_courant == null) {
-    //             return false;
-    //         }
-    //     }
-    //     return etat_courant.estEtatFinal;
-    // }
+            etat_courant = etat_courant.findTransition(c);
+            if (etat_courant == null) {
+                return false;
+            }
+        }
+        return etat_courant.estEtatFinal;
+    }
 
+
+    // Au début on ne peut être que dans l'état initial
+// Etat etat_courant = etatInitial;
+
+// // On parcourt les caractères du mot
+// for (int i = 0; i < mot.length(); i++) {
+//     char c = mot.charAt(i); // Utilisation de charAt(i)
+//     etat_courant = etat_courant.findTransition(c);
+//     if (etat_courant == null) {
+//         return false;
+//     }
+// }
+// return etat_courant.estEtatFinal;
 
 
 

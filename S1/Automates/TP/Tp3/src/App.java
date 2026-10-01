@@ -1,80 +1,63 @@
+
 import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
             System.out.println("Hello, World!");
 
-        Etat un = new  Etat(false,"un",null);
-        Etat deux = new  Etat(false, "deux",null);
-        Etat trois = new  Etat(true, "trois",null);
+        Etat GoLabyrinthe = new  Etat(false,"Parcours le labyrinthe",null);
+        Etat FollowPC = new  Etat(false, "Poursuit Pac-Man",null);
+        Etat FleePC = new  Etat(false, "Fuit Pac-Man",null);
+        Etat returnBase = new  Etat(false, "Retourne à la base",null);
         
-        Transition trans1b2 = new Transition(un,deux, 'b');        
-        Transition trans2a2= new Transition(deux,deux, 'a');
-        Transition trans2b3 = new Transition(deux,trois, 'b');
-        Transition trans3c2 = new Transition(trois,deux, 'c');
-        Transition trans3b3 = new Transition(trois,trois, 'b');
+        Transition FindBase = new Transition(returnBase,GoLabyrinthe, "atteint la base");        
+        Transition LosePC = new Transition(FollowPC,GoLabyrinthe, "a perdu Pac-Man");
+        Transition SeePC = new Transition(GoLabyrinthe,FollowPC, "a vu Pac-Man");
+        Transition EatbyPC = new Transition(FleePC,returnBase, "a été mangé par Pac-Man");
+        Transition EatGomme = new Transition(FollowPC,FleePC, "Pac-Man mange une super pac-gomme");
+        Transition EatGomme2 = new Transition(GoLabyrinthe,FleePC, "Pac-Man mange une super pac-gomme");
+        Transition ExpirePacGomme = new Transition(FleePC,GoLabyrinthe, "Super pac-gomme expire");
 
+        ArrayList<Transition> TransitionGoLabyrinthe = new  ArrayList<>();
+        ArrayList<Transition> TransitionFollowPC = new  ArrayList<>();
+        ArrayList<Transition> TransitionFleePC = new  ArrayList<>();
+        ArrayList<Transition> TransitionReturnBase = new  ArrayList<>();
 
-        ArrayList<Transition> Transition1 = new  ArrayList<>();
-        ArrayList<Transition> Transition2 = new  ArrayList<>();
-        ArrayList<Transition> Transition3 = new  ArrayList<>();
+        TransitionGoLabyrinthe.add(SeePC);
+        TransitionGoLabyrinthe.add(EatGomme2);
+        TransitionFollowPC.add(LosePC);
+        TransitionFollowPC.add(EatGomme);
+        TransitionFleePC.add(ExpirePacGomme);
+        TransitionFleePC.add(EatbyPC);
+        TransitionReturnBase.add(FindBase);
 
-        Transition1.add(trans1b2);
-        Transition2.add(trans2a2);
-        Transition2.add(trans2b3);
-        Transition3.add(trans3c2);
-        Transition3.add(trans3b3);
+        GoLabyrinthe.ensembleTransitions.addAll(TransitionGoLabyrinthe);
+        FollowPC.ensembleTransitions.addAll(TransitionFollowPC);
+        FleePC.ensembleTransitions.addAll(TransitionFleePC);
+        returnBase.ensembleTransitions.addAll(TransitionReturnBase);
 
-        un.ensembleTransitions.addAll(Transition1);
-        deux.ensembleTransitions.addAll(Transition2);
-        trois.ensembleTransitions.addAll(Transition3);
-
-        ArrayList<Character> alphabet = new ArrayList<>();
-        alphabet.add('a');
-        alphabet.add('b');
-        alphabet.add('c');
+        ArrayList<String> alphabet = new ArrayList<>();
+        alphabet.add("atteint la base");
+        alphabet.add("Pac-Man mange une super pac-gomme");
+        alphabet.add("a vu Pac-Man");
+        alphabet.add("a perdu Pac-Man");
+        alphabet.add("a été mangé par Pac-Man");
+        alphabet.add("Super pac-gomme expire");
 
         ArrayList<Etat> ensembleEtats = new ArrayList<>();
-        ensembleEtats.add(un);
-        ensembleEtats.add(deux);
-        ensembleEtats.add(trois);
+        ensembleEtats.add(GoLabyrinthe);
+        ensembleEtats.add(FollowPC);
+        ensembleEtats.add(FleePC);
+        ensembleEtats.add(returnBase);
 
     
 
         // ############ QUESTION 3
 
-        Automate Question3 = new Automate(alphabet,ensembleEtats,un);
-
-        ArrayList<Character> mot1 = new ArrayList<>();
-        mot1.add('b');
-        mot1.add('b');
-        mot1.add('b');
-
-        System.out.println(Question3.reconnait(mot1));
-
-        ArrayList<Character> mot2 = new ArrayList<>();
-        mot2.add('b');
-        mot2.add('a');
-        mot2.add('b');
-
-        System.out.println(Question3.reconnait(mot2));
-
-    //    ArrayList<Character> mot3 = new ArrayList<>();
-    //     mot3.add('b');
-    //     mot3.add('a');
-    //     mot3.add('b');
-    //     mot3.add('c');
-    //     mot3.add('b');
-
-    //     System.out.println(Question3.reconnait(mot3));
+       
 
 
-        ArrayList<Character> mot4 = new ArrayList<>();
-        mot2.add('a');
-        mot2.add('a');
-        mot2.add('b');
 
-        System.out.println(Question3.reconnait(mot4));  // false
     // }
     
     }

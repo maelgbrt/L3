@@ -1,6 +1,8 @@
 import java.lang.annotation.Retention;
 import java.util.ArrayList;
 
+import javax.print.DocFlavor.STRING;
+
 public class Etat {
     boolean estEtatFinal;
     String nomEtat;
@@ -17,7 +19,7 @@ public class Etat {
 
 
 
-public Etat findTransition (char c){
+public Etat findTransition (String c){
 
     Etat etat_suivant = null;
 
@@ -28,10 +30,9 @@ public Etat findTransition (char c){
             // System.out.println(transition.parametre + " = " + c + " / " + transition.departEtat.nomEtat);
 
             
-            if (transition.parametre == c ) {
+            if (transition.parametre.equals(c) ) {
                 
                 etat_suivant = transition.finEtat;
-                System.out.println("l'etat temp : " + etat_suivant.nomEtat);
            } 
 
         }
