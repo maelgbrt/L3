@@ -9,7 +9,7 @@ public class Etat {
     public Etat(boolean estEtatFinal,String nomEtat, ArrayList<Transition> ensembleTransitions){
         this.estEtatFinal = estEtatFinal;
         this.nomEtat = nomEtat;
-        this.ensembleTransitions = new ArrayList<>();
+        this.ensembleTransitions = (ensembleTransitions == null) ? new ArrayList<>() : ensembleTransitions;
     }
 
 
@@ -17,12 +17,16 @@ public class Etat {
 
 
 
-public FindTransition (char c,Etat etat_courant ){
+public Etat findTransition (char c){
 
     Etat etat_suivant = null;
 
-        for (var transition : etat_courant.getEnsembleTransitions()) {
+    System.out.println("Etat : " + nomEtat);
+        for (var transition : ensembleTransitions) {
+            System.out.println("transition : " + transition.parametre);
+                        System.out.println(transition.parametre + " = " + c);
            if (transition.parametre == c ) {
+            
                 etat_suivant = transition.finEtat;
            } 
         }

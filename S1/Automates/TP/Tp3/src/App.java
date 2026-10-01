@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+    public static void main(String[] args) {
+            System.out.println("Hello, World!");
 
         Etat un = new  Etat(false,"un",null);
         Etat deux = new  Etat(false, "deux",null);
@@ -39,25 +39,25 @@ public class App {
         ensembleEtats.add(deux);
         ensembleEtats.add(trois);
 
-    }
+    
 
         // ############ QUESTION 3
 
-        // Automate Question3 = new Automate(alphabet,ensembleEtats,un);
+        Automate Question3 = new Automate(alphabet,ensembleEtats,un);
 
-    //     ArrayList<Character> mot1 = new ArrayList<>();
-    //     mot1.add('b');
-    //     mot1.add('b');
-    //     mot1.add('b');
+        ArrayList<Character> mot1 = new ArrayList<>();
+        mot1.add('b');
+        mot1.add('b');
+        mot1.add('b');
 
-    //     System.out.println(Question3.reconnait(mot1));
+        System.out.println(Question3.reconnait(mot1));
 
-    //     ArrayList<Character> mot2 = new ArrayList<>();
-    //     mot2.add('b');
-    //     mot2.add('a');
-    //     mot2.add('b');
+        ArrayList<Character> mot2 = new ArrayList<>();
+        mot2.add('b');
+        mot2.add('a');
+        mot2.add('b');
 
-    //     System.out.println(Question3.reconnait(mot2));
+        System.out.println(Question3.reconnait(mot2));
 
     //    ArrayList<Character> mot3 = new ArrayList<>();
     //     mot3.add('b');
@@ -77,6 +77,6 @@ public class App {
     //     System.out.println(Question3.reconnait(mot4));  // false
     // }
     
-
+    }
 
 }
