@@ -3,13 +3,15 @@ public class Transition {
     Etat finEtat;
     String parametre;
 
+<<<<<<< HEAD
     public Transition(Etat departEtat,Etat finEtat,String parametre){
+=======
+    public Transition(Etat departEtat,Etat  finEtat,String parametre){
+>>>>>>> c05ad57819557894491a54440b96d8a0f9270484
         this.departEtat = departEtat;
         this.finEtat = finEtat;
         this.parametre = parametre;
     }
-    
-   
 
 
     public Etat getdepartEtat() {
