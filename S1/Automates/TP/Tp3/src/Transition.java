@@ -1,15 +1,13 @@
 public class Transition {
     Etat departEtat;
     Etat finEtat;
-    string parametre;
+    String parametre;
 
-    public Transition(Etat departEtat,Etat finEtat,string parametre){
+    public Transition(Etat departEtat,Etat  finEtat,String parametre){
         this.departEtat = departEtat;
         this.finEtat = finEtat;
         this.parametre = parametre;
     }
-    
-   
 
 
     public Etat getdepartEtat() {
@@ -18,7 +16,7 @@ public class Transition {
     public Etat getFinEtat() {
         return finEtat;
     }
-    public string getParametre() {
+    public String getParametre() {
         return parametre;
     }
     public void setdepartEtat(Etat departEtat) {
@@ -26,7 +24,7 @@ public class Transition {
     }
     public void setFinEtat(Etat finEtat) {
         this.finEtat = finEtat;
-    }public void setParametre(string parametre) {
+    }public void setParametre(String parametre) {
         this.parametre = parametre;
     }
 }

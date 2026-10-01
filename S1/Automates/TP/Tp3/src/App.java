@@ -4,15 +4,15 @@ public class App {
     public static void main(String[] args) {
             System.out.println("Hello, World!");
 
-        Etat un = new  Etat(false,"un",null);
-        Etat deux = new  Etat(false, "deux",null);
-        Etat trois = new  Etat(true, "trois",null);
+        Etat un = new  Etat(false,"parcouru",null);
+        Etat deux = new  Etat(false, "poursuit",null);
+        Etat trois = new  Etat(true, "mort",null);
         
-        Transition trans1b2 = new Transition(un,deux, 'b');        
-        Transition trans2a2= new Transition(deux,deux, 'a');
-        Transition trans2b3 = new Transition(deux,trois, 'b');
-        Transition trans3c2 = new Transition(trois,deux, 'c');
-        Transition trans3b3 = new Transition(trois,trois, 'b');
+        Transition trans1b2 = new Transition(un,deux, "mot1");        
+        Transition trans2a2= new Transition(deux,deux, "mot2");
+        Transition trans2b3 = new Transition(deux,trois, "mot2");
+        Transition trans3c2 = new Transition(trois,deux, "mot2");
+        Transition trans3b3 = new Transition(trois,trois, "mot1");
 
 
         ArrayList<Transition> Transition1 = new  ArrayList<>();
@@ -29,10 +29,11 @@ public class App {
         deux.ensembleTransitions.addAll(Transition2);
         trois.ensembleTransitions.addAll(Transition3);
 
-        ArrayList<Character> alphabet = new ArrayList<>();
-        alphabet.add('a');
-        alphabet.add('b');
-        alphabet.add('c');
+        ArrayList<String> alphabet = new ArrayList<>();
+        alphabet.add("mot1");
+        alphabet.add("mot2");
+        alphabet.add("mot3");
+        alphabet.add("mot4");
 
         ArrayList<Etat> ensembleEtats = new ArrayList<>();
         ensembleEtats.add(un);
@@ -44,37 +45,9 @@ public class App {
         // ############ QUESTION 3
 
         Automate Question3 = new Automate(alphabet,ensembleEtats,un);
-
-        ArrayList<Character> mot1 = new ArrayList<>();
-        mot1.add('b');
-        mot1.add('b');
-        mot1.add('b');
-
-        System.out.println(Question3.reconnait(mot1));
-
-        ArrayList<Character> mot2 = new ArrayList<>();
-        mot2.add('b');
-        mot2.add('a');
-        mot2.add('b');
-
-        System.out.println(Question3.reconnait(mot2));
-
-    //    ArrayList<Character> mot3 = new ArrayList<>();
-    //     mot3.add('b');
-    //     mot3.add('a');
-    //     mot3.add('b');
-    //     mot3.add('c');
-    //     mot3.add('b');
-
-    //     System.out.println(Question3.reconnait(mot3));
+        System.out.println(Question3.reconnait(alphabet));
 
 
-        ArrayList<Character> mot4 = new ArrayList<>();
-        mot2.add('a');
-        mot2.add('a');
-        mot2.add('b');
-
-        System.out.println(Question3.reconnait(mot4));  // false
     // }
     
     }

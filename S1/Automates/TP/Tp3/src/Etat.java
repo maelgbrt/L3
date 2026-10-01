@@ -1,4 +1,3 @@
-import java.lang.annotation.Retention;
 import java.util.ArrayList;
 
 public class Etat {
@@ -9,36 +8,26 @@ public class Etat {
     public Etat(boolean estEtatFinal,String nomEtat, ArrayList<Transition> ensembleTransitions){
         this.estEtatFinal = estEtatFinal;
         this.nomEtat = nomEtat;
-        this.ensembleTransitions = (ensembleTransitions == null) ? new ArrayList<>() : ensembleTransitions;
+        this.ensembleTransitions = (ensembleTransitions != null)
+                                    ? ensembleTransitions
+                                    :new ArrayList<>(); // pour pas avoir de null pointer exception
     }
 
-
-
-
-
-
-public Etat findTransition (char c){
+    public Etat findTransition (String c){
 
     Etat etat_suivant = null;
 
-    // System.out.println("Etat : " + nomEtat);
+    System.out.println("Etat : " + nomEtat);
         for (var transition : ensembleTransitions) {
-            // System.out.println("transition : " + transition.parametre);
-            // System.out.println("fin de la transition : " + transition.finEtat.nomEtat);
-            // System.out.println(transition.parametre + " = " + c + " / " + transition.departEtat.nomEtat);
-
+            //System.out.println("transition : " + transition.parametre);
+                        //System.out.println(transition.parametre + " = " + c);
+           if (transition.parametre.equals(c) ) {
             
-            if (transition.parametre == c ) {
-                
                 etat_suivant = transition.finEtat;
-                System.out.println("l'etat temp : " + etat_suivant.nomEtat);
            } 
-
         }
-
         return etat_suivant;
     }   
-    
 
     public String getNomEtat() {
         return nomEtat;
