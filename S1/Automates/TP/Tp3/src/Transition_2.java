@@ -1,9 +1,9 @@
-public class Transition {
+public class Transition<T> {
     Etat departEtat;
     Etat finEtat;
-    string parametre;
+    T parametre;
 
-    public Transition(Etat departEtat,Etat finEtat,string parametre){
+    public Transition(Etat departEtat,Etat finEtat,T parametre){
         this.departEtat = departEtat;
         this.finEtat = finEtat;
         this.parametre = parametre;
@@ -18,7 +18,7 @@ public class Transition {
     public Etat getFinEtat() {
         return finEtat;
     }
-    public string getParametre() {
+    public T getParametre() {
         return parametre;
     }
     public void setdepartEtat(Etat departEtat) {
@@ -26,7 +26,7 @@ public class Transition {
     }
     public void setFinEtat(Etat finEtat) {
         this.finEtat = finEtat;
-    }public void setParametre(string parametre) {
+    }public void setParametre(T parametre) {
         this.parametre = parametre;
     }
 }

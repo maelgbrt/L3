@@ -31,7 +31,7 @@ public Etat findTransition (char c){
             if (transition.parametre == c ) {
                 
                 etat_suivant = transition.finEtat;
-                // System.out.println("l'etat temp : " + etat_suivant.nomEtat);
+                System.out.println("l'etat temp : " + etat_suivant.nomEtat);
            } 
 
         }
