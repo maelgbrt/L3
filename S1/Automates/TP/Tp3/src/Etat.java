@@ -15,30 +15,23 @@ public class Etat {
                                     :new ArrayList<>(); // pour pas avoir de null pointer exception
     }
 
-<<<<<<< HEAD
 
 
 
 
 
 public Etat findTransition (String c){
-=======
-    public Etat findTransition (String c){
->>>>>>> c05ad57819557894491a54440b96d8a0f9270484
 
     Etat etat_suivant = null;
 
-    System.out.println("Etat : " + nomEtat);
+    System.out.println("ETAT : " + nomEtat);
         for (var transition : ensembleTransitions) {
-            //System.out.println("transition : " + transition.parametre);
-                        //System.out.println(transition.parametre + " = " + c);
-           if (transition.parametre.equals(c) ) {
+            // System.out.println("transition : " + transition.parametre + " nouvelle etat : " + transition.finEtat.nomEtat);
+            //System.out.println(transition.parametre + " = " + c);
             
-<<<<<<< HEAD
             if (transition.parametre.equals(c) ) {
+                System.err.println("----> Transition : " + transition.parametre );
                 
-=======
->>>>>>> c05ad57819557894491a54440b96d8a0f9270484
                 etat_suivant = transition.finEtat;
            } 
         }
