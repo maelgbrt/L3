@@ -21,15 +21,21 @@ public Etat findTransition (char c){
 
     Etat etat_suivant = null;
 
-    System.out.println("Etat : " + nomEtat);
+    // System.out.println("Etat : " + nomEtat);
         for (var transition : ensembleTransitions) {
-            System.out.println("transition : " + transition.parametre);
-                        System.out.println(transition.parametre + " = " + c);
-           if (transition.parametre == c ) {
+            // System.out.println("transition : " + transition.parametre);
+            // System.out.println("fin de la transition : " + transition.finEtat.nomEtat);
+            // System.out.println(transition.parametre + " = " + c + " / " + transition.departEtat.nomEtat);
+
             
+            if (transition.parametre == c ) {
+                
                 etat_suivant = transition.finEtat;
+                // System.out.println("l'etat temp : " + etat_suivant.nomEtat);
            } 
+
         }
+
         return etat_suivant;
     }   
     

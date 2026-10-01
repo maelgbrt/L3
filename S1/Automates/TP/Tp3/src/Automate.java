@@ -21,9 +21,9 @@ public class Automate {
         for (int i = 0; i < mot.size(); i++) {
             char c = mot.get(i);
 
-            
-            System.out.println(etat_courant.nomEtat);
-            System.out.println(c);
+
+            // System.out.println(etat_courant.nomEtat);
+            // System.out.println(c);
 
             etat_courant = etat_courant.findTransition(c);
             if (etat_courant == null) {

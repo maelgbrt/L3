@@ -59,22 +59,22 @@ public class App {
 
         System.out.println(Question3.reconnait(mot2));
 
-    //    ArrayList<Character> mot3 = new ArrayList<>();
-    //     mot3.add('b');
-    //     mot3.add('a');
-    //     mot3.add('b');
-    //     mot3.add('c');
-    //     mot3.add('b');
+       ArrayList<Character> mot3 = new ArrayList<>();
+        mot3.add('b');
+        mot3.add('a');
+        mot3.add('b');
+        mot3.add('c');
+        mot3.add('b');
 
-    //     System.out.println(Question3.reconnait(mot3));
+        System.out.println(Question3.reconnait(mot3));
 
 
-    //     ArrayList<Character> mot4 = new ArrayList<>();
-    //     mot2.add('a');
-    //     mot2.add('a');
-    //     mot2.add('b');
+        ArrayList<Character> mot4 = new ArrayList<>();
+        mot2.add('a');
+        mot2.add('a');
+        mot2.add('b');
 
-    //     System.out.println(Question3.reconnait(mot4));  // false
+        System.out.println(Question3.reconnait(mot4));  // false
     // }
     
     }

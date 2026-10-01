@@ -3,7 +3,7 @@ public class Transition {
     Etat finEtat;
     char parametre;
 
-    public Transition(Etat finEtat,Etat departEtat,char parametre){
+    public Transition(Etat departEtat,Etat finEtat,char parametre){
         this.departEtat = departEtat;
         this.finEtat = finEtat;
         this.parametre = parametre;
