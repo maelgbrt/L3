@@ -50,10 +50,46 @@ public class App {
         ensembleEtats.add(FleePC);
         ensembleEtats.add(returnBase);
 
-    
+
+        Automate AutomatePC = new Automate(alphabet, ensembleEtats, GoLabyrinthe);
+
 
         // ############ QUESTION 3
+// ############ QUESTION 3 : TESTS DE L'AUTOMATE PAC-MAN
 
+        System.out.println("\n--- SCÉNARIO 1 : Chasse puis perte de vue ---");
+        // Parcours -> Chasse -> Parcours
+        ArrayList<String> test1 = new ArrayList<>();
+        test1.add("a vu Pac-Man");
+        test1.add("a perdu Pac-Man");
+        System.out.println("Séquence valide : " + AutomatePC.reconnait(test1)); // Attendu : true
+
+        System.out.println("\n--- SCÉNARIO 2 : Pris au piège par une super pac-gomme ---");
+        // Parcours -> Chasse -> Super gomme -> Mangé -> Retour base -> Parcours
+        ArrayList<String> test2 = new ArrayList<>();
+        test2.add("a vu Pac-Man");
+        test2.add("Pac-Man mange une super pac-gomme");
+        test2.add("a été mangé par Pac-Man");
+        test2.add("atteint la base");
+        System.out.println("Cycle complet de capture : " + AutomatePC.reconnait(test2)); // Attendu : true
+
+        // System.out.println("\n--- SCÉNARIO 3 : Fuite réussie (expiration) ---");
+        // // Parcours -> Super gomme -> Fuite -> Expiration -> Parcours
+        // ArrayList<String> test3 = new ArrayList<>();
+        // test3.add("Pac-Man mange une super pac-gomme");
+        // test3.add("Super pac-gomme expire");
+        // System.out.println("Survie à la super gomme : " + AutomatePC.reconnait(test3)); // Attendu : true
+
+        // System.out.println("\n--- SCÉNARIO 4 : Transition impossible (doit échouer) ---");
+        // // Impossible d'être mangé directement depuis l'état initial (GoLabyrinthe)
+        // ArrayList<String> testInvalide = new ArrayList<>();
+        // testInvalide.add("a été mangé par Pac-Man");
+        // System.out.println("Action impossible : " + AutomatePC.reconnait(testInvalide)); // Attendu : false
+
+        // System.out.println("\n--- SCÉNARIO 5 : Mot inconnu hors alphabet ---");
+        // ArrayList<String> testHorsAlphabet = new ArrayList<>();
+        // testHorsAlphabet.add("Pac-Man saute un mur");
+        // System.out.println("Hors alphabet : " + AutomatePC.reconnait(testHorsAlphabet)); // Attendu : false
        
 
 

@@ -1,30 +1,28 @@
 import java.util.ArrayList;
 
 public class Automate {
-    ArrayList<Character> alphabet = new ArrayList<>();
+    ArrayList<String> alphabet = new ArrayList<>();
     ArrayList<Etat> EnsembleEtats = new ArrayList<>();
     Etat etatInitial;
 
-    public Automate(ArrayList<Character> alphabet, ArrayList<Etat> EnsembleEtats, Etat etatInitial) {
+    public Automate(ArrayList<String> alphabet, ArrayList<Etat> EnsembleEtats, Etat etatInitial) {
         this.alphabet = alphabet;
         this.EnsembleEtats = EnsembleEtats;
         this.etatInitial = etatInitial;
     }
 
-    // // Question 1.2
     public boolean reconnait(ArrayList<String> Tab_mot) {
 
-    //     // au début on NE peut être que dans l'état initial (aipe)
         Etat etat_courant = etatInitial;
         
-    //     // On parcours sur les charachters de mot
         for (int i = 0; i < Tab_mot.size(); i++) {
             String c = Tab_mot.get(i);
+            System.out.println(c);
 
-            etat_courant = etat_courant.findTransition(c);
-            if (etat_courant == null) {
-                return false;
-            }
+            // etat_courant = etat_courant.findTransition(c);
+            // if (etat_courant == null) {
+            //     return false;
+            // }
         }
         return etat_courant.estEtatFinal;
     }
@@ -48,25 +46,8 @@ public class Automate {
 
 
 
-     // Question 1.2
-    public T reconnait(ArrayList<Character> mot) {
 
-        // au début on NE peut être que dans l'état initial (aipe)
-        Etat etat_courant = etatInitial;
-        
-        // On parcours sur les charachters de mot
-        for (int i = 0; i < mot.size(); i++) {
-            char c = mot.get(i);
-
-            etat_courant = etat_courant.findTransition(c);
-            if (etat_courant == null) {
-                return false;
-            }
-        }
-        return etat_courant.estEtatFinal;
-    }
-
-    public ArrayList<Character> getAlphabet() {
+    public ArrayList<String> getAlphabet() {
         return alphabet;
     }
 
@@ -78,7 +59,7 @@ public class Automate {
         return etatInitial;
     }
 
-    public void setAlphabet(ArrayList<Character> alphabet) {
+    public void setAlphabet(ArrayList<String> alphabet) {
         this.alphabet = alphabet;
     }
 
