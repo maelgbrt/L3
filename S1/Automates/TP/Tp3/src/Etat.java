@@ -1,58 +1,46 @@
 import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.print.DocFlavor.STRING;
+public class Etat <TypeNom , TypeParam> {
+    private boolean estEtatFinal;
+    private TypeNom nomEtat;
+    private ArrayList<Transition<TypeParam>> ensembleTransitions;
 
-public class Etat {
-    boolean estEtatFinal;
-    String nomEtat;
-    ArrayList<Transition> ensembleTransitions;
-
-    public Etat(boolean estEtatFinal,String nomEtat, ArrayList<Transition> ensembleTransitions){
+    public Etat(boolean estEtatFinal,TypeNom nomEtat, ArrayList<Transition<TypeParam>> ensembleTransitions){
         this.estEtatFinal = estEtatFinal;
         this.nomEtat = nomEtat;
-        this.ensembleTransitions = (ensembleTransitions != null)
-                                    ? ensembleTransitions
-                                    :new ArrayList<>(); // pour pas avoir de null pointer exception
+        this.ensembleTransitions = (ensembleTransitions != null) ? ensembleTransitions : new ArrayList<>();
     }
 
 
-
-
-
-
-public Etat findTransition (String c){
-
-    Etat etat_suivant = null;
-
-    System.out.println("ETAT : " + nomEtat);
-        for (var transition : ensembleTransitions) {
-            // System.out.println("transition : " + transition.parametre + " nouvelle etat : " + transition.finEtat.nomEtat);
-            //System.out.println(transition.parametre + " = " + c);
-            
-            if (transition.parametre.equals(c) ) {
-                System.err.println("----> Transition : " + transition.parametre );
-                
-                etat_suivant = transition.finEtat;
-           } 
+    public Set<Etat<TypeNom, TypeParam>> findTransitions(TypeParam c) {
+        Set<Etat<TypeNom, TypeParam>> reponse = new HashSet<>();
+        for (Transition<TypeNom, TypeParam> transition : ensembleTransitions) {
+            if (transition.getParametre().equals(c)) {
+                reponse.add(transition.getFinEtat());
+            }
         }
-        return etat_suivant;
-    }   
+        return reponse;
+    }
 
-    public String getNomEtat() {
+
+    public TypeNom getNomEtat() {
         return nomEtat;
     }
     public boolean getEstEtatFinal() {
         return  estEtatFinal;
     }
   
-    public ArrayList<Transition> getEnsembleTransitions() {
+    public ArrayList<Transition<TypeParam>> getEnsembleTransitions() {
         return ensembleTransitions;
     }
 
     public void setEstEtatFinal(boolean estEtatFinal) {
         this.estEtatFinal = estEtatFinal;
     }
-    public void setNomEtat(String nomEtat) {
+    public void setNomEtat(TypeNom nomEtat) {
         this.nomEtat = nomEtat;
     }
 

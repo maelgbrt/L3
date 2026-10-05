@@ -1,70 +1,43 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Automate {
-    ArrayList<String> alphabet = new ArrayList<>();
-    ArrayList<Etat> EnsembleEtats = new ArrayList<>();
-    Etat etatInitial;
-    
+public class Automate<TypeNom, TypeParam> {
+    private ArrayList<Etat<TypeNom, TypeParam>> ensembleEtats;
+    private Etat<TypeNom, TypeParam> etatInitial;
 
-    public Automate(ArrayList<String> alphabet, ArrayList<Etat> EnsembleEtats, Etat etatInitial) {
-        this.alphabet = alphabet;
-        this.EnsembleEtats = EnsembleEtats;
+    public Automate(ArrayList<Etat<TypeNom, TypeParam>> ensembleEtats, Etat<TypeNom, TypeParam> etatInitial) {
+        this.ensembleEtats = (ensembleEtats != null) ? ensembleEtats : new ArrayList<>();
         this.etatInitial = etatInitial;
     }
 
-    public boolean reconnait(ArrayList<String> Tab_mot) {
 
-        Etat etat_courant = etatInitial;
-        
-        for (int i = 0; i < Tab_mot.size(); i++) {
-            String c = Tab_mot.get(i);
 
-            etat_courant = etat_courant.findTransition(c);
-            if (etat_courant == null) {
+    
+ public boolean reconnait(ArrayList<TypeParam> mot) {
+        Set<Etat<TypeNom, TypeParam>> etatsCourants = new HashSet<>();
+        etatsCourants.add(etatInitial);
+
+        for (TypeParam symbole : mot) {
+            Set<Etat<TypeNom, TypeParam>> suivants = new HashSet<>();
+            for (Etat<TypeNom, TypeParam> etat : etatsCourants) {
+                suivants.addAll(etat.findTransitions(symbole));
+            }
+            etatsCourants = suivants;
+
+            if (etatsCourants.isEmpty()) {
                 return false;
             }
         }
-        return etat_courant.estEtatFinal;
+
+        for (Etat<TypeNom, TypeParam> etat : etatsCourants) {
+            if (etat.getEstEtatFinal()) {
+                return true;
+            }
+        }
+        return false;
     }
 
-
-    // Au début on ne peut être que dans l'état initial
-// Etat etat_courant = etatInitial;
-
-// // On parcourt les caractères du mot
-// for (int i = 0; i < mot.length(); i++) {
-//     char c = mot.charAt(i); // Utilisation de charAt(i)
-//     etat_courant = etat_courant.findTransition(c);
-//     if (etat_courant == null) {
-//         return false;
-//     }
-// }
-// return etat_courant.estEtatFinal;
-
-
-
-
-
-
-
-    public ArrayList<String> getAlphabet() {
-        return alphabet;
-    }
-    public ArrayList<Etat> getEnsembleEtats() {
-        return EnsembleEtats;
-    }
-    public Etat getEtatInitial() {
-        return etatInitial;
-    }
-
-    public void setAlphabet(ArrayList<String> alphabet) {
-        this.alphabet = alphabet;
-    }
-    public void setEnsembleEtats(ArrayList<Etat> ensembleEtats) {
-        EnsembleEtats = ensembleEtats;
-    }
-    public void setEtatInitial(Etat etatInitial) {
-        this.etatInitial = etatInitial;
-    }
-
+    public ArrayList<Etat<TypeNom, TypeParam>> getEnsembleEtats() { return ensembleEtats; }
+    public Etat<TypeNom, TypeParam> getEtatInitial() { return etatInitial; }
 }
