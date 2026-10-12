@@ -1,0 +1,36 @@
+/**************************************************************/
+/******** NE PAS MODIFIER LES  PREMIERES LIGNES  **************/
+/**************************************************************/
+import fr.usmb.l3info.tp4.TP4Scanner;
+
+parser code {:
+    TP4Scanner s;
+    public Parser(TP4Scanner s){this.s=s; }
+:}
+
+/* define how to connect to the scanner! */
+scan with {: return s.next_token(); :};
+
+/**************************************************************/
+/******** NE PAS MODIFIER LES LIGNES PREMIERES LIGNES**********/
+/**************************************************************/
+
+
+/************ A PARTIR D'ICI, A MODIFIER ***********/
+/* Déclaration des symboles terminaux. */
+terminal            LPAREN, RPAREN, ZERO, ONE, CONCAT;
+terminal Character    LETTRE;        
+
+/* Déclaration des symboles non terminaux. */
+non terminal String    expr;
+
+/* Precedences */
+
+
+/* The grammar rules */
+expr      ::=  ZERO								{: RESULT = "0";			:}
+       		 | LPAREN expr:e RPAREN	         	{: RESULT = "(" + e + ")";  :}
+       		 | LETTRE:s	                 		{: RESULT = s + "";      	:}
+       		 ;
+       
+             
