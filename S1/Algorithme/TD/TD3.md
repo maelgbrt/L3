@@ -15,7 +15,7 @@ recherche234(<e1,a1,a2>,e) =>  si e1 = e alors retourne vrai
 sinon si e1 < e alors recherche234(a2,e)
 sinon recherche234(a1,e)
 finsi
-finsi
+finsi 
 
 
 recherche234(<(e1,e2),a1,a2,a3>,e) => si e = e1 ou e = e2 alors retourne vrai

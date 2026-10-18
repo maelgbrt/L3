@@ -34,9 +34,23 @@
               "icon": "lucide-file",
               "title": "Cours"
             }
+          },
+          {
+            "id": "0c7d969a1ca559fd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Fiche Pr Examen.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Fiche Pr Examen"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -203,30 +217,31 @@
       "bases:Créer une nouvelle base": false
     }
   },
-  "active": "6515783ea1c3be75",
+  "active": "0c7d969a1ca559fd",
   "lastOpenFiles": [
-    "S1/Application Mobile/Cours 1.md",
-    "S1/Application Mobile/Cours.md",
     "S1/AIPE/AIPE_502.md",
+    "Fiche Pr Examen.md",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr/usmb/l3info/tp4/parser/sym.class",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr/usmb/l3info/tp4/TP4Scanner.class",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr/usmb/l3info/tp4/Main.class",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr/usmb/l3info/tp4/parser",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr/usmb/l3info/tp4",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr/usmb/l3info",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr/usmb",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/fr",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/cup/regex.cup",
+    "S1/Automates/TP/TP4/TP4 - Grammaires-20261006/info502-tp4/TP4/bin/cup",
+    "S1/Application Mobile/Cours.md",
+    "S1/Application Mobile/Cours 1.md",
     "README.md",
     "S1/Programmation c/CM 3 - Structure.md",
-    "S1/Programmation c/CM1.pdf",
-    "S1/Programmation c/CM2.pdf",
     "hello.pdf.md",
     "Sans titre 1.md",
     "2026-09-23.md",
     "Pasted image 20260922152005.png",
     "S1/Automates/TD2.md",
     "S1/Programmation c/Fiche Révision.md",
-    "S1/Programmation c/Fiche_Revision_Langage_C_CM1.pdf",
     "S1/Automates/TD1.md",
-    "S1/OS/TD1.md",
-    "S1/OS/figue.txt",
-    "S1/OS/hello_32",
-    "S1/OS/hello_32.o",
-    "S1/OS/mylibc.h",
-    "S1/OS/mylibc.c",
-    "S1/OS/main.c",
-    "S1/OS/INFO506_TD1_26.pdf"
+    "S1/OS/TD1.md"
   ]
 }

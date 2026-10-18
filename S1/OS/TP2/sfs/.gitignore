@@ -1,0 +1,8 @@
+*.o
+shell
+sfs
+sfs_fuse
+sfs_shell
+a.out
+*.sfs
+sfs.log

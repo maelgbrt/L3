@@ -22,3 +22,11 @@ procedure rotation-droite(t1 : tableau ; var t2 : tableau);
 
     fin rotation-droite;
 ```
+
+
+
+
+
+
+
+
