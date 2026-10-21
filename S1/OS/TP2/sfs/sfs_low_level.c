@@ -1,13 +1,80 @@
+//////////////////
+// GABORIT MAEL
+// BOUDJAJ HANIA
+// L3 INFO
+//////////////////
+
+
+//////////////////////////////////
+//          Question 1          //
+//////////////////////////////////
+// Le numéro d'inode est 2. Il correspond à la racine puisqu'on 
+// est dans un nouveau système de fichier.
+
+//////////////////////////////////
+//          Question 2          //
+//////////////////////////////////
+
+// Liste des commandes utilisées :
+
+// rlwrap ./sfs_shell TEST.sfs
+
+// TEST.sfs)% write 98 "HelloWorld!" 1
+// >>> 13 bytes written to inode 98
+
+// (TEST.sfs)% exit
+
+// ./test-fuse.sh
+
+// cat REP1/REP2/fic.txt
+// >>> T"HelloWorld$ exit
+
+
+//////////////////////////////////
+//          Question 3          //
+//////////////////////////////////
+
+// (TEST.sfs)% create_file
+// >>> using inode 332 for an empty regular file
+// add_entry 282 fic2_0.txt 332
+// write 332 "Bonjour" 1
+// exit
+
+
 #include "sfs_low_level.h"
 
 /////////////////
 // misc functions
 
+//////////////////////////////////
+//         EXERCICE 1           //
+//////////////////////////////////
+
+
+// Modifiez le fichier sfs_low_level.c qui contient ces fonctions pour afficher les
+// statistiques du système de fichier soit avec la commande df -i sur le sf monté
+// soit avec le commande info dans le sfs_shell.
+// Les éléments suivants sont nécessaires:
+// 1. DATA_SIZE: taille de la partition, en nombre de blocs (affichier sfs_parameters.h)
+// 2. sfs_block_in_use pour vérifier dans la bitmap si un numéro de bloc correspond
+// à un bloc utilisé
+// 3. ROOT_INODE : premier numéro d'inode utilisable (pour la racine)
+// 4. NB_INODES : nombre total d'inodes sur la partition
+// 5. sfs_get_inode : pour récupérer un inode à partir de son numéro.
+
+
+// Marche  suivre :
+// Compter les bits à 0 dans la bitmap des blocs
+
 // count number of free blocks in volume
 int sfs_count_free_blocks()
 {
     int nb = 0;
-    // À FAIRE
+    for (int i = 0; i < DATA_SIZE; i++) {
+        if (!(sfs_block_in_use(i))) {
+            nb++;
+        }
+    }
     return nb;
 }
 
@@ -15,7 +82,12 @@ int sfs_count_free_blocks()
 int sfs_count_free_inodes()
 {
     int nb = 0;
-    // À FAIRE
+    for (int i = ROOT_INODE; i < NB_INODES; i++) {
+        inode_t *inode = sfs_get_inode(i);
+        if (inode != NULL && inode->nlinks == 0) {
+            nb++;
+        }
+    }
     return nb;
 }
 
