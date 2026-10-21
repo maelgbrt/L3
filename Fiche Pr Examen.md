@@ -79,8 +79,9 @@ Question 8
 Voici la liste des mots anglais qui commencent et terminent par la même lettre et qui contiennent une lettre répétée au moins 5 fois : 
 
 >> abracadabra
-dispossessed
 ...
+stylishness's
+sunglasses's
 
 
 On les obtients grâce à la commande : 
@@ -106,152 +107,7 @@ Question 10
 ===========
 Voici la commande pour visualiser toutres les lignes contenant des caractères blancs (espaces et tabulation) juste avant le retour chariot.
 
-Sur Sublime Text : #!/usr/bin/env python3
-# encoding: UTF-8     (compatibilité python2)
-
-##################################
-## INFO502: TP2
-## Gaborit Maël
-## Boudjaj Hania
-## INFO3 L3
-
-import sys
-import re
-from datetime import datetime 
-
-#########################################
-## Fonction qui permet de tester si une ligne est un commentaire (commence par '%%%').
-def is_comment(line): 
-    return line.lstrip().startswith("%%%")
-
-# Question 4
-# Vérifie via une regex si la ligne commence par "%%%" (espaces/tabs autorisés avant)
-def is_comment_2(line):
-    return bool(re.match(r"^[ \t]*%%%", line, flags=re.S))
-
-# Remplace les adresses e-mail par la chaîne "EMAIL"
-def email(line):
-    return re.sub(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}", "EMAIL", line, flags=re.S)
-
-# Convertit les URLs web (http/https) en liens HTML <a href="...">...</a>
-def url(line):
-    return re.sub(r"(https?://[a-zA-Z0-9._%+-/]+)", r"<a href='\1'>\1</a>", line, flags=re.S)
-
-# Transforme les chemins d'images entre crochets [chemin] en balises <img src='...' />
-def img(line):
-    return re.sub(r"\[([a-zA-Z0-9._%+-/]+)\]", r"<img src='\1' />", line, flags=re.S)
-
-# Fonction de rappel qui passe en majuscules tout le texte capturé par la regex
-def uper(ch): 
-    return ch.group().upper()
-
-# Passe en majuscules toute occurrence du mot "todo" et ce qui suit sur la ligne
-def TODO_translate(line):
-    return re.sub(r"todo.*", uper, line, flags=re.IGNORECASE | re.S)
-
-# Calcule la profondeur du titre selon le nombre de '=' et retourne la balise <hX>
-def transfHTML(line):
-    longueur = len(line.group(1))
-    return f"<h{longueur}>{line.group(2)}</h{longueur}>"
-
-# Détecte les titres encadrés par des '=' et les transforme en titres HTML <hX>
-def balise_html(line):
-    return re.sub(r"(^=+)(.*?)(\1$)", transfHTML, line, flags=re.S | re.M)
-
-# Transforme la syntaxe **texte** en balises HTML de gras <b>texte<\b>
-def detecteur_de_gras(line):  # question 8
-    return re.sub(r"(\*\*)(.*?)\1", r"<b>\2</b>", line, flags=re.S)
-
-# Transforme la syntaxe __texte__ en balises HTML de soulignage <u>texte<\u>
-def detecteur_de_soulignagement(line): # question 8
-    return re.sub(r"(__)(.*?)\1", r"<u>\2</u>", line, flags=re.S)
-
-# Convertit la syntaxe [texte URL] en lien HTML <a href='URL'>texte</a>
-def link(line): 
-    return re.sub(r"\[(.*?)[ ](.*?)\]", r"<a href='\2'>\1</a>", line, flags=re.S)
-
-# Traite les liens complexes contenant une balise <a> imbriquée dans des crochets
-def link2(line):
-    return re.sub(r"\[(.*?)[ ]<a.*?>(.*?)(</a>)\]", r"<a href='\2'> \1 </a>", line, flags=re.S)
-
-# Construit et retourne un objet datetime à partir des groupes capturés (jour, mois, année)
-# Si la date n'est pas valide, on l'encadre dans une balise html pour la passée en rouge
-def verif_date(line):
-    jour = int(line.group(1))
-    mois = int(line.group(2))
-    annee = int(line.group(3))
-    try:
-        datetime(annee, mois, jour)
-        return f"<p style='color:red;'>{line.group(0)}</p>"
-    except ValueError:
-        return line.group(0)
-
-# Détecte les lignes vides
-def detect_ligne_vide(line):
-    return bool(re.match(r"^[ \t\n]*$", line, flags=re.S))
-
-# Détecte les dates au format JJ-MM-AAAA et appelle la fonction 'red'
-def detecteur_date(line):
-    return re.sub(r"([0-9]{1,2})-([0-9]{1,2})-([0-9]{4})", verif_date, line, flags=re.S)
-
-# Transforme la syntaxe //texte// en balises HTML de soulignage <i>texte<\i>
-def detecteur_italique(line):
-    return re.sub(r"(//)(.*?)\1", r"<i>\2</i>", line, flags=re.S)
-
-
-#########################################
-## fonction à compléter pendant le TP...
-
-def process_line(line):
-    # line = line.upper() # réponse question 1
-    
-    line = line.replace('&', "&amp;")
-    line = line.replace('<', "&lt;")  # réponse question 2.1
-    line = line.replace('>', "&gt;")
-
-    line = url(line)
-    line = email(line)
-    line = img(line)
-    line = TODO_translate(line)
-    line = balise_html(line)
-    line = detecteur_de_gras(line)
-    line = detecteur_de_soulignagement(line)
-    # line = link(line)
-    line = detecteur_date(line)
-    line = link2(line)
-    line = detecteur_italique(line)
-            
-    return line
-
-def process_paragraphe(paragraphe):
-    paragraphe_traite = process_line(paragraphe)
-    print(paragraphe_traite)
-
-############################################################
-## fonction principale, appelée depuis la ligne de commandes
-def main():
-    print("<!--", "-" * 70, "-->")
-    paragraphe = ""
-    for line in sys.stdin:
-        line = line.strip("\n\r")
-
-        if not is_comment_2(line):
-            if detect_ligne_vide(line):
-                # paragraphe fini
-                process_paragraphe(paragraphe)
-                paragraphe = ""
-            else:
-                paragraphe = paragraphe + "\n" + line
-
-    if paragraphe.strip():
-        print("----------paragraphe------------")
-        process_paragraphe(paragraphe)
-        print("----------fin de paragraphe------------\n")
-
-    print("<!--", "-" * 70, "-->")
-
-if __name__ == "__main__":
-    main()
+Sur Sublime Text : 
 $ [ ]$
 
 
@@ -309,7 +165,6 @@ Question 15
 En utilisant AWK, on arrive à obtenir une commande qui permet d'afficher en l'utilisation du processeur par les processus de l'utilisteur :
 
 ps aux | LC_NUMERIC="C" awk '/'hania'/{ s+=$3 } END{print $1  "..............."  s "%"} '
-
 ```
 
 
@@ -611,6 +466,8 @@ main()
 
 
 # TP 3
+
+# Main
 ```
 import java.util.ArrayList;
 
@@ -657,46 +514,27 @@ Etat trois = new Etat(true, "trois", null);
 
 Transition trans1b2 = new Transition(un, deux, "b");
 
-Transition trans2a2 = new Transition(deux, deux, "a");
-
-Transition trans2b3 = new Transition(deux, trois, "b");
-
-Transition trans3c2 = new Transition(trois, deux, "c");
-
-Transition trans3b3 = new Transition(trois, trois, "b");
+...
 
   
 
 // Regroupement des transitions par état
 
 ArrayList<Transition> Transition1 = new ArrayList<>();
+...
 
-ArrayList<Transition> Transition2 = new ArrayList<>();
-
-ArrayList<Transition> Transition3 = new ArrayList<>();
-
-  
 
 Transition1.add(trans1b2);
 
 Transition2.add(trans2a2);
-
-Transition2.add(trans2b3);
-
-Transition3.add(trans3c2);
-
-Transition3.add(trans3b3);
+...
 
   
 
 // Association des listes de transitions à chaque état
 
 un.ensembleTransitions.addAll(Transition1);
-
-deux.ensembleTransitions.addAll(Transition2);
-
-trois.ensembleTransitions.addAll(Transition3);
-
+...
   
 
 // Liste de tous les états de l'automate
@@ -704,11 +542,7 @@ trois.ensembleTransitions.addAll(Transition3);
 ArrayList<Etat> ensembleEtatsQ1 = new ArrayList<>();
 
 ensembleEtatsQ1.add(un);
-
-ensembleEtatsQ1.add(deux);
-
-ensembleEtatsQ1.add(trois);
-
+...
   
 
 // Alphabet accepté : a, b, c
@@ -716,11 +550,7 @@ ensembleEtatsQ1.add(trois);
 ArrayList<String> alphabetQ1 = new ArrayList<>();
 
 alphabetQ1.add("a");
-
-alphabetQ1.add("b");
-
-alphabetQ1.add("c");
-
+...
   
 
 // Instanciation de l'automate avec "un" comme état de départ
@@ -846,13 +676,7 @@ TransitionReturnBase.add(FindBase);
 // Association des transitions aux états correspondants
 
 GoLabyrinthe.ensembleTransitions.addAll(TransitionGoLabyrinthe);
-
-FollowPC.ensembleTransitions.addAll(TransitionFollowPC);
-
-FleePC.ensembleTransitions.addAll(TransitionFleePC);
-
-returnBase.ensembleTransitions.addAll(TransitionReturnBase);
-
+...
   
 
 // Alphabet des événements possibles dans le jeu
@@ -863,13 +687,7 @@ alphabet.add("atteint la base");
 
 alphabet.add("Pac-Man mange une super pac-gomme");
 
-alphabet.add("a vu Pac-Man");
-
-alphabet.add("a perdu Pac-Man");
-
-alphabet.add("a été mangé par Pac-Man");
-
-alphabet.add("Super pac-gomme expire");
+...
 
   
 
@@ -879,13 +697,7 @@ ArrayList<Etat> ensembleEtats = new ArrayList<>();
 
 ensembleEtats.add(GoLabyrinthe);
 
-ensembleEtats.add(FollowPC);
-
-ensembleEtats.add(FleePC);
-
-ensembleEtats.add(returnBase);
-
-  
+....
 
 // Création de l'automate avec GoLabyrinthe comme état initial
 
@@ -916,7 +728,7 @@ System.out.println("Séquence valide : " + AutomatePC.reconnait(test1));
   
 
 ```
-
+## Automate
 ```
 import java.util.ArrayList;
 
@@ -984,7 +796,114 @@ public class Automate {
     }
 }
 ```
+## Etat
+```
+import java.util.ArrayList;
 
+  
+
+// Représente un état au sein d'un automate
+
+public class Etat {
+
+// Attributs décrivant l'état
+
+boolean estEtatFinal; // Indique si l'état est terminal/acceptant
+
+String nomEtat; // Nom ou identifiant de l'état (ex: "q0", "deux")
+
+ArrayList<Transition> ensembleTransitions; // Liste des transitions sortant de cet état
+
+  
+
+// Constructeur : initialise les champs et évite les erreurs NullPointerException
+
+public Etat(boolean estEtatFinal, String nomEtat, ArrayList<Transition> ensembleTransitions) {
+
+this.estEtatFinal = estEtatFinal;
+
+this.nomEtat = nomEtat;
+
+this.ensembleTransitions = (ensembleTransitions != null)
+
+? ensembleTransitions
+
+: new ArrayList<>(); // Initialise une liste vide si null
+
+}
+
+  
+
+// Cherche et renvoie l'état cible pour une lettre/symbole donné 'c'
+
+public Etat findTransition(String c) {
+
+Etat etat_suivant = null;
+
+  
+
+// Parcours toutes les transitions sortantes
+
+for (var transition : ensembleTransitions) {
+
+// Si l'étiquette de la transition correspond au symbole lu
+
+if (transition.getParametre().equals(c)) {
+
+etat_suivant = transition.finEtat; // Récupère l'état d'arrivée
+
+}
+
+}
+
+return etat_suivant; // Renvoie l'état suivant ou null si aucune transition n'existe
+
+}
+
+  
+
+// --- Getters et Setters ---
+
+  
+
+public String getNomEtat() {
+
+return nomEtat;
+
+}
+
+  
+
+public boolean getEstEtatFinal() {
+
+return estEtatFinal;
+
+}
+
+public ArrayList<Transition> getEnsembleTransitions() {
+
+return ensembleTransitions;
+
+}
+
+  
+
+public void setEstEtatFinal(boolean estEtatFinal) {
+
+this.estEtatFinal = estEtatFinal;
+
+}
+
+  
+
+public void setNomEtat(String nomEtat) {
+
+this.nomEtat = nomEtat;
+
+}
+
+}
+```
 # TP4
 
 ``` /**************************************************************/
@@ -1150,3 +1069,59 @@ System.out.println("****************** Question 1 **************");
 }
 
 ```
+
+
+
+
+# 📑 Sommaire Général des TPs - INFO502
+
+## 📂 TP1 : Shell, Motifs et Expressions Régulières (Regex de base)
+- **Question 1 :** Listes de fichiers avec des motifs de base (`*.[ch]`, `*[!.]?`).
+- **Question 2 :** Motifs shells étendus (`!( *.jpg | *.jpeg )`).
+- **Question 3 :** Correction d'expressions régulières avec `grep` (`'^\(aa\)*$'`).
+- **Question 4 :** Recherche de lettres dans un ordre précis (`.*a.*b.*c.*d.*e.*`).
+- **Question 5 :** Détection de lettres doublées (`\(.\)\1`).
+- **Question 6 & 8 :** Recherche avancée avec comptage de répétitions (`{5}`, `{6}`) et début/fin par la même lettre (`^(.).*\1$`).
+- **Question 9 :** Filtrage de processus (`ps aux | grep ... | grep -v grep`).
+
+---
+
+## 📂 TP2 : Traitement de texte avancé (Python, Regex, Sed, Awk)
+### Script Python (Traitement de flux / Markdown-like vers HTML) :
+- **Gestion des commentaires :** `is_comment`, `is_comment_2` (`^[ \t]*%%%`).
+- **Nettoyage et échappement :** `&`, `<`, `>`.
+- **Remplacements par Regex (`re.sub`) :**
+  - `url()` : liens web (`http/https`).
+  - `email()` : adresses e-mail en `EMAIL`.
+  - `img()` : images `[chemin]`.
+  - `TODO_translate()` : mise en majuscule après "todo".
+  - `balise_html()` : transformation des titres `=` en balises `<hX>`.
+  - `detecteur_de_gras()` / `soulignagement()` / `italique()` (`**`, `__`, `//`).
+  - `detecteur_date()` : validation de dates via `datetime` et coloration en rouge (`verif_date`).
+
+### Commandes utilitaires (Recherche/Remplacement et Édition) :
+- **Sublime Text / VS Code :** Inversion de colonnes avec groupes de capture (`^(.*),(.*)$` $\rightarrow$ `$2,$1`).
+- **`sed` :** Suppression d'espaces au début (`s/^ //`), inversion de colonnes avec option `-E`.
+- **`awk` :** Calculs et totaux sur des colonnes (ex: additionner l'utilisation CPU d'un utilisateur).
+
+---
+
+## 📂 TP3 : Automates en Java
+### Structure des classes principales :
+- **`Automate` :** gère l'alphabet, la liste des états, l'état initial et la méthode booléenne `reconnait(ArrayList<String> Tab_mot)`.
+- **`Etat` :** gère si l'état est final (`estEtatFinal`), son nom et son ensemble de transitions sortantes (`ensembleTransitions`).
+- **`Transition` :** relie un état de départ, un état d'arrivée et un symbole/étiquette.
+### Exemples traités :
+- Automate déterministe simple (reconnaissance de mots avec `b`, `a`, `c`).
+- Automate comportemental (ex: jeu Pac-Man / fantôme avec des événements textuels comme transitions).
+
+---
+
+## 📂 TP4 : Analyse lexicale et syntaxique (Java CUP / JFlex / Scanner)
+- **Fichier Parser (CUP) :**
+  - Déclaration des terminaux (`ZERO`, `ONE`, `CONCAT`, `LETTRE`, `LPAREN`, `RPAREN`) et non-terminaux (`expr`).
+  - Règles de grammaire et sémantique (`{: RESULT = ...; :}`).
+- **Fichier Scanner (`TP4Scanner.java`) :**
+  - Analyse caractère par caractère (`s.charAt(cnt)`) avec un `switch` pour renvoyer des `Symbol` typés (`ZERO`, `LETTRE`, `LPAREN`, etc.).
+- **Fichier Main (`Main.java`) :**
+  - Point d'entrée pour instancier le parser et lancer l'analyse (`p.parse()`).

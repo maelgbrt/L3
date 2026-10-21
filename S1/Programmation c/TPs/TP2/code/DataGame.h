@@ -6,13 +6,13 @@
 // Defintition d'une liste chainée
 typedef struct DataGame
 {
-    Element element;
-    struct DataGame *suivant;
+    void * element;
+    DataGame *suivant;
 }DataGame;
 
 void initialiser(DataGame **d);
 
-void afficher(DataGame *d);
+void afficher(DataGame d);
 
 void ajouter(DataGame **d, Element elmt);
 

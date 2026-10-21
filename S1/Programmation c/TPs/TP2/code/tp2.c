@@ -7,7 +7,7 @@ void main () {
     DataGame * game1;
     initialiser(&game1);
 
-    afficher(game1);
+    afficher(*game1);
 
     Element e1;
     e1.nom = "GOVital";
@@ -17,7 +17,7 @@ void main () {
 
     ajouter(&game1,e1);
 
-    afficher(game1);
+    afficher(*game1);
 
 
     Element e2;
@@ -29,9 +29,9 @@ void main () {
     ajouter(&game1,e2);
 
 
-    afficher(game1);
+    afficher(*game1);
     
     supprimer(&game1,e2);
     
-    afficher(game1);
+    afficher(*game1);
 }

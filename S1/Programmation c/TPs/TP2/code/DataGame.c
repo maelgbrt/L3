@@ -12,10 +12,9 @@ void initialiser(DataGame **d) {
 
 
 
-void afficher(DataGame *d){
-    if(d!=NULL){
-        afficherElement(d->element);
-    }
+void afficher(DataGame d){
+        afficherElement(d.element);
+    
 }
 
 void ajouter(DataGame **d, Element elmt)
@@ -39,16 +38,6 @@ Element *chercher(DataGame *d, Element elmt) {
     }
     return NULL; 
 }
-
-// int chercherByAction(DataGame *d,Action action){
-//     while(d!=NULL){
-//         if(d->element.action ==  action){
-//            afficherElement(d->element); 
-//         }
-//     }
-// }
-
-
 
 void supprimer(DataGame **d, Element elmt) {
 
