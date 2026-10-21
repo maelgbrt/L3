@@ -41,7 +41,23 @@
 // exit
 
 
+//////////////////////////////////
+//          Question 4          //
+//////////////////////////////////
+
+// Le lien physique est créer en associant un nouveau nom de fichier à un numéro d'inode déjà attribué.
+// Il ne fait pas de copie, c'est le même fichier pour les deux noms.
+// Le compteur de lien passe de 1 à 2 parceque 2 noms le désigne.
+
+//////////////////////////////////
+//          Question 5          //
+//////////////////////////////////
+
+// D'après les résultats, des commandes du sujet, le lien logique semble pointé vers un fichier à l'aide d'un chemin.
+// De ce fait, quand le nom du fichier change, le lien logique est rompu.
+
 #include "sfs_low_level.h"
+#include <string.h>
 
 /////////////////
 // misc functions
@@ -49,22 +65,6 @@
 //////////////////////////////////
 //         EXERCICE 1           //
 //////////////////////////////////
-
-
-// Modifiez le fichier sfs_low_level.c qui contient ces fonctions pour afficher les
-// statistiques du système de fichier soit avec la commande df -i sur le sf monté
-// soit avec le commande info dans le sfs_shell.
-// Les éléments suivants sont nécessaires:
-// 1. DATA_SIZE: taille de la partition, en nombre de blocs (affichier sfs_parameters.h)
-// 2. sfs_block_in_use pour vérifier dans la bitmap si un numéro de bloc correspond
-// à un bloc utilisé
-// 3. ROOT_INODE : premier numéro d'inode utilisable (pour la racine)
-// 4. NB_INODES : nombre total d'inodes sur la partition
-// 5. sfs_get_inode : pour récupérer un inode à partir de son numéro.
-
-
-// Marche  suivre :
-// Compter les bits à 0 dans la bitmap des blocs
 
 // count number of free blocks in volume
 int sfs_count_free_blocks()
@@ -482,34 +482,52 @@ int sfs_deallocate_inode(int nb)
     return 0;
 }
 
+//////////////////////////////////
+//         EXERCICE 2           //
+//////////////////////////////////
+
 // FIXME: TODO: should take the filename as well
+
+// permet de supprimer un nom (qui pointe vers l'inode nb) dans le répértoire parent_nb
 int sfs_unlink_inode(int nb, const char* name, int parent_nb)
 {
 
     inode_t* nd = sfs_get_inode(nb);
-    if (nd->type != S_IFREG) {
+    if (nd->type != S_IFREG) { // vérfie qu'on traite bien un fichier régulier
         errno = EPERM;
         return -1;
     }
 
-    if (sfs_remove_entry(parent_nb, name) < 0) {
+    if (sfs_remove_entry(parent_nb, name) < 0) { // retirer l'entrée du répertoire
         // errno = EBADF, ENAMETOOLONG, ENOTDIR, ENOENT
         return -1;
     }
 
-    nd->nlinks = 0;
-    sfs_deallocate_inode(nb);
+    nd->nlinks--; // on enlève un nom mais on ne détruit pas le bloc
+    if (nd->nlinks == 0) {
+        sfs_deallocate_inode(nb); // si plus de nom associé, on libère l'inode et les blocs
+    }
+    
     return 0;
 }
 
 // add a physical link to an existing inode inside a directory
 int sfs_link_inode(int parent_nb, int nb, const char* name)
 {
+
+    inode_t* nd = sfs_get_inode(nb);
     if (sfs_add_entry(parent_nb, name, nb) < 0) {
         // errno = EBADF, ENAMETOOLONG, ENOTDIR, ENOENT
         return -1;
     }
-    // À FAIRE
+
+    if (sfs_add_entry(parent_nb, name, nb) < 0) { // ajouter l'entrée dans le répertoire
+        // errno = EBADF, ENAMETOOLONG, ENOTDIR, ENOENT
+        return -1;
+    }
+
+    nd->nlinks--; // on ajoute un nom
+    
     return 0;
 }
 
@@ -766,10 +784,15 @@ int sfs_unlink_dir_inode(int dir_n, const char* dir_name, int parent_nb)
 /////////////////
 // symbolic links
 
+//////////////////////////////////
+//         EXERCICE 3           //
+//////////////////////////////////
+
 // look for a free inode, and make it into a symbolic link to ``path``
 // return the inode number that was used...
 int sfs_writelink_inode(const char* target)
 {
+    int len = strlen(target);
     int nb = sfs_find_free_inode();
     if (nb < 0) {
         return -1;
@@ -778,9 +801,19 @@ int sfs_writelink_inode(const char* target)
     inode_t* nd = sfs_get_inode(nb);
     nd->type = S_IFLNK;
     nd->nlinks = 1;
+    nd->size = 0;
 
-    // À FAIRE
-
+    // cas 1 : cible courte, stockage tableau
+    if (len < (int)sizeof(nd->blocks)) {
+        strncpy((char*)nd->blocks, target, sizeof(nd->blocks));
+        nd->size = len;
+    } else {
+        // cas 2 : cible longue, stockage bloc
+        if (sfs_write_to_block(nb, 0, 0, (const byte*)target, len) < 0) {
+            nd->nlinks = 0; // on libère l'inode
+            return -1;
+        }
+    }
     return nb;
 }
 
@@ -812,8 +845,20 @@ int sfs_readlink_inode(int nb, char* buf, int bufsize)
         errno = EINVAL;
         return -1;
     }
+    
+    int n = nd->size;
+    
+    if (n > bufsize - 1) {
+        n = bufsize - 1;
+    }
 
-    // À FAIRE
+    if (nd->size < (int)sizeof(nd->blocks)) {
+        strncpy(buf, (char*)nd->blocks, n);
+    } else {
+        strncpy(buf, (char*)sfs_get_block(nd->blocks[0]), n);
+    }
+    
+    buf[n] = '\0';
     return 0;
 }
 
