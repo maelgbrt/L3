@@ -56,7 +56,47 @@
 // D'après les résultats, des commandes du sujet, le lien logique semble pointé vers un fichier à l'aide d'un chemin.
 // De ce fait, quand le nom du fichier change, le lien logique est rompu.
 
+
+//////////////////////////////////
+//         TESTS EXO 4          //
+//////////////////////////////////
+
+/*
+ * TESTS : blocs indirects (sfs_shell, BLOCK_SIZE = 512, NB_DIRECT_BLOCKS = 11)
+ *
+ * Capacité : 11 blocs directs + 512/4 = 128 blocs indirects = 139 blocs
+ * (71 168 octets). Le bloc indirect est blocks[11] : il contient les
+ * numéros de 128 blocs de données.
+ *
+ * Etat de départ : 1895 blocs libres, 501 inodes libres.
+ *
+ * 1. create_file ; truncate 487 5633
+ *    -> 1882 blocs libres (-13), 500 inodes libres (-1).
+ *    13 = 12 blocs de données + 1 bloc d'adresses.
+ *    show_inode 487 : blocks[11] = 1744, donc le bloc d'adresses est alloué.
+ *
+ * 2. write 487 ABCDEF 5632 ; read 487 6 5632
+ *    -> 6 octets écrits, lecture : ABCDEF.
+ *    Premier octet du bloc d'indice 11 : accès indirect OK en écriture
+ *    et en lecture (sfs_get_data_block_nb_from_inode, sfs_write_to_block).
+ *
+ * 3. truncate 487 71167
+ *    -> 1755 blocs libres (-140 par rapport au départ).
+ *    140 = 139 blocs de données + 1 bloc d'adresses : table pleine.
+ *
+ * 4. write 487 FIN 70660 ; read 487 3 70660
+ *    -> lecture : FIN. Offset 4 dans le bloc d'indice 138 (11 + 127),
+ *    le dernier bloc indirect : bonne indexation jusqu'à la borne.
+ *
+ * 5. write 487 KO 71168
+ *    -> erreur (EFBIG) : l'indice de bloc 139 dépasse
+ *    NB_DIRECT_BLOCKS + BLOCK_SIZE / sizeof(int), refusé comme prévu.
+ */
+
+ 
 #include "sfs_low_level.h"
+#include "sfs_parameters.h"
+#include "sfs_volume.h"
 #include <string.h>
 
 /////////////////
@@ -91,6 +131,10 @@ int sfs_count_free_inodes()
     return nb;
 }
 
+//////////////////////////////////
+//         EXERCICE 4           //
+//////////////////////////////////
+
 // get a data block number from an inode
 int sfs_get_data_block_nb_from_inode(int nb, int block_idx)
 {
@@ -100,9 +144,13 @@ int sfs_get_data_block_nb_from_inode(int nb, int block_idx)
 
     if (0 <= block_idx && block_idx < NB_DIRECT_BLOCKS) {
         block_nb = nd->blocks[block_idx];
-    } else {
+    } else if (NB_DIRECT_BLOCKS<= block_idx && block_idx< NB_DIRECT_BLOCKS + BLOCK_SIZE/ (int)sizeof(int)){
+        // accès indirect, on utilise un tableau de numéros de blocs
+        int* addr = (int*)sfs_get_block(nd->blocks[NB_DIRECT_BLOCKS]);
+        block_nb = addr[block_idx - NB_DIRECT_BLOCKS];
+    }else {
         errno = EINVAL;
-        return -1;
+            return -1;
     }
     return block_nb;
 }
@@ -362,6 +410,10 @@ int sfs_read_from_inode(int nb, int offset, void* buf, int nbyte)
     return bytes_read;
 }
 
+//////////////////////////////////
+//         EXERCICE 4           //
+//////////////////////////////////
+
 // write some bytes to a single block inside an inode
 // NOTE:
 //   - the block is allocated if necessary...
@@ -373,7 +425,7 @@ int sfs_write_to_block(int nb, int block_idx, int offset, const byte* buf, int s
     inode_t* nd = sfs_get_inode(nb);
     block_t* b;
 
-    if (block_idx > NB_DIRECT_BLOCKS + BLOCK_SIZE / (int)sizeof(int)) {
+    if (block_idx >= NB_DIRECT_BLOCKS + BLOCK_SIZE / (int)sizeof(int)) {
         // the file becomes too big!
         errno = EFBIG;
         return -1;
@@ -394,7 +446,13 @@ int sfs_write_to_block(int nb, int block_idx, int offset, const byte* buf, int s
     if (0 <= block_idx && block_idx < NB_DIRECT_BLOCKS) {
         // direct access block
         b = sfs_get_block(nd->blocks[block_idx]);
-    } else {
+    } else if (NB_DIRECT_BLOCKS <= block_idx && block_idx < NB_DIRECT_BLOCKS + BLOCK_SIZE / (int)sizeof(int)) {
+        
+        // accès indirect
+        int* addr = (int*)sfs_get_block(nd->blocks[NB_DIRECT_BLOCKS]);
+        b = sfs_get_block(addr[block_idx - NB_DIRECT_BLOCKS]);
+    }   
+    else {
         errno = EINVAL;
         return -1;
     }
