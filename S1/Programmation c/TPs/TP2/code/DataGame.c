@@ -10,14 +10,11 @@ void initialiser(DataGame **d) {
     }
 }
 
-
-
 void afficher(DataGame d){
         afficherElement(d.element);
-    
 }
 
-void ajouter(DataGame **d, Element elmt)
+void ajouter(DataGame **d, void * elmt)
 {
     DataGame *NouveauNoeud = malloc(sizeof(DataGame));
     if (NouveauNoeud == NULL){
@@ -29,17 +26,7 @@ void ajouter(DataGame **d, Element elmt)
     *d = NouveauNoeud;
 }
 
-Element *chercher(DataGame *d, Element elmt) {
-    while (d != NULL) {
-        if (elements_egaux(d->element, elmt)) {
-            return &(d->element); 
-        }
-        d = d->suivant; 
-    }
-    return NULL; 
-}
-
-void supprimer(DataGame **d, Element elmt) {
+void supprimer(DataGame **d, void * elmt) {
 
     DataGame *courant = *d;
     DataGame *precedent = NULL;

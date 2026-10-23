@@ -1,52 +1,49 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
 
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 #include "DataGame.h"
+// Définition des types possibles
+typedef enum {
+    TYPE_OBJET,
+    TYPE_ENTITE
+} TypeElement;
 
-typedef enum Caracteristiques {
-    FORCE,
-    VITESSE,
-    CHANCE,
-    AGILITE
-} Caracteristiques;
+typedef struct Object {
+    TypeElement type; 
+    int nb_restant;
+    char * nm_object;
+} Object;
 
-
-typedef struct Joueur{
+typedef struct Entité {
     char * nom;
-    int niveau;
-    int XP;
-    DataGame * Inventaire;
-    Caracteristiques Caracteristiques;
-    
-}Joueur;
-
-typedef struct Entité
-{
     char * classe;
     int pt_vie;
     int pt_endurance;
-    DataGame * actions;
+    DataGame * actions; // Fonctionne maintenant grâce à la déclaration anticipée
     bool allie;
-}Entité;
+    TypeElement type; 
+} Entité;
 
-typedef struct Equipe{
-    DataGame * membres;
+typedef struct Equipe {
+    Entité membres[6];
     int nb_membre;
-}Equipe;
+} Equipe;
 
-typedef struct Inventaire
-{
-    int nb_restant;
-    char * nm_object;
-};
+typedef struct Joueur {
+    char * nom;
+    int niveau;
+    int XP;
+    DataGame * Inventaire; // Fonctionne aussi ici
+    int Caracteristiques[4];
+} Joueur;
 
-initialiserInventaire();
 
+void afficherElement(void * elmt);
+
+bool elements_egaux(void *elmt1, void *elmt2);
 
 #endif
