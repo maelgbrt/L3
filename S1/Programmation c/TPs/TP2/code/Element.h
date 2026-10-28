@@ -14,7 +14,7 @@ typedef enum {
 
 typedef struct Object {
     TypeElement type; 
-    int nb_restant;
+    int nb_element;
     char * nm_object;
 } Object;
 
