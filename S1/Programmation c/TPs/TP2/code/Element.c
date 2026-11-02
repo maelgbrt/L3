@@ -28,14 +28,14 @@ void initialiseEntite(Entité *Entité){
     if(Entité !=NULL){
         Entité->allie = NULL;
         Entité->classe = NULL;
-        Entité->pt_endurance= NULL;
+        Entité->pt_endurance= 0;
 }
 };
 
 void initialiserJoueur(Joueur *j) {
     char *nom;
     printf("Nom : \n");
-    scanf("%s", * nom);
+    scanf("%s", nom);
 
     j->nom = nom;
     j->niveau = 0;
@@ -79,6 +79,10 @@ void supprimerObjectInventaire(Joueur * joueur,Object * o){
     }
 }
 
+void afficherObject(Object * o){
+    printf("l'object : %s | restant : %d",o->nm_object,o->nb_element);
+}
+
 void afficherElement(void * elmt){
     if(elmt!= NULL){
         TypeElement *typeElmt = (TypeElement * )elmt;
@@ -87,10 +91,6 @@ void afficherElement(void * elmt){
             afficherObject(elmt);
         }
     }
-}
-
-void afficherObject(Object * o){
-    printf("l'object : %s | restant : %d",o->nm_object,o->nb_restant);
 }
 
 bool elements_egaux(void *elmt1, void *elmt2) {
