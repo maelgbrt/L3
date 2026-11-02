@@ -12,20 +12,27 @@ typedef enum {
     TYPE_ENTITE
 } TypeElement;
 
+typedef enum {
+    MAGE,
+    GUERRIER,
+}Classe;
+
 typedef struct Object {
     TypeElement type; 
     int nb_element;
     char * nm_object;
+    int effet;
 } Object;
 
 typedef struct Entité {
     char * nom;
-    char * classe;
+    Classe classe;
     int pt_vie;
     int pt_endurance;
     DataGame * actions; // Fonctionne maintenant grâce à la déclaration anticipée
     bool allie;
-    TypeElement type; 
+    TypeElement type;
+    int aura;
 } Entité;
 
 typedef struct Equipe {
