@@ -90,7 +90,7 @@ void afficherElement(void * elmt){
 }
 
 void afficherObject(Object * o){
-    printf("l'object : %s | restant : %d",o->nm_object,o->nb_restant);
+    printf("l'object : %s | restant : %d",o->nm_object,o->nb_element);
 }
 
 bool elements_egaux(void *elmt1, void *elmt2) {

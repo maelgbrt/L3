@@ -44,6 +44,8 @@ typedef struct Joueur {
 
 void afficherElement(void * elmt);
 
+void afficherObject(Object * o);
+
 bool elements_egaux(void *elmt1, void *elmt2);
 
 #endif
