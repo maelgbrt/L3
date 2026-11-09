@@ -3,10 +3,40 @@ print("\n------------TP1------------\n")
 def afficherTableau(Tab : list):
     print(Tab)
 
-def ajouterTas(tas : list,val : int,nbElement : int ):
-    if (nbElement<=2):
-        tas.append(val)
-        nbElement = nbElement +1
+def permuter(tas, ind1, ind2):
+    temp = ind2
+    tas[ind1] = ind2
+    tas[temp] = ind1
+    
+
+def ajouterTas(tas : list, val : int, nbElement : int ):
+    # var
+    int: i = 0
+   # début 
+    nbElement +=1
+    tas[nbElement] = val
+    i = nbElement
+
+    # échange
+
+    while(i > 1 and tas[i/2] > tas[i]):
+        permuter(tas[i], t[i/2])
+        i = i / 2
+    
+
+
+
+
+
+
+    # if (nbElement<=2):
+    #     tas.append(val)
+    #     nbElement = nbElement +1
+
+# indice 0 = taille du tas, indice 1 = racine du tas (donc minimum des minima)
+# le tas est en ram
+# les monotonies ne sont pas en RAM
+# si une monotonie s'épuise, le tas fait -1 en taille
 
 def minima(tas : list):
     return min(tas)
