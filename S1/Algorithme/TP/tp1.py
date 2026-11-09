@@ -9,29 +9,18 @@ def permuter(tas, ind1, ind2):
     tas[temp] = ind1
     
 
-def ajouterTas(tas : list, val : int, nbElement : int ):
-    # var
-    int: i = 0
-   # début 
-    nbElement +=1
-    tas[nbElement] = val
-    i = nbElement
+def ajouter_tas(t, p, x):
+    """Ajoute x dans le tas t (indexé à partir de 1). Retourne le nouveau nombre de nœuds."""
+    p += 1
+    t[p] = x
+    i = p
 
-    # échange
+    # on échange tant que x est "inférieur" à son père
+    while i > 1 and t[i // 2] > t[i]:
+        t[i], t[i // 2] = t[i // 2], t[i]
+        i //= 2
 
-    while(i > 1 and tas[i/2] > tas[i]):
-        permuter(tas[i], t[i/2])
-        i = i / 2
-    
-
-
-
-
-
-
-    # if (nbElement<=2):
-    #     tas.append(val)
-    #     nbElement = nbElement +1
+    return p
 
 # indice 0 = taille du tas, indice 1 = racine du tas (donc minimum des minima)
 # le tas est en ram
@@ -60,42 +49,50 @@ def fichier(nameFichier : str):
 
 def main():
 
+    nbMonotonies = 10
+    t = [None] * nbMonotonies   # t[0] inutilisé pour garder l'indexation à partir de 1
+    p = 0
 
-    LesMonotonies = [
-        fichier("geeks.txt"),
-        fichier("lechargeurdeHania.txt")
-    ]
+    for x in [5, 3, 8, 1, 7, 12, 57, 4, 45]:
+        p = ajouter_tas(t, p, x)
 
-    afficherTableau(LesMonotonies)
+    print(t[1:p+1])   # [1, 3, 8, 5]  -> min-tas
 
-    monotonieFinal = []
+    # LesMonotonies = [
+    #     fichier("geeks.txt"),
+    #     fichier("lechargeurdeHania.txt")
+    # ]
+
+    # afficherTableau(LesMonotonies)
+
+    # monotonieFinal = []
 
 
-    tas = []
-    for i in range(len(LesMonotonies)):
-        tas.append(LesMonotonies[i][0])
+    # tas = []
+    # for i in range(len(LesMonotonies)):
+    #     tas.append(LesMonotonies[i][0])
 
-    print("\nLe tas apres ajout des minima : ")
-    afficherTableau(tas)
+    # print("\nLe tas apres ajout des minima : ")
+    # afficherTableau(tas)
 
-    monotonieFinal = []
+    # monotonieFinal = []
 
-    while len(LesMonotonies) > 0:
-        valeur_min = min(tas)
-        index_min = tas.index(valeur_min)
+    # while len(LesMonotonies) > 0:
+    #     valeur_min = min(tas)
+    #     index_min = tas.index(valeur_min)
 
-        monotonieFinal.append(valeur_min)
+    #     monotonieFinal.append(valeur_min)
 
-        LesMonotonies[index_min].pop(0)
+    #     LesMonotonies[index_min].pop(0)
 
-        if len(LesMonotonies[index_min]) == 0:
-            LesMonotonies.pop(index_min)
-            tas.pop(index_min)
-        else:
-            tas[index_min] = LesMonotonies[index_min][0]
+    #     if len(LesMonotonies[index_min]) == 0:
+    #         LesMonotonies.pop(index_min)
+    #         tas.pop(index_min)
+    #     else:
+    #         tas[index_min] = LesMonotonies[index_min][0]
 
-    print("\nLa monotonie finale triée : ")
-    afficherTableau(monotonieFinal)
+    # print("\nLa monotonie finale triée : ")
+    # afficherTableau(monotonieFinal)
 
 
 
