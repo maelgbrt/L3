@@ -38,30 +38,40 @@ def indexMinima(tas : list,val : int):
 
 
 def fichier(nameFichier : str):
-    monotonieTest = []
+
     file = open(nameFichier, "r")
-    for line in file:
-        monotonieTest.append(int(line.strip()))
+    lignes = file.readlines()
+    if lignes:
+        return lignes[0]
     file.close()
-    return monotonieTest
+
+
 
 
 
 def main():
 
-    nbMonotonies = 10
-    t = [None] * nbMonotonies   # t[0] inutilisé pour garder l'indexation à partir de 1
+    LesMonotonies = [
+        "geeks.txt",
+        "lechargeurdeHania.txt"
+    ]
+
+    nbMonotonies = len(LesMonotonies)
+    print(nbMonotonies)
+    t = [None] * (nbMonotonies+1) 
+    print(t);
     p = 0
 
-    for x in [5, 3, 8, 1, 7, 12, 57, 4, 45]:
-        p = ajouter_tas(t, p, x)
+    for x in LesMonotonies:
+        print(x)
+        test = fichier(x)
+        print(test)
 
-    print(t[1:p+1])   # [1, 3, 8, 5]  -> min-tas
+        p = ajouter_tas(t, p, fichier(x))
 
-    # LesMonotonies = [
-    #     fichier("geeks.txt"),
-    #     fichier("lechargeurdeHania.txt")
-    # ]
+    # print(t[1:p+1])   # [1, 3, 8, 5]  -> min-tas
+
+    # fichier("geeks.txt")
 
     # afficherTableau(LesMonotonies)
 
