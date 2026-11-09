@@ -1,0 +1,109 @@
+[
+  {
+    "nom": "T-shirt Sport Homme",
+    "categorie": "vetements",
+    "prix": 25.99,
+    "marque": "Nike",
+    "taille": ["S", "M", "L", "XL"],
+    "disponibilite": true
+  },
+  {
+    "nom": "T-shirt Sport Femme",
+    "categorie": "vetements",
+    "prix": 27.99,
+    "marque": "Adidas",
+    "taille": ["XS", "S", "M", "L"],
+    "disponibilite": true
+  },
+  {
+    "nom": "Short de Course",
+    "categorie": "vetements",
+    "prix": 19.99,
+    "marque": "Puma",
+    "taille": ["M", "L", "XL"],
+    "disponibilite": true
+  },
+  {
+    "nom": "Basket de Running",
+    "categorie": "chaussures",
+    "prix": 89.99,
+    "marque": "Asics",
+    "pointures": [39, 40, 41, 42, 43, 44],
+    "disponibilite": true
+  },
+  {
+    "nom": "Basket de Basketball",
+    "categorie": "chaussures",
+    "prix": 120.00,
+    "marque": "Nike",
+    "pointures": [38, 40, 42, 44, 46],
+    "disponibilite": true
+  },
+  {
+    "nom": "Raquette de Tennis",
+    "categorie": "accessoires",
+    "prix": 150.00,
+    "marque": "Wilson",
+    "type": "tennis",
+    "disponibilite": true
+  },
+  {
+    "nom": "Raquette de Badminton",
+    "categorie": "accessoires",
+    "prix": 45.00,
+    "marque": "Yonex",
+    "type": "badminton",
+    "disponibilite": false
+  },
+  {
+    "nom": "Casquette de Sport",
+    "categorie": "accessoires",
+    "prix": 15.00,
+    "marque": "Reebok",
+    "couleur": "bleu",
+    "disponibilite": true
+  },
+  {
+    "nom": "Sac de Sport",
+    "categorie": "accessoires",
+    "prix": 35.00,
+    "marque": "Under Armour",
+    "couleur": "noir",
+    "capacite_litres": 30,
+    "disponibilite": true
+  },
+  {
+    "nom": "Chaussettes de Sport",
+    "categorie": "vetements",
+    "prix": 9.99,
+    "marque": "Decathlon",
+    "taille": ["M", "L"],
+    "couleur": "blanc",
+    "disponibilite": true
+  },
+  {
+    "nom": "Gants de Musculation",
+    "categorie": "accessoires",
+    "prix": 12.50,
+    "marque": "Domyos",
+    "taille": ["S", "M", "L"],
+    "disponibilite": true
+  },
+  {
+    "nom": "Ballon de Football",
+    "categorie": "accessoires",
+    "prix": 22.00,
+    "marque": "Adidas",
+    "taille": 5,
+    "disponibilite": true
+  },
+  {
+    "nom": "Genouillère de Sport",
+    "categorie": "accessoires",
+    "prix": 15.00,
+    "marque": "McDavid",
+    "taille": ["S", "M", "L"],
+    "disponibilite": true
+  }
+]
+
