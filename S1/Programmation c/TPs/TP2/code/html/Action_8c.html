@@ -74,7 +74,13 @@ $(function() {
   <div class="headertitle"><div class="title">Action.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implémentation des actions de combat, des compétences et de la gestion des objets.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="Action_8h_source.html">Action.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DataGame_8h_source.html">DataGame.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Element_8h_source.html">Element.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Action.c:</div>
 <div class="dyncontent">
@@ -84,40 +90,53 @@ Include dependency graph for Action.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aba5f80460d1770e1953944f56ece5f33" id="r_aba5f80460d1770e1953944f56ece5f33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#aba5f80460d1770e1953944f56ece5f33">coup_de_poing</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e)</td></tr>
+<tr class="memdesc:aba5f80460d1770e1953944f56ece5f33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inflige des dégâts de coup de poing à une entité.  <br /></td></tr>
 <tr class="separator:aba5f80460d1770e1953944f56ece5f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fc800ab84ee38f2fa02741644dc55a1" id="r_a2fc800ab84ee38f2fa02741644dc55a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a2fc800ab84ee38f2fa02741644dc55a1">lacrymos</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e)</td></tr>
+<tr class="memdesc:a2fc800ab84ee38f2fa02741644dc55a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inflige des dégâts de lacrymogène à une entité.  <br /></td></tr>
 <tr class="separator:a2fc800ab84ee38f2fa02741644dc55a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ff31f8826ae0361854e7cb441e37057" id="r_a2ff31f8826ae0361854e7cb441e37057"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a2ff31f8826ae0361854e7cb441e37057">coup_de_mattraque</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e)</td></tr>
+<tr class="memdesc:a2ff31f8826ae0361854e7cb441e37057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inflige des dégâts de coup de matraque à une entité.  <br /></td></tr>
 <tr class="separator:a2ff31f8826ae0361854e7cb441e37057"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abebb51d21ff95d501525d31a6644c00a" id="r_abebb51d21ff95d501525d31a6644c00a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#abebb51d21ff95d501525d31a6644c00a">poubelle_en_feu</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e)</td></tr>
+<tr class="memdesc:abebb51d21ff95d501525d31a6644c00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inflige des dégâts avec une poubelle en feu selon une probabilité aléatoire.  <br /></td></tr>
 <tr class="separator:abebb51d21ff95d501525d31a6644c00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0349c4eaa0cbeed5460e55470a967b45" id="r_a0349c4eaa0cbeed5460e55470a967b45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a0349c4eaa0cbeed5460e55470a967b45">fuir</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e)</td></tr>
+<tr class="memdesc:a0349c4eaa0cbeed5460e55470a967b45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet à une entité de fuir, ce qui réduit son aura.  <br /></td></tr>
 <tr class="separator:a0349c4eaa0cbeed5460e55470a967b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a721ff4efa91f173560763469ee205432" id="r_a721ff4efa91f173560763469ee205432"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a721ff4efa91f173560763469ee205432">defendre</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e)</td></tr>
+<tr class="memdesc:a721ff4efa91f173560763469ee205432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet à une entité de se défendre pour augmenter son endurance.  <br /></td></tr>
 <tr class="separator:a721ff4efa91f173560763469ee205432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4059843f1b21c31ba0e6ab9171327436" id="r_a4059843f1b21c31ba0e6ab9171327436"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a4059843f1b21c31ba0e6ab9171327436">competence</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e1, <a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e2)</td></tr>
-<tr class="separator:a4059843f1b21c31ba0e6ab9171327436"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72a349b4e571629aed7e5e2d52f422c5" id="r_a72a349b4e571629aed7e5e2d52f422c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a72a349b4e571629aed7e5e2d52f422c5">utiliserObject</a> ()</td></tr>
-<tr class="separator:a72a349b4e571629aed7e5e2d52f422c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16d9cf32269cbf82851c7a70fa1080c" id="r_ab16d9cf32269cbf82851c7a70fa1080c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#ab16d9cf32269cbf82851c7a70fa1080c">utiliserCompetence</a> (<a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e1, <a class="el" href="structEntit_xC3_xA9.html">Entité</a> *e2)</td></tr>
+<tr class="memdesc:ab16d9cf32269cbf82851c7a70fa1080c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilise une compétence spéciale en fonction de la classe de l'entité.  <br /></td></tr>
+<tr class="separator:ab16d9cf32269cbf82851c7a70fa1080c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee51972ddc7951c304f463bd0536463" id="r_a4ee51972ddc7951c304f463bd0536463"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDataGame.html">DataGame</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a4ee51972ddc7951c304f463bd0536463">chercherObjet</a> (<a class="el" href="structDataGame.html">DataGame</a> **tete, const char *nom_objet)</td></tr>
+<tr class="memdesc:a4ee51972ddc7951c304f463bd0536463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche un objet dans une liste chaînée et renvoie l'adresse de son pointeur de nœud.  <br /></td></tr>
+<tr class="separator:a4ee51972ddc7951c304f463bd0536463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a8619f1b0f33bd5c4af1395523bf43" id="r_a01a8619f1b0f33bd5c4af1395523bf43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Action_8c.html#a01a8619f1b0f33bd5c4af1395523bf43">utiliserObject</a> (<a class="el" href="structJoueur.html">Joueur</a> *j, const char *nom, <a class="el" href="structEntit_xC3_xA9.html">Entité</a> *cible)</td></tr>
+<tr class="memdesc:a01a8619f1b0f33bd5c4af1395523bf43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet à un joueur d'utiliser un objet de son inventaire sur une cible.  <br /></td></tr>
+<tr class="separator:a01a8619f1b0f33bd5c4af1395523bf43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a4059843f1b21c31ba0e6ab9171327436" name="a4059843f1b21c31ba0e6ab9171327436"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4059843f1b21c31ba0e6ab9171327436">&#9670;&#160;</a></span>competence()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implémentation des actions de combat, des compétences et de la gestion des objets. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a4ee51972ddc7951c304f463bd0536463" name="a4ee51972ddc7951c304f463bd0536463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee51972ddc7951c304f463bd0536463">&#9670;&#160;</a></span>chercherObjet()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void competence </td>
+          <td class="memname"><a class="el" href="structDataGame.html">DataGame</a> ** chercherObjet </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structEntit_xC3_xA9.html">Entité</a> *&#160;</td>
-          <td class="paramname"><em>e1</em>, </td>
+          <td class="paramtype"><a class="el" href="structDataGame.html">DataGame</a> **&#160;</td>
+          <td class="paramname"><em>tete</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structEntit_xC3_xA9.html">Entité</a> *&#160;</td>
-          <td class="paramname"><em>e2</em>&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>nom_objet</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -126,6 +145,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Recherche un objet dans une liste chaînée et renvoie l'adresse de son pointeur de nœud. </p>
+<p>Recherche un objet spécifique dans une liste chaînée d'éléments.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tete</td><td>Pointeur vers la tête de la liste chaînée </td></tr>
+    <tr><td class="paramname">nom_objet</td><td>Le nom de l'objet recherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Un double pointeur vers le nœud contenant l'objet, ou NULL s'il n'est pas trouvé </dd></dl>
 
 </div>
 </div>
@@ -145,6 +175,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inflige des dégâts de coup de matraque à une entité. </p>
+<p>Action de combat : Coup de matraque.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>Pointeur vers l'entité subissant l'attaque </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aba5f80460d1770e1953944f56ece5f33" name="aba5f80460d1770e1953944f56ece5f33"></a>
@@ -162,6 +201,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Inflige des dégâts de coup de poing à une entité. </p>
+<p>Action de combat : Coup de poing.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>Pointeur vers l'entité subissant l'attaque </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -181,6 +229,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Permet à une entité de se défendre pour augmenter son endurance. </p>
+<p>Action défensive : Permet à l'entité de se défendre.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>Pointeur vers l'entité qui se défend </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a0349c4eaa0cbeed5460e55470a967b45" name="a0349c4eaa0cbeed5460e55470a967b45"></a>
@@ -198,6 +255,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Permet à une entité de fuir, ce qui réduit son aura. </p>
+<p>Action de fuite : Permet à l'entité de tenter de fuir le combat.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>Pointeur vers l'entité qui fuit </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -217,6 +283,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inflige des dégâts de lacrymogène à une entité. </p>
+<p>Action de combat : Utilisation de lacrymogène.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>Pointeur vers l'entité subissant l'attaque </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="abebb51d21ff95d501525d31a6644c00a" name="abebb51d21ff95d501525d31a6644c00a"></a>
@@ -235,10 +310,57 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inflige des dégâts avec une poubelle en feu selon une probabilité aléatoire. </p>
+<p>Action de combat : Utilisation d'une poubelle en feu.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>Pointeur vers l'entité subissant l'attaque </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a72a349b4e571629aed7e5e2d52f422c5" name="a72a349b4e571629aed7e5e2d52f422c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72a349b4e571629aed7e5e2d52f422c5">&#9670;&#160;</a></span>utiliserObject()</h2>
+<a id="ab16d9cf32269cbf82851c7a70fa1080c" name="ab16d9cf32269cbf82851c7a70fa1080c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab16d9cf32269cbf82851c7a70fa1080c">&#9670;&#160;</a></span>utiliserCompetence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void utiliserCompetence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structEntit_xC3_xA9.html">Entité</a> *&#160;</td>
+          <td class="paramname"><em>e1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structEntit_xC3_xA9.html">Entité</a> *&#160;</td>
+          <td class="paramname"><em>e2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utilise une compétence spéciale en fonction de la classe de l'entité. </p>
+<p>Permet d'utiliser une compétence entre deux entités.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e1</td><td>Pointeur vers l'entité initiatrice </td></tr>
+    <tr><td class="paramname">e2</td><td>Pointeur vers l'entité cible </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a01a8619f1b0f33bd5c4af1395523bf43" name="a01a8619f1b0f33bd5c4af1395523bf43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01a8619f1b0f33bd5c4af1395523bf43">&#9670;&#160;</a></span>utiliserObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -246,11 +368,39 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void utiliserObject </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structJoueur.html">Joueur</a> *&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>nom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structEntit_xC3_xA9.html">Entité</a> *&#160;</td>
+          <td class="paramname"><em>cible</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Permet à un joueur d'utiliser un objet de son inventaire sur une cible. </p>
+<p>Permet à un joueur d'utiliser un objet sur une entité cible.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>Pointeur vers le joueur </td></tr>
+    <tr><td class="paramname">nom</td><td>Le nom de l'objet à utiliser </td></tr>
+    <tr><td class="paramname">cible</td><td>Pointeur vers l'entité cible </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

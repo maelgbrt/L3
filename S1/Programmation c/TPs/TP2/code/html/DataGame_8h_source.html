@@ -80,33 +80,34 @@ $(document).ready(function() { init_codefold(0); });
 <a href="DataGame_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef DATAGAME_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define DATAGAME_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structDataGame.html">    8</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structDataGame.html">DataGame</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structDataGame.html#abcef9a81882c1d7addc13f0af8a58f38">   10</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structDataGame.html#abcef9a81882c1d7addc13f0af8a58f38">element</a>;          </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="structDataGame.html#a58453499aa62f405c59bf75645f07db7">   11</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structDataGame.html">DataGame</a> *<a class="code hl_variable" href="structDataGame.html#a58453499aa62f405c59bf75645f07db7">suivant</a>; </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="DataGame_8h.html#a4561015b133c439b49d7f5609cb56e15">   12</a></span>} <a class="code hl_struct" href="structDataGame.html">DataGame</a>;</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structDataGame.html">   12</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structDataGame.html">DataGame</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structDataGame.html#abcef9a81882c1d7addc13f0af8a58f38">   14</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structDataGame.html#abcef9a81882c1d7addc13f0af8a58f38">element</a>;          </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structDataGame.html#a58453499aa62f405c59bf75645f07db7">   15</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structDataGame.html">DataGame</a> *<a class="code hl_variable" href="structDataGame.html#a58453499aa62f405c59bf75645f07db7">suivant</a>; </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="DataGame_8h.html#a4561015b133c439b49d7f5609cb56e15">   16</a></span>} <a class="code hl_struct" href="structDataGame.html">DataGame</a>;</div>
 </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">void</span> <a class="code hl_function" href="DataGame_8h.html#a94d5b9ae23a591d5e6faf148ea01a8b7">initialiser</a>(<a class="code hl_struct" href="structDataGame.html">DataGame</a> **d);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordtype">void</span> <a class="code hl_function" href="DataGame_8h.html#a15eabe03ef5e026d087c236fcbe6e477">afficher</a>(<a class="code hl_struct" href="structDataGame.html">DataGame</a> d);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keywordtype">void</span> <a class="code hl_function" href="DataGame_8h.html#abee500680f3c862e753e23151ce207fb">ajouter</a>(<a class="code hl_struct" href="structDataGame.html">DataGame</a> **d, <span class="keywordtype">void</span> *elmt);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">// Fonctions optionnelles / en cours :</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">void *chercher(DataGame *d, void *elmt);</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">void supprimer(DataGame **d, void *elmt);</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aDataGame_8h_html_a15eabe03ef5e026d087c236fcbe6e477"><div class="ttname"><a href="DataGame_8h.html#a15eabe03ef5e026d087c236fcbe6e477">afficher</a></div><div class="ttdeci">void afficher(DataGame d)</div><div class="ttdoc">Affiche la liste chainee.</div><div class="ttdef"><b>Definition</b> DataGame.c:13</div></div>
-<div class="ttc" id="aDataGame_8h_html_a94d5b9ae23a591d5e6faf148ea01a8b7"><div class="ttname"><a href="DataGame_8h.html#a94d5b9ae23a591d5e6faf148ea01a8b7">initialiser</a></div><div class="ttdeci">void initialiser(DataGame **d)</div><div class="ttdoc">Initialise la liste chainee.</div><div class="ttdef"><b>Definition</b> DataGame.c:7</div></div>
-<div class="ttc" id="aDataGame_8h_html_abee500680f3c862e753e23151ce207fb"><div class="ttname"><a href="DataGame_8h.html#abee500680f3c862e753e23151ce207fb">ajouter</a></div><div class="ttdeci">void ajouter(DataGame **d, void *elmt)</div><div class="ttdoc">Ajoute un element de type void dans notre liste chainee.</div><div class="ttdef"><b>Definition</b> DataGame.c:17</div></div>
-<div class="ttc" id="astructDataGame_html"><div class="ttname"><a href="structDataGame.html">DataGame</a></div><div class="ttdef"><b>Definition</b> DataGame.h:9</div></div>
-<div class="ttc" id="astructDataGame_html_a58453499aa62f405c59bf75645f07db7"><div class="ttname"><a href="structDataGame.html#a58453499aa62f405c59bf75645f07db7">DataGame::suivant</a></div><div class="ttdeci">struct DataGame * suivant</div><div class="ttdef"><b>Definition</b> DataGame.h:11</div></div>
-<div class="ttc" id="astructDataGame_html_abcef9a81882c1d7addc13f0af8a58f38"><div class="ttname"><a href="structDataGame.html#abcef9a81882c1d7addc13f0af8a58f38">DataGame::element</a></div><div class="ttdeci">void * element</div><div class="ttdef"><b>Definition</b> DataGame.h:10</div></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span> <a class="code hl_function" href="DataGame_8h.html#a94d5b9ae23a591d5e6faf148ea01a8b7">initialiser</a>(<a class="code hl_struct" href="structDataGame.html">DataGame</a> **d);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">void</span> <a class="code hl_function" href="DataGame_8h.html#a15eabe03ef5e026d087c236fcbe6e477">afficher</a>(<a class="code hl_struct" href="structDataGame.html">DataGame</a> d);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> <a class="code hl_function" href="DataGame_8h.html#abee500680f3c862e753e23151ce207fb">ajouter</a>(<a class="code hl_struct" href="structDataGame.html">DataGame</a> **d, <span class="keywordtype">void</span> *elmt);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">// Fonctions optionnelles / en cours :</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// void *chercher(DataGame *d, void *elmt);</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// void supprimer(DataGame **d, void *elmt);</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// int chercherByAction(DataGame *d, Action action);</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aDataGame_8h_html_a15eabe03ef5e026d087c236fcbe6e477"><div class="ttname"><a href="DataGame_8h.html#a15eabe03ef5e026d087c236fcbe6e477">afficher</a></div><div class="ttdeci">void afficher(DataGame d)</div><div class="ttdoc">Affiche la liste chaînée.</div><div class="ttdef"><b>Definition</b> DataGame.c:26</div></div>
+<div class="ttc" id="aDataGame_8h_html_a94d5b9ae23a591d5e6faf148ea01a8b7"><div class="ttname"><a href="DataGame_8h.html#a94d5b9ae23a591d5e6faf148ea01a8b7">initialiser</a></div><div class="ttdeci">void initialiser(DataGame **d)</div><div class="ttdoc">Initialise la liste chaînée.</div><div class="ttdef"><b>Definition</b> DataGame.c:16</div></div>
+<div class="ttc" id="aDataGame_8h_html_abee500680f3c862e753e23151ce207fb"><div class="ttname"><a href="DataGame_8h.html#abee500680f3c862e753e23151ce207fb">ajouter</a></div><div class="ttdeci">void ajouter(DataGame **d, void *elmt)</div><div class="ttdoc">Ajoute un élément de type void dans notre liste chaînée.</div><div class="ttdef"><b>Definition</b> DataGame.c:35</div></div>
+<div class="ttc" id="astructDataGame_html"><div class="ttname"><a href="structDataGame.html">DataGame</a></div><div class="ttdoc">Structure représentant un maillon de la liste chaînée.</div><div class="ttdef"><b>Definition</b> DataGame.h:13</div></div>
+<div class="ttc" id="astructDataGame_html_a58453499aa62f405c59bf75645f07db7"><div class="ttname"><a href="structDataGame.html#a58453499aa62f405c59bf75645f07db7">DataGame::suivant</a></div><div class="ttdeci">struct DataGame * suivant</div><div class="ttdef"><b>Definition</b> DataGame.h:15</div></div>
+<div class="ttc" id="astructDataGame_html_abcef9a81882c1d7addc13f0af8a58f38"><div class="ttname"><a href="structDataGame.html#abcef9a81882c1d7addc13f0af8a58f38">DataGame::element</a></div><div class="ttdeci">void * element</div><div class="ttdef"><b>Definition</b> DataGame.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

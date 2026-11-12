@@ -74,6 +74,9 @@ $(function() {
   <div class="headertitle"><div class="title">DataGame.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implémentation des fonctions de gestion de la liste chaînée générale.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
@@ -87,18 +90,21 @@ Include dependency graph for DataGame.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a94d5b9ae23a591d5e6faf148ea01a8b7" id="r_a94d5b9ae23a591d5e6faf148ea01a8b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DataGame_8c.html#a94d5b9ae23a591d5e6faf148ea01a8b7">initialiser</a> (<a class="el" href="structDataGame.html">DataGame</a> **d)</td></tr>
-<tr class="memdesc:a94d5b9ae23a591d5e6faf148ea01a8b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise la liste chainee.  <br /></td></tr>
+<tr class="memdesc:a94d5b9ae23a591d5e6faf148ea01a8b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise la liste chaînée en mettant son pointeur à NULL.  <br /></td></tr>
 <tr class="separator:a94d5b9ae23a591d5e6faf148ea01a8b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15eabe03ef5e026d087c236fcbe6e477" id="r_a15eabe03ef5e026d087c236fcbe6e477"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DataGame_8c.html#a15eabe03ef5e026d087c236fcbe6e477">afficher</a> (<a class="el" href="structDataGame.html">DataGame</a> d)</td></tr>
-<tr class="memdesc:a15eabe03ef5e026d087c236fcbe6e477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la liste chainee.  <br /></td></tr>
+<tr class="memdesc:a15eabe03ef5e026d087c236fcbe6e477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche l'élément stocké dans le nœud de la liste.  <br /></td></tr>
 <tr class="separator:a15eabe03ef5e026d087c236fcbe6e477"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abee500680f3c862e753e23151ce207fb" id="r_abee500680f3c862e753e23151ce207fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DataGame_8c.html#abee500680f3c862e753e23151ce207fb">ajouter</a> (<a class="el" href="structDataGame.html">DataGame</a> **d, void *elmt)</td></tr>
-<tr class="memdesc:abee500680f3c862e753e23151ce207fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un element de type void dans notre liste chainee.  <br /></td></tr>
+<tr class="memdesc:abee500680f3c862e753e23151ce207fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un nouvel élément en tête de la liste chaînée.  <br /></td></tr>
 <tr class="separator:abee500680f3c862e753e23151ce207fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d4aee4513e50c461b65a81a3eb5beb1" id="r_a2d4aee4513e50c461b65a81a3eb5beb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="DataGame_8c.html#a2d4aee4513e50c461b65a81a3eb5beb1">supprimer</a> (<a class="el" href="structDataGame.html">DataGame</a> **d, void *elmt)</td></tr>
+<tr class="memdesc:a2d4aee4513e50c461b65a81a3eb5beb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recherche et supprime un élément spécifique de la liste chaînée.  <br /></td></tr>
 <tr class="separator:a2d4aee4513e50c461b65a81a3eb5beb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implémentation des fonctions de gestion de la liste chaînée générale. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a15eabe03ef5e026d087c236fcbe6e477" name="a15eabe03ef5e026d087c236fcbe6e477"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a15eabe03ef5e026d087c236fcbe6e477">&#9670;&#160;</a></span>afficher()</h2>
 
@@ -115,10 +121,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Affiche la liste chainee. </p>
+<p>Affiche l'élément stocké dans le nœud de la liste. </p>
+<p>Affiche la liste chaînée.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>La liste à afficher </td></tr>
+    <tr><td class="paramname">d</td><td>La structure <a class="el" href="structDataGame.html" title="Structure représentant un maillon de la liste chaînée.">DataGame</a> contenant l'élément à afficher </td></tr>
   </table>
   </dd>
 </dl>
@@ -151,11 +158,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ajoute un element de type void dans notre liste chainee. </p>
+<p>Ajoute un nouvel élément en tête de la liste chaînée. </p>
+<p>Ajoute un élément de type void dans notre liste chaînée.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>Pointeur vers la liste </td></tr>
-    <tr><td class="paramname">elmt</td><td>L'élément à ajouter </td></tr>
+    <tr><td class="paramname">d</td><td>Pointeur vers le pointeur de la liste </td></tr>
+    <tr><td class="paramname">elmt</td><td>Pointeur vers l'élément à ajouter </td></tr>
   </table>
   </dd>
 </dl>
@@ -178,10 +186,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialise la liste chainee. </p>
+<p>Initialise la liste chaînée en mettant son pointeur à NULL. </p>
+<p>Initialise la liste chaînée.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>Pointeur vers le pointeur de la liste </td></tr>
+    <tr><td class="paramname">d</td><td>Pointeur vers le pointeur de la liste à initialiser </td></tr>
   </table>
   </dd>
 </dl>
@@ -213,6 +222,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Recherche et supprime un élément spécifique de la liste chaînée. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>Pointeur vers le pointeur de la liste </td></tr>
+    <tr><td class="paramname">elmt</td><td>Pointeur vers l'élément à supprimer </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
