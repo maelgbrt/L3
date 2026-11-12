@@ -7,21 +7,21 @@
 // LES ATTAQUES
 
 void coup_de_poing(Entité * e){
-    e->pt_vie - 10;
+    e->pt_vie -= 10;
 }
 
 void lacrymos(Entité * e){
-    e->pt_vie - 20;   
+    e->pt_vie -= 20;   
 }
 
 void coup_de_mattraque(Entité * e){
-    e->pt_vie - 30;
+    e->pt_vie -= 30;
 }
 
 void poubelle_en_feu(Entité * e){
     int val = rand()%10;
     if(val < 5){
-        e->pt_vie - 40;
+        e->pt_vie -= 40;
     }
 }
 
@@ -29,12 +29,13 @@ void poubelle_en_feu(Entité * e){
 // FUIR
 void fuir(Entité * e){
     printf("Vous avez fuis c pas bien");
-    e->aura - 100;
+    e->aura -= 100;
+    // prévoir de relancer un nouveu combat
 }
 
 // DEFENDRE
 void defendre (Entité * e){
-    e->pt_endurance + 10;
+    e->pt_endurance += 10;
 }
 
 
