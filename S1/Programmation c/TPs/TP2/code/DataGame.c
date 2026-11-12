@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "DataGame.h"
+#include "Element.h"
 
 void initialiser(DataGame **d) {
     if (d != NULL) {
@@ -48,7 +49,16 @@ void supprimer(DataGame **d, void * elmt) {
 
 }
 
+void *chercher(DataGame *d, void * elmt) {
+    if (elmt == NULL) {
+        return NULL;
+    }
 
-
-
+    for (DataGame *cur = d; cur != NULL; cur = cur->suivant) {
+        if (elements_egaux(elmt, cur->element)) {
+            return cur->element;
+        }
+    }
+    return NULL;
+}
 

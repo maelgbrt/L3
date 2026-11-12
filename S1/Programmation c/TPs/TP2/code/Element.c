@@ -123,3 +123,44 @@ bool elements_egaux(void *elmt1, void *elmt2) {
 
     return false;
 }
+
+Object *creerObjet(const char *nom, int quantite, int effet) {
+    Object *o = malloc(sizeof(*o));
+    if (o == NULL) {
+        return NULL;
+    }
+
+    o->type = TYPE_OBJET;
+    o->nb_element = quantite;
+    o->nm_object = (char *)nom;
+    o->effet = effet;
+    
+    return o;
+}
+
+void remplirEntite(Entité *e, const char *nom, Classe c, int pv, int endu, bool allie) {
+    e->type = TYPE_ENTITE;
+    e->nom = (char *)nom;
+    e->classe = c;
+    e->pt_vie = pv;
+    e->pt_endurance = endu;
+    e->actions = NULL;
+    e->allie = allie;
+    e->aura = 0;
+}
+
+bool equipeVivante(const Equipe *eq) {
+    for (int i = 0; i < eq->nb_membre; i++)
+        if (eq->membres[i].pt_vie > 0) {
+            return true;
+        }
+    return false;
+}
+
+Entité *premierVivant(Equipe *eq) {
+    for (int i = 0; i < eq->nb_membre; i++)
+        if (eq->membres[i].pt_vie > 0) {
+            return &eq->membres[i];
+        }
+    return NULL;
+}

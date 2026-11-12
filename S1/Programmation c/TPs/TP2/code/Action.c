@@ -57,7 +57,6 @@ void utiliserCompetence(Entité *e1, Entité *e2){
 DataGame **chercherObjet(DataGame **tete, const char *nom_objet)
 {
     for (DataGame **pp = tete; *pp != NULL; pp = &(*pp)->suivant) {
-        // pk (Object *)
         Object *o = (Object *)(*pp)->element;
         if (o != NULL && o->type == TYPE_OBJET && strcmp(o->nm_object, nom_objet) == 0) {
             return pp; // j->Inventaire si obj en tete, suivant du noeud précédent sinon

@@ -63,4 +63,15 @@ void afficherObject(Object * o);
 
 bool elements_egaux(void *elmt1, void *elmt2);
 
+Object *creerObjet(const char *nom, int quantite, int effet);
+
+void remplirEntite(Entité *e, const char *nom, Classe c, int pv, int endu, bool allie);
+
+bool equipeVivante(const Equipe *eq);
+
+Entité *premierVivant(Equipe *eq);
+
+
+
+
 #endif
