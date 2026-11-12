@@ -1,0 +1,457 @@
+[
+  {
+    "commande_id": "C12346",
+    "client": "Alice Dupont",
+    "date_commande": "2024-10-10",
+    "produits": [
+      {
+        "id_produit": 7423,
+        "nom": "Processeur Intel Core i7-13700K",
+        "marque": "Intel",
+        "prix": 450.0,
+        "quantite": 1,
+        "description": "Processeur 16 cœurs, 24 threads, fréquence jusqu'à 5.4 GHz",
+        "attributs": {
+          "vitesse_max": "5.4 GHz",
+          "cœurs": 16,
+          "threads": 24
+        },
+        "type": "Processeur"
+      },
+      {
+        "id_produit": 2345,
+        "nom": "Carte mère ASUS ROG Strix Z790-E",
+        "marque": "ASUS",
+        "prix": 300.0,
+        "quantite": 1,
+        "description": "Carte mère ATX, chipset Z790, compatible avec processeurs Intel Core de 12ème et 13ème génération",
+        "attributs": {
+          "format": "ATX",
+          "chipset": "Z790",
+          "ports_USB": 10
+        },
+        "type": "Carte mère"
+      },
+      {
+        "id_produit": 5678,
+        "nom": "Mémoire RAM Kingston Fury 16GB (2 x 8GB)",
+        "marque": "Kingston",
+        "prix": 75.0,
+        "quantite": 1,
+        "description": "Mémoire DDR4 haute performance, 3200 MHz",
+        "attributs": {
+          "type": "DDR4",
+          "vitesse": "3200 MHz",
+          "capacité": "16 GB"
+        },
+        "type": "RAM"
+      },
+      {
+        "id_produit": 9123,
+        "nom": "Carte graphique NVIDIA GeForce RTX 4080",
+        "marque": "NVIDIA",
+        "prix": 1600.0,
+        "quantite": 1,
+        "description": "Carte graphique haut de gamme avec 16 GB de GDDR6X pour des performances extrêmes en jeu et en rendu 3D",
+        "attributs": {
+          "mémoire": "16 GB",
+          "type_mémoire": "GDDR6X",
+          "sortie": "HDMI, DisplayPort"
+        },
+        "type": "Carte graphique"
+      },
+      {
+        "id_produit": 3456,
+        "nom": "Disque SSD Samsung 970 EVO Plus 1TB",
+        "marque": "Samsung",
+        "prix": 120.0,
+        "quantite": 1,
+        "description": "Disque SSD NVMe rapide avec 1TB de stockage pour des performances optimales",
+        "attributs": {
+          "type": "NVMe",
+          "capacité": "1 TB",
+          "vitesse_lecture": "3500 MB/s"
+        },
+        "type": "SSD"
+      },
+      {
+        "id_produit": 6543,
+        "nom": "Alimentation Corsair RM850x 850W",
+        "marque": "Corsair",
+        "prix": 130.0,
+        "quantite": 1,
+        "description": "Alimentation modulaire de 850W, certifiée 80+ Gold, haute efficacité et fiabilité",
+        "attributs": {
+          "puissance": "850W",
+          "certification": "80+ Gold",
+          "modulaire": true
+        },
+        "type": "Alimentation"
+      }
+    ]
+  },
+  {
+    "commande_id": "C12347",
+    "client": "Bob Martin",
+    "date_commande": "2024-10-11",
+    "produits": [
+      {
+        "id_produit": 7423,
+        "nom": "Processeur Intel Core i7-13700K",
+        "marque": "Intel",
+        "prix": 450.0,
+        "quantite": 1,
+        "description": "Processeur 16 cœurs, 24 threads, fréquence jusqu'à 5.4 GHz",
+        "attributs": {
+          "vitesse_max": "5.4 GHz",
+          "cœurs": 16,
+          "threads": 24
+        },
+        "type": "Processeur"
+      },
+      {
+        "id_produit": 2345,
+        "nom": "Carte mère MSI MAG Z590 TOMAHAWK WIFI",
+        "marque": "MSI",
+        "prix": 220.0,
+        "quantite": 1,
+        "description": "Carte mère ATX, chipset Z590, avec WiFi intégré, compatible avec les processeurs Intel 10ème et 11ème génération",
+        "attributs": {
+          "format": "ATX",
+          "chipset": "Z590",
+          "wifi": "WiFi 6"
+        },
+        "type": "Carte mère"
+      },
+      {
+        "id_produit": 5678,
+        "nom": "Mémoire RAM Corsair Vengeance LPX 32GB (2 x 16GB)",
+        "marque": "Corsair",
+        "prix": 120.0,
+        "quantite": 1,
+        "description": "Mémoire DDR4 haute performance, 3000 MHz",
+        "attributs": {
+          "type": "DDR4",
+          "vitesse": "3000 MHz",
+          "capacité": "32 GB"
+        },
+        "type": "RAM"
+      },
+      {
+        "id_produit": 9123,
+        "nom": "Carte graphique AMD Radeon RX 7900 XT",
+        "marque": "AMD",
+        "prix": 1300.0,
+        "quantite": 1,
+        "description": "Carte graphique de dernière génération, avec 16 GB de GDDR6 pour un rendu graphique de haute qualité",
+        "attributs": {
+          "mémoire": "16 GB",
+          "type_mémoire": "GDDR6",
+          "sortie": "HDMI, DisplayPort"
+        },
+        "type": "Carte graphique"
+      },
+      {
+        "id_produit": 3456,
+        "nom": "Disque SSD Western Digital Black SN850 1TB",
+        "marque": "Western Digital",
+        "prix": 150.0,
+        "quantite": 1,
+        "description": "Disque SSD NVMe rapide avec 1TB de stockage pour des performances optimales",
+        "attributs": {
+          "type": "NVMe",
+          "capacité": "1 TB",
+          "vitesse_lecture": "7000 MB/s"
+        },
+        "type": "SSD"
+      },
+      {
+        "id_produit": 6543,
+        "nom": "Alimentation EVGA SuperNOVA 850W",
+        "marque": "EVGA",
+        "prix": 140.0,
+        "quantite": 1,
+        "description": "Alimentation modulaire 850W, certifiée 80+ Gold, haute fiabilité et sécurité",
+        "attributs": {
+          "puissance": "850W",
+          "certification": "80+ Gold",
+          "modulaire": true
+        },
+        "type": "Alimentation"
+      }
+    ]
+  },
+  {
+    "commande_id": "C12348",
+    "client": "David Lefevre",
+    "date_commande": "2024-10-13",
+    "produits": [
+      {
+        "id_produit": 7423,
+        "nom": "Processeur AMD Ryzen 7 7800X",
+        "marque": "AMD",
+        "prix": 400.0,
+        "quantite": 1,
+        "description": "Processeur 8 cœurs, 16 threads, fréquence jusqu'à 5.0 GHz",
+        "attributs": {
+          "vitesse_max": "5.0 GHz",
+          "cœurs": 8,
+          "threads": 16
+        },
+        "type": "Processeur"
+      },
+      {
+        "id_produit": 2345,
+        "nom": "Carte mère Gigabyte B550 AORUS PRO",
+        "marque": "Gigabyte",
+        "prix": 180.0,
+        "quantite": 1,
+        "description": "Carte mère ATX, chipset B550, avec support PCIe 4.0 pour processeurs AMD Ryzen",
+        "attributs": {
+          "format": "ATX",
+          "chipset": "B550",
+          "pci_e": "PCIe 4.0"
+        },
+        "type": "Carte mère"
+      },
+      {
+        "id_produit": 5678,
+        "nom": "Mémoire RAM Crucial Ballistix 16GB (2 x 8GB)",
+        "marque": "Crucial",
+        "prix": 60.0,
+        "quantite": 1,
+        "description": "Mémoire DDR4 3600 MHz, idéale pour les systèmes de jeu haute performance",
+        "attributs": {
+          "type": "DDR4",
+          "vitesse": "3600 MHz",
+          "capacité": "16 GB"
+        },
+        "type": "RAM"
+      },
+      {
+        "id_produit": 9123,
+        "nom": "Carte graphique NVIDIA GeForce RTX 4070 Ti",
+        "marque": "NVIDIA",
+        "prix": 1200.0,
+        "quantite": 1,
+        "description": "Carte graphique haut de gamme avec 12 GB de GDDR6X pour des performances graphiques exceptionnelles",
+        "attributs": {
+          "mémoire": "12 GB",
+          "type_mémoire": "GDDR6X",
+          "sortie": "HDMI, DisplayPort"
+        },
+        "type": "Carte graphique"
+      },
+      {
+        "id_produit": 3456,
+        "nom": "Disque SSD Kingston A2000 500GB",
+        "marque": "Kingston",
+        "prix": 60.0,
+        "quantite": 1,
+        "description": "Disque SSD NVMe avec 500GB de stockage pour des performances rapides à un prix abordable",
+        "attributs": {
+          "type": "NVMe",
+          "capacité": "500 GB",
+          "vitesse_lecture": "2000 MB/s"
+        },
+        "type": "SSD"
+      },
+      {
+        "id_produit": 6543,
+        "nom": "Alimentation Seasonic Focus GX-750 750W",
+        "marque": "Seasonic",
+        "prix": 120.0,
+        "quantite": 1,
+        "description": "Alimentation modulaire 750W, certifiée 80+ Gold, haute efficacité et faible bruit",
+        "attributs": {
+          "puissance": "750W",
+          "certification": "80+ Gold",
+          "modulaire": true
+        },
+        "type": "Alimentation"
+      }
+    ]
+  },
+  {
+    "commande_id": "C12349",
+    "client": "Julie Roux",
+    "date_commande": "2024-10-15",
+    "produits": [
+      {
+        "id_produit": 7423,
+        "nom": "Processeur Intel Core i5-13600K",
+        "marque": "Intel",
+        "prix": 300.0,
+        "quantite": 1,
+        "description": "Processeur 6 cœurs, 12 threads, fréquence jusqu'à 5.1 GHz",
+        "attributs": {
+          "vitesse_max": "5.1 GHz",
+          "cœurs": 6,
+          "threads": 12
+        },
+        "type": "Processeur"
+      },
+      {
+        "id_produit": 2345,
+        "nom": "Carte mère ASUS TUF Gaming B660-PLUS WIFI D4",
+        "marque": "ASUS",
+        "prix": 170.0,
+        "quantite": 1,
+        "description": "Carte mère ATX, chipset B660, avec Wi-Fi intégré et support DDR4",
+        "attributs": {
+          "format": "ATX",
+          "chipset": "B660",
+          "wifi": "Wi-Fi 6"
+        },
+        "type": "Carte mère"
+      },
+      {
+        "id_produit": 5678,
+        "nom": "Mémoire RAM G.SKILL Ripjaws V 32GB (2 x 16GB)",
+        "marque": "G.SKILL",
+        "prix": 100.0,
+        "quantite": 1,
+        "description": "Mémoire DDR4 3600 MHz pour des performances optimisées en jeu et en multitâche",
+        "attributs": {
+          "type": "DDR4",
+          "vitesse": "3600 MHz",
+          "capacité": "32 GB"
+        },
+        "type": "RAM"
+      },
+      {
+        "id_produit": 9123,
+        "nom": "Carte graphique AMD Radeon RX 6800 XT",
+        "marque": "AMD",
+        "prix": 1100.0,
+        "quantite": 1,
+        "description": "Carte graphique de haute performance avec 16 GB de GDDR6",
+        "attributs": {
+          "mémoire": "16 GB",
+          "type_mémoire": "GDDR6",
+          "sortie": "HDMI, DisplayPort"
+        },
+        "type": "Carte graphique"
+      },
+      {
+        "id_produit": 3456,
+        "nom": "Disque SSD Crucial P5 Plus 1TB",
+        "marque": "Crucial",
+        "prix": 110.0,
+        "quantite": 1,
+        "description": "Disque SSD NVMe rapide pour des transferts de données ultra-rapides avec 1TB de stockage",
+        "attributs": {
+          "type": "NVMe",
+          "capacité": "1 TB",
+          "vitesse_lecture": "6600 MB/s"
+        },
+        "type": "SSD"
+      },
+      {
+        "id_produit": 6543,
+        "nom": "Alimentation Thermaltake Toughpower 850W",
+        "marque": "Thermaltake",
+        "prix": 130.0,
+        "quantite": 1,
+        "description": "Alimentation 850W certifiée 80+ Gold avec ventilation silencieuse",
+        "attributs": {
+          "puissance": "850W",
+          "certification": "80+ Gold",
+          "modulaire": true
+        },
+        "type": "Alimentation"
+      }
+    ]
+  },
+  {
+    "commande_id": "C12350",
+    "client": "Michel Bernard",
+    "date_commande": "2024-10-16",
+    "produits": [
+      {
+        "id_produit": 7423,
+        "nom": "Processeur AMD Ryzen 9 7900X",
+        "marque": "AMD",
+        "prix": 650.0,
+        "quantite": 1,
+        "description": "Processeur 12 cœurs, 24 threads, fréquence jusqu'à 5.6 GHz",
+        "attributs": {
+          "vitesse_max": "5.6 GHz",
+          "cœurs": 12,
+          "threads": 24
+        },
+        "type": "Processeur"
+      },
+      {
+        "id_produit": 2345,
+        "nom": "Carte mère ASUS ROG Crosshair X670E Hero",
+        "marque": "ASUS",
+        "prix": 500.0,
+        "quantite": 1,
+        "description": "Carte mère ATX premium, chipset X670E, support pour processeurs AMD Ryzen 7000",
+        "attributs": {
+          "format": "ATX",
+          "chipset": "X670E",
+          "wifi": "Wi-Fi 6E"
+        },
+        "type": "Carte mère"
+      },
+      {
+        "id_produit": 5678,
+        "nom": "Mémoire RAM Corsair Dominator Platinum 64GB (2 x 32GB)",
+        "marque": "Corsair",
+        "prix": 250.0,
+        "quantite": 1,
+        "description": "Mémoire DDR5 haut de gamme pour des performances exceptionnelles",
+        "attributs": {
+          "type": "DDR5",
+          "vitesse": "5600 MHz",
+          "capacité": "64 GB"
+        },
+        "type": "RAM"
+      },
+      {
+        "id_produit": 9123,
+        "nom": "Carte graphique NVIDIA GeForce RTX 4090",
+        "marque": "NVIDIA",
+        "prix": 2500.0,
+        "quantite": 1,
+        "description": "Carte graphique de très haute performance avec 24 GB de GDDR6X pour les applications les plus gourmandes",
+        "attributs": {
+          "mémoire": "24 GB",
+          "type_mémoire": "GDDR6X",
+          "sortie": "HDMI, DisplayPort"
+        },
+        "type": "Carte graphique"
+      },
+      {
+        "id_produit": 3456,
+        "nom": "Disque SSD Samsung 980 PRO 2TB",
+        "marque": "Samsung",
+        "prix": 250.0,
+        "quantite": 1,
+        "description": "Disque SSD NVMe ultra-rapide avec 2TB de stockage pour des performances extrêmes",
+        "attributs": {
+          "type": "NVMe",
+          "capacité": "2 TB",
+          "vitesse_lecture": "7000 MB/s"
+        },
+        "type": "SSD"
+      },
+      {
+        "id_produit": 6543,
+        "nom": "Alimentation Cooler Master MWE Gold 1000W",
+        "marque": "Cooler Master",
+        "prix": 180.0,
+        "quantite": 1,
+        "description": "Alimentation modulaire 1000W certifiée 80+ Gold avec ventilation silencieuse",
+        "attributs": {
+          "puissance": "1000W",
+          "certification": "80+ Gold",
+          "modulaire": true
+        },
+        "type": "Alimentation"
+      }
+    ]
+  }
+]
