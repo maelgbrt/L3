@@ -12,16 +12,13 @@ HEADERS = DataGame.h Element.h
 
 all: $(EXEC)
 
-# Création librairie statique
-$(LIB): $(LIBOBJS)
-	ar rcs $@ $^
-
-# Édition de liens
-$(EXEC): tp2.o $(LIB)
-	$(CC) tp2.o -L. -lgame -o $(EXEC)
-# $(CC) $(OBJS) -o $(EXEC)
+# Édition de liens 
+# .o en executable
+$(EXEC): $(OBJS)
+	$(CC) $(OBJS) -o $(EXEC)
 
 # Compilation des objets : si un .c ou un .h change, on recompile
+# .c ou .h en -> .o
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
