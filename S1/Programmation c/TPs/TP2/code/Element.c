@@ -27,7 +27,7 @@ void initialierEquipe(Equipe **equipe){
 void initialiseEntite(Entité *Entité){
     if(Entité !=NULL){
         Entité->allie = NULL;
-        Entité->classe = NULL;
+        Entité->classe = AUCUNNE;
         Entité->pt_endurance= 0;
 }
 };
@@ -116,10 +116,9 @@ bool elements_egaux(void *elmt1, void *elmt2) {
     else if (*type1 == TYPE_ENTITE) {
         Entité *e1 = (Entité *)elmt1;
         Entité *e2 = (Entité *)elmt2;
-        if (e1->classe != NULL && e2->classe != NULL) {
-            return strcmp(e1->classe, e2->classe) == 0;
+        if (e1->classe != AUCUNNE && e2->classe != AUCUNNE) {
+            return e1->classe == e2->classe;
         }
-        return false;
     }
 
     return false;

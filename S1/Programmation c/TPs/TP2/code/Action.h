@@ -16,8 +16,10 @@ void defendre (Entité * e);
 
 void fuir (Entité * e);
 
-void competence (Entité * e1,Entité *e2);
+void utiliserCompetence (Entité * e1,Entité *e2);
 
-void utiliserObject(Joueur * j);
+DataGame **chercherObjet(DataGame **tete, const char *nom_objet);
+
+void utiliserObject(Joueur *j, const char *nom, Entité *cible);
 
 

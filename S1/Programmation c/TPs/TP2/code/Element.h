@@ -13,25 +13,33 @@ typedef enum {
 } TypeElement;
 
 typedef enum {
+    AUCUNNE, // équivalent de NULL
     MAGE,
     GUERRIER,
 }Classe;
+
+typedef enum {
+    SOIN,
+    MALUS,
+    ENDURANCE,
+}Effet;
 
 typedef struct Object {
     TypeElement type; 
     int nb_element;
     char * nm_object;
-    int effet;
+    Effet effet;
+    int val;
 } Object;
 
 typedef struct Entité {
+    TypeElement type;
     char * nom;
     Classe classe;
     int pt_vie;
     int pt_endurance;
     DataGame * actions; // Fonctionne maintenant grâce à la déclaration anticipée
     bool allie;
-    TypeElement type;
     int aura;
 } Entité;
 

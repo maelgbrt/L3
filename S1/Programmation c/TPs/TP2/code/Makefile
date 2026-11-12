@@ -2,9 +2,12 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 EXEC = tp2
+LIB = libgame.a
 
-SRCS = tp2.c DataGame.c Element.c
+LIBSRCS = DataGame.c Element.c
+SRCS = tp2.c $(LIBSRCS)
 OBJS = $(SRCS:.c=.o)
+LIBOBJS = $(LIBSRCS:.c=.o)
 HEADERS = DataGame.h Element.h
 
 all: $(EXEC)
@@ -20,4 +23,4 @@ $(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(LIB)
