@@ -12,26 +12,47 @@
 //     // printf("Nom de l'element : %s\n",e.action);
 // }
 
+/**
+ * @file Element.c
+ * @brief Implémentation des fonctions liées aux éléments (Objets, Entités, Joueur, Équipe).
+ */
+
+/**
+ * @brief Initialise un pointeur d'objet à NULL.
+ * @param object Pointeur vers l'objet à initialiser
+ */
 void initialiserObject(Object **object){
     if(object!= NULL){
         *object = NULL;
     }
 }
 
+/**
+ * @brief Initialise un pointeur d'équipe à NULL.
+ * @param equipe Pointeur vers l'équipe à initialiser
+ */
 void initialierEquipe(Equipe **equipe){
     if(equipe!= NULL){
         *equipe = NULL;
     }
 }
 
+/**
+ * @brief Initialise les champs de base d'une entité.
+ * @param Entité Pointeur vers l'entité à initialiser
+ */
 void initialiseEntite(Entité *Entité){
     if(Entité !=NULL){
-        Entité->allie = NULL;
+        Entité->allie = false;
         Entité->classe = AUCUNNE;
         Entité->pt_endurance= 0;
+    }
 }
-};
 
+/**
+ * @brief Initialise le joueur principal en demandant son nom.
+ * @param j Pointeur vers le joueur à initialiser
+ */
 void initialiserJoueur(Joueur *j) {
     char *nom;
     printf("Nom : \n");
@@ -42,20 +63,29 @@ void initialiserJoueur(Joueur *j) {
     j->XP = 0;
     j->Inventaire= NULL;
 
-
-//RESPONSABILITÉ HANIA BOUDJAJ NE ME LIÉE PAS A CE CODE MEDIOCRE
+// RESPONSABILITÉ HANIA BOUDJAJ NE ME LIÉE PAS A CE CODE MEDIOCRE
     j->Caracteristiques[0] = 10;
     j->Caracteristiques[1] = 5;
     j->Caracteristiques[2] = 5;
     j->Caracteristiques[3] = 10;
 }
 
+/**
+ * @brief Ajoute un objet dans l'inventaire du joueur.
+ * @param j Pointeur vers le joueur
+ * @param o Pointeur vers l'objet à ajouter
+ */
 void ajouterObjectInInventaire(Joueur *j, Object *o) {
     if (j != NULL && o != NULL) {
         ajouter(&(j->Inventaire), o);
     }
 }
 
+/**
+ * @brief Ajoute un membre dans l'équipe si de la place est disponible.
+ * @param equipe Pointeur vers l'équipe
+ * @param membre L'entité à ajouter
+ */
 void ajouterMembreInEquipe(Equipe *equipe, Entité membre) {
     if (equipe != NULL) {
         if (equipe->nb_membre >= 6) {
@@ -73,19 +103,32 @@ void ajouterMembreInEquipe(Equipe *equipe, Entité membre) {
     }
 }
 
-void supprimerObjectInventaire(Joueur * joueur,Object * o){
-    if(joueur!=NULL && o != NULL){
+/**
+ * @brief Supprime un objet de l'inventaire.
+ * @param joueur Pointeur vers le joueur
+ * @param o Pointeur vers l'objet à supprimer
+ */
+void supprimerObjectInventaire(Joueur *joueur, Object *o){
+    if(joueur != NULL && o != NULL){
             
     }
 }
 
-void afficherObject(Object * o){
-    printf("l'object : %s | restant : %d",o->nm_object,o->nb_element);
+/**
+ * @brief Affiche les informations d'un objet.
+ * @param o Pointeur vers l'objet à afficher
+ */
+void afficherObject(Object *o){
+    printf("l'object : %s | restant : %d", o->nm_object, o->nb_element);
 }
 
-void afficherElement(void * elmt){
-    if(elmt!= NULL){
-        TypeElement *typeElmt = (TypeElement * )elmt;
+/**
+ * @brief Affiche un élément générique (objet ou entité).
+ * @param elmt Pointeur vers l'élément générique
+ */
+void afficherElement(void *elmt){
+    if(elmt != NULL){
+        TypeElement *typeElmt = (TypeElement *)elmt;
 
         if (*typeElmt == TYPE_OBJET){
             afficherObject(elmt);
@@ -93,6 +136,12 @@ void afficherElement(void * elmt){
     }
 }
 
+/**
+ * @brief Compare deux éléments génériques pour vérifier s'ils sont égaux.
+ * @param elmt1 Premier élément
+ * @param elmt2 Deuxième élément
+ * @return true si les éléments sont équivalents, false sinon
+ */
 bool elements_egaux(void *elmt1, void *elmt2) {
     if (elmt1 == NULL || elmt2 == NULL) {
         return elmt1 == elmt2;
