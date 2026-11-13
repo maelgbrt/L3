@@ -79,4 +79,6 @@ DataGame **chercherObjet(DataGame **tete, const char *nom_objet);
  */
 void utiliserObject(Joueur *j, const char *nom, Entité *cible);
 
+int menuObjet(Joueur *j, Entité *cible);
+
 #endif

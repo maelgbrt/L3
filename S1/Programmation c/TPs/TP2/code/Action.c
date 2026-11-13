@@ -141,3 +141,30 @@ void utiliserObject(Joueur *j, const char *nom, Entité *cible){
         free(a_liberer);
     }
 }
+
+int menuObjet(Joueur *j, Entité *cible) {
+    int n = afficherInventaire(j->Inventaire);
+    if (n ==0) {
+        printf("Inventaire vide.\n");
+        return -1;
+    }
+
+    printf("0. Retour\nQuel objet utiliser ? ");
+    int choix;
+    if (scanf("%d", &choix) != 1) {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) { }   // vider la saisie invalide
+        printf("Saisie invalide.\n");
+        return -1;
+    }
+
+    if (choix == 0) return -1;
+
+    Object *o = objetNumero(j->Inventaire, choix);
+    if (o == NULL) {
+        printf("Numéro invalide.\n");
+        return -1;
+    }
+    utiliserObject(j, o->nm_object, cible);
+    return 0;
+}

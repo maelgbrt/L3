@@ -102,7 +102,7 @@ void afficherObject(Object *o);
  */
 bool elements_egaux(void *elmt1, void *elmt2);
 
-Object *creerObjet(const char *nom, int quantite, int effet);
+Object *creerObjet(const char *nom, int quantite, int effet, int val);
 
 void remplirEntite(Entité *e, const char *nom, Classe c, int pv, int endu, bool allie);
 
@@ -110,7 +110,8 @@ bool equipeVivante(const Equipe *eq);
 
 Entité *premierVivant(Equipe *eq);
 
+int afficherInventaire(DataGame *inv);
 
-
+Object *objetNumero(DataGame *inv, int num);
 
 #endif

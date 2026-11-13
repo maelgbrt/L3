@@ -4,11 +4,11 @@ CFLAGS = -Wall -Wextra -g
 EXEC = tp2
 LIB = libgame.a
 
-LIBSRCS = DataGame.c Element.c
+LIBSRCS = DataGame.c Element.c Action.c
 SRCS = tp2.c $(LIBSRCS)
 OBJS = $(SRCS:.c=.o)
 LIBOBJS = $(LIBSRCS:.c=.o)
-HEADERS = DataGame.h Element.h
+HEADERS = DataGame.h Element.h Action.h
 
 all: $(EXEC)
 

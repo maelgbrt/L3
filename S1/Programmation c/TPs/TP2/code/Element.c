@@ -173,7 +173,7 @@ bool elements_egaux(void *elmt1, void *elmt2) {
     return false;
 }
 
-Object *creerObjet(const char *nom, int quantite, int effet) {
+Object *creerObjet(const char *nom, int quantite, int effet, int val) {
     Object *o = malloc(sizeof(*o));
     if (o == NULL) {
         return NULL;
@@ -183,7 +183,7 @@ Object *creerObjet(const char *nom, int quantite, int effet) {
     o->nb_element = quantite;
     o->nm_object = (char *)nom;
     o->effet = effet;
-    
+    o->val = val;
     return o;
 }
 
@@ -211,5 +211,25 @@ Entité *premierVivant(Equipe *eq) {
         if (eq->membres[i].pt_vie > 0) {
             return &eq->membres[i];
         }
+    return NULL;
+}
+
+int afficherInventaire(DataGame *inv) {
+    int n = 0;
+    for (DataGame *cur = inv; cur != NULL; cur = cur->suivant) {
+        n++;
+        printf("%d. ", n);
+        afficher(*cur);
+    }
+    return n;
+}
+
+Object *objetNumero(DataGame *inv, int num) {
+    int n = 0;
+    for (DataGame *cur = inv; cur != NULL; cur = cur->suivant) {
+        if (++n == num) {
+            return (Object *)cur->element;
+        }
+    }
     return NULL;
 }
