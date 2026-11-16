@@ -1,6 +1,11 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
 
+#define MAX_CARACTERISTIQUE 4
+
+#define MAX_MEMBRES   6
+#define PV_MAX        100
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -67,15 +72,19 @@ typedef struct Entité {
  * @brief Représente une équipe composée de plusieurs entités.
  */
 typedef struct Equipe {
-    Entité membres[6];        /**< Tableau des membres de l'équipe (max 6) */
+    Entité *membres[6];        /**< Tableau des membres de l'équipe (max 6) */
     int nb_membre;            /**< Nombre actuel de membres dans l'équipe */
 } Equipe;
+
+
+
+void ajouterEquipe(Equipe * e, Entité * ent);
 
 /**
  * @brief Représente le joueur principal.
  */
 typedef struct Joueur {
-    char *nom;                /**< Nom du joueur */
+    char nom[50];                /**< Nom du joueur */
     int niveau;               /**< Niveau actuel du joueur */
     int XP;                   /**< Points d'expérience */
     DataGame *Inventaire;     /**< Inventaire sous forme de liste chaînée */
@@ -88,11 +97,25 @@ typedef struct Joueur {
  */
 void afficherElement(void *elmt);
 
+void afficherEntite(Entité * e);
+
+void afficherEquipe(Equipe * e);
+
+void initialiserObject(Object **object);
+
+void initialiseEntite(Entité *Entité);
+
+
+
 /**
  * @brief Affiche les détails d'un objet.
  * @param o Pointeur vers l'objet à afficher
  */
 void afficherObject(Object *o);
+
+
+
+void afficherJoueur(Joueur * j);
 
 /**
  * @brief Vérifie si deux éléments génériques sont égaux.
@@ -106,9 +129,9 @@ Object *creerObjet(const char *nom, int quantite, int effet, int val);
 
 void remplirEntite(Entité *e, const char *nom, Classe c, int pv, int endu, bool allie);
 
-bool equipeVivante(const Equipe *eq);
+bool equipeVivante(const Equipe eq);
 
-Entité *premierVivant(Equipe *eq);
+// Entité *premierVivant(Equipe *eq);
 
 int afficherInventaire(DataGame *inv);
 
