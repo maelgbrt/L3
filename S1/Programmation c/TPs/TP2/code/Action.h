@@ -4,85 +4,74 @@
 #include "Element.h"
 #include "Entite.h"
 #include "Joueur.h"
+
 /**
  * @file Action.h
- * @brief Définition des types de fonctions, des actions de combat et des interactions du jeu.
+ * @brief Définition des types de fonctions et des actions de combat.
  */
 
 /**
  * @brief Type de pointeur de fonction représentant une attaque sur une entité.
- * @param e Pointeur vers l'entité cible de l'attaque
+ * @param e Pointeur vers l'entité cible de l'attaque.
  */
 typedef void (*attaque)(Entité *e);
 
 /**
  * @brief Type de pointeur de fonction représentant une compétence spéciale.
- * @param e Pointeur vers l'entité utilisant ou recevant la compétence
+ * @param e Pointeur vers l'entité utilisant ou recevant la compétence.
  */
 typedef void (*competence)(Entité *e);
 
+/**
+ * @struct ActionStruct
+ * @brief Représente une action de jeu (nom, fonction d'attaque et type).
+ */
+typedef struct action {
+    char nom[50];          /**< Nom de l'action */
+    attaque attaque;       /**< Pointeur vers la fonction d'attaque correspondante */
+    TypeElement type;      /**< Type de l'élément */
+} ActionStruct;
 
-typedef struct action{
-    char nom[50];
-    attaque attaque;
-    TypeElement type;
-}ActionStruct;
 /**
  * @brief Action de combat : Coup de poing.
- * @param e Pointeur vers l'entité subissant l'attaque
+ * @param e Pointeur vers l'entité subissant l'attaque.
  */
 void coup_de_poing(Entité *e);
 
 /**
  * @brief Action de combat : Utilisation de lacrymogène.
- * @param e Pointeur vers l'entité cible
+ * @param e Pointeur vers l'entité cible.
  */
 void lacrymos(Entité *e);
 
 /**
  * @brief Action de combat : Coup de matraque.
- * @param e Pointeur vers l'entité cible
+ * @param e Pointeur vers l'entité cible.
  */
 void coup_de_mattraque(Entité *e);
 
 /**
  * @brief Action de combat : Utilisation d'une poubelle en feu.
- * @param e Pointeur vers l'entité cible
+ * @param e Pointeur vers l'entité cible.
  */
 void poubelle_en_feu(Entité *e);
 
 /**
  * @brief Action défensive : Permet à l'entité de se défendre.
- * @param e Pointeur vers l'entité qui se défend
+ * @param e Pointeur vers l'entité qui se défend.
  */
 void defendre(Entité *e);
 
-void afficherAttaque(ActionStruct * action);
-// /**
-//  * @brief Permet d'utiliser une compétence entre deux entités.
-//  * @param e1 Pointeur vers l'entité initiatrice
-//  * @param e2 Pointeur vers l'entité cible de la compétence
-//  */
-// void utiliserCompetence(Entité *e1, Entité *e2);
+/**
+ * @brief Affiche les informations d'une action.
+ * @param action Pointeur vers l'action à afficher.
+ */
+void afficherAttaque(ActionStruct *action);
 
-// /**
-//  * @brief Recherche un objet spécifique dans une liste chaînée d'éléments.
-//  * @param tete Pointeur vers la tête de la liste chaînée (DataGame)
-//  * @param nom_objet Le nom de l'objet recherché
-//  * @return Un double pointeur vers le nœud contenant l'objet, ou NULL s'il n'est pas trouvé
-//  */
-// DataGame **chercherObjet(DataGame **tete, const char *nom_objet);
-
-// /**
-//  * @brief Permet à un joueur d'utiliser un objet sur une entité cible.
-//  * @param j Pointeur vers le joueur qui utilise l'objet
-//  * @param nom Le nom de l'objet à utiliser
-//  * @param cible Pointeur vers l'entité cible de l'objet
-//  */
-// void utiliserObject(Joueur *j, const char *nom, Entité *cible);
-
-// int menuObjet(Joueur *j, Entité *cible);
-
-ActionStruct * initialierAction();
+/**
+ * @brief Initialise et alloue dynamiquement une structure d'action.
+ * @return Un pointeur vers l'ActionStruct initialisée.
+ */
+ActionStruct *initialiserAction(void);
 
 #endif

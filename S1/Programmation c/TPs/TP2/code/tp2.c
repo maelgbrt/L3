@@ -181,17 +181,17 @@ int main()
 
 
     // ACTIONS (partagées, mais chaque entité a ses propres noeuds de liste)
-    ActionStruct *coup_de_poingStruct = initialierAction();
+    ActionStruct *coup_de_poingStruct = initialiserAction();
     *coup_de_poingStruct = (ActionStruct){
         .attaque = coup_de_poing,
         .nom = "Coup de Poing (10 degats)"};
 
-    ActionStruct *coup_de_mattraqueStruct = initialierAction();
+    ActionStruct *coup_de_mattraqueStruct = initialiserAction();
     *coup_de_mattraqueStruct = (ActionStruct){
         .attaque = coup_de_mattraque,
         .nom = "Coup de Mattraque (30 degats)"};
 
-    ActionStruct *coup_ennemi_struct = initialierAction();
+    ActionStruct *coup_ennemi_struct = initialiserAction();
     *coup_ennemi_struct = (ActionStruct){
         .attaque = coup_de_poing,
         .nom = "Coup de Griffe"};

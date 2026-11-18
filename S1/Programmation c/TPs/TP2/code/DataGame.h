@@ -3,39 +3,51 @@
 
 /**
  * @file DataGame.h
- * @brief Définition de la liste chaînée générale pour tout type.
+ * @brief Définition de la structure et des fonctions de la liste chaînée générique du jeu.
  */
 
 /**
- * @brief Structure représentant un maillon de la liste chaînée.
+ * @struct DataGame
+ * @brief Représente un maillon de la liste chaînée générique.
  */
 typedef struct DataGame
 {
-    void *element;          /**< Pointeur vers la donnée stockée */
-    struct DataGame *suivant; /**< Pointeur vers l'élément suivant de la liste */
+    void *element;              /**< Pointeur vers la donnée stockée (type générique) */
+    struct DataGame *suivant;   /**< Pointeur vers le maillon suivant de la liste */
 } DataGame;
 
 /**
- * @brief Initialise la liste chaînée.
- * @param d Pointeur vers le pointeur de la liste à initialiser
+ * @brief Initialise et alloue dynamiquement un nouveau maillon de liste chaînée.
+ * @return Un pointeur vers le maillon initialisé, ou NULL en cas d'échec.
  */
-DataGame * initialiser();
-/** 
- * @brief Affiche la liste chaînée.
- * @param d La liste à afficher
+DataGame *initialiser(void);
+
+/**
+ * @brief Affiche l'élément stocké dans le maillon de la liste.
+ * @param d La structure DataGame contenant l'élément à afficher.
  */
 void afficher(DataGame d);
 
 /**
- * @brief Ajoute un élément de type void dans notre liste chaînée.
- * @param d Pointeur vers la liste
- * @param elmt L'élément à ajouter
+ * @brief Ajoute un élément générique en tête de la liste chaînée.
+ * @param d Pointeur vers le pointeur de la tête de la liste.
+ * @param elmt Pointeur vers l'élément à ajouter.
  */
 void ajouter(DataGame **d, void *elmt);
 
-void *chercher(DataGame *d, void * elmt);
+/**
+ * @brief Recherche un élément spécifique dans la liste chaînée.
+ * @param d Pointeur vers la tête de la liste.
+ * @param elmt Pointeur vers l'élément recherché.
+ * @return Un pointeur vers l'élément trouvé, ou NULL s'il n'est pas présent.
+ */
+void *chercher(DataGame *d, void *elmt);
 
-void supprimer(DataGame **d, void *  elmt);
+/**
+ * @brief Recherche et supprime un élément spécifique de la liste chaînée.
+ * @param d Pointeur vers le pointeur de la tête de la liste.
+ * @param elmt Pointeur vers l'élément à supprimer.
+ */
+void supprimer(DataGame **d, void *elmt);
 
-// int chercherByAction(DataGame *d,Action action)
 #endif

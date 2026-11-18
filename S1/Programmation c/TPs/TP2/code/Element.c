@@ -6,52 +6,36 @@
 #include "Action.h"     // Si afficherAttaque est défini ici
 #include "Inventaire.h" // Si afficherInventaire est défini ici
 
-// int elements_egaux(Element a, Element b) {
-//     return (strcmp(a.nom, b.nom) == 0 && strcmp(a.description, b.description) == 0 && (a.action ==  b.action));
-// }
-
-
 /**
  * @file Element.c
- * @brief Implémentation des fonctions liées aux éléments (Objets, Entités, Joueur, Équipe).
+ * @brief Implémentation des fonctions liées aux éléments génériques (Objets, Entités, Joueur, Équipe).
  */
-
-
-
 
 /**
- * @brief Affiche un élément générique (objet ou entité).
- * @param elmt Pointeur vers l'élément générique
+ * @brief Affiche un élément générique (objet, entité, action ou inventaire) selon son type.
+ * @param elmt Pointeur vers l'élément générique.
  */
-void afficherElement(void *elmt){
-    if(elmt != NULL){
+void afficherElement(void *elmt) {
+    if (elmt != NULL) {
         TypeElement *typeElmt = (TypeElement *)elmt;
 
-        if (*typeElmt == TYPE_OBJET){
+        if (*typeElmt == TYPE_OBJET) {
             afficherObject(elmt);
-        }
-        else if (*typeElmt == TYPE_ENTITE)
-        {   
+        } else if (*typeElmt == TYPE_ENTITE) {   
             afficherEntite(elmt);
-        }
-        else if (*typeElmt == TYPE_ACTION)
-        {
+        } else if (*typeElmt == TYPE_ACTION) {
             afficherAttaque(elmt);
-        }else if(*typeElmt == TYPE_INVENTAIRE){
+        } else if (*typeElmt == TYPE_INVENTAIRE) {
             afficherInventaire(elmt);
         }
     }
 }
 
-
-
-
-
 /**
  * @brief Compare deux éléments génériques pour vérifier s'ils sont égaux.
- * @param elmt1 Premier élément
- * @param elmt2 Deuxième élément
- * @return true si les éléments sont équivalents, false sinon
+ * @param elmt1 Premier élément.
+ * @param elmt2 Deuxième élément.
+ * @return true si les éléments sont équivalents, false sinon.
  */
 bool elements_egaux(void *elmt1, void *elmt2) {
     if (elmt1 == NULL || elmt2 == NULL) {
@@ -83,7 +67,3 @@ bool elements_egaux(void *elmt1, void *elmt2) {
 
     return false;
 }
-
-
-
-
