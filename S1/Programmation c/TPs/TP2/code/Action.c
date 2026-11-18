@@ -1,6 +1,7 @@
 #include "Action.h"
 #include "DataGame.h"
 #include "Element.h"
+#include "Object.h"
 #include <stdio.h>
 
 /**
@@ -46,16 +47,45 @@ void poubelle_en_feu(Entité * e){
 }
 
 
-// FUIR
-/**
- * @brief Permet à une entité de fuir, ce qui réduit son aura.
- * @param e Pointeur vers l'entité qui fuit
- */
-void fuir(Entité * e){
-    printf("Vous avez fuis c pas bien");
-    e->aura -= 100;
-    // prévoir de relancer un nouveu combat
+ActionStruct * initialierAction(){
+    ActionStruct * a = malloc(sizeof(ActionStruct));
+    if(a!= NULL){
+        a->type = TYPE_ACTION;
+        return a;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+void afficherAttaque(ActionStruct * action){
+    printf("%s",action->nom);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @brief Permet à une entité de se défendre pour augmenter son endurance.
@@ -83,88 +113,88 @@ void utiliserCompetence(Entité *e1, Entité *e2){
     e2->pt_vie = 0;
 }
 
-/**
- * @brief Recherche un objet dans une liste chaînée et renvoie l'adresse de son pointeur de nœud.
- * @param tete Pointeur vers la tête de la liste chaînée
- * @param nom_objet Le nom de l'objet recherché
- * @return Un double pointeur vers le nœud contenant l'objet, ou NULL s'il n'est pas trouvé
- */
-DataGame **chercherObjet(DataGame **tete, const char *nom_objet)
-{
-    for (DataGame **pp = tete; *pp != NULL; pp = &(*pp)->suivant) {
-        Object *o = (Object *)(*pp)->element;
-        if (o != NULL && o->type == TYPE_OBJET && strcmp(o->nm_object, nom_objet) == 0) {
-            return pp; // j->Inventaire si obj en tete, suivant du noeud précédent sinon
-        }
-    }
-    return NULL;
-}
+// /**
+//  * @brief Recherche un objet dans une liste chaînée et renvoie l'adresse de son pointeur de nœud.
+//  * @param tete Pointeur vers la tête de la liste chaînée
+//  * @param nom_objet Le nom de l'objet recherché
+//  * @return Un double pointeur vers le nœud contenant l'objet, ou NULL s'il n'est pas trouvé
+//  */
+// DataGame **chercherObjet(DataGame **tete, const char *nom_objet)
+// {
+//     for (DataGame **pp = tete; *pp != NULL; pp = &(*pp)->suivant) {
+//         Object *o = (Object *)(*pp)->element;
+//         if (o != NULL && o->type == TYPE_OBJET && strcmp(o->nm_object, nom_objet) == 0) {
+//             return pp; // j->Inventaire si obj en tete, suivant du noeud précédent sinon
+//         }
+//     }
+//     return NULL;
+// }
 
-/**
- * @brief Permet à un joueur d'utiliser un objet de son inventaire sur une cible.
- * @param j Pointeur vers le joueur
- * @param nom Le nom de l'objet à utiliser
- * @param cible Pointeur vers l'entité cible
- */
-void utiliserObject(Joueur *j, const char *nom, Entité *cible){
+// /**
+//  * @brief Permet à un joueur d'utiliser un objet de son inventaire sur une cible.
+//  * @param j Pointeur vers le joueur
+//  * @param nom Le nom de l'objet à utiliser
+//  * @param cible Pointeur vers l'entité cible
+//  */
+// void utiliserObject(Joueur *j, const char *nom, Entité *cible){
 
-    DataGame **pp = chercherObjet(&j->Inventaire, nom);
-    if (pp == NULL) { // Correction de l'affectation en comparaison
-        printf("Vous n'avez pas de %s.\n", nom);
-        return;
-    }
+//     DataGame **pp = chercherObjet(&j->Inventaire, nom);
+//     if (pp == NULL) { // Correction de l'affectation en comparaison
+//         printf("Vous n'avez pas de %s.\n", nom);
+//         return;
+//     }
 
-    Object *o = (Object *)(*pp)->element;
-    if (o->nb_element <= 0) {
-        printf("Pas assez de l'élément dans l'inventaire.\n");
-        return;
-    }
+//     Object *o = (Object *)(*pp)->element;
+//     if (o->nb_element <= 0) {
+//         printf("Pas assez de l'élément dans l'inventaire.\n");
+//         return;
+//     }
 
-    if (o->effet == SOIN){
-        cible->pt_vie += o->val;
-    }
-    else if (o->effet == MALUS){
-        cible->pt_vie -= o->val;
-    }
-    else if (o->effet == ENDURANCE){
-        cible->pt_endurance += o->val;
-    }
+//     if (o->effet == SOIN){
+//         cible->pt_vie += o->val;
+//     }
+//     else if (o->effet == MALUS){
+//         cible->pt_vie -= o->val;
+//     }
+//     else if (o->effet == ENDURANCE){
+//         cible->pt_endurance += o->val;
+//     }
 
-    o->nb_element -= 1;
-    printf("Vous avez utilisé l'objet.\n");
+//     o->nb_element -= 1;
+//     printf("Vous avez utilisé l'objet.\n");
 
-    // suppression de la liste si épuisé
-    if (o->nb_element == 0) {
-        DataGame *a_liberer = *pp;
-        *pp = a_liberer->suivant;
-        free(o);
-        free(a_liberer);
-    }
-}
+//     // suppression de la liste si épuisé
+//     if (o->nb_element == 0) {
+//         DataGame *a_liberer = *pp;
+//         *pp = a_liberer->suivant;
+//         free(o);
+//         free(a_liberer);
+//     }
+// }
 
-int menuObjet(Joueur *j, Entité *cible) {
-    int n = afficherInventaire(j->Inventaire);
-    if (n ==0) {
-        printf("Inventaire vide.\n");
-        return -1;
-    }
+// int menuObjet(Joueur *j, Entité *cible) {
+//     int n = afficherInventaire(j->Inventaire);
+//     if (n ==0) {
+//         printf("Inventaire vide.\n");
+//         return -1;
+//     }
 
-    printf("0. Retour\nQuel objet utiliser ? ");
-    int choix;
-    if (scanf("%d", &choix) != 1) {
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF) { }   // vider la saisie invalide
-        printf("Saisie invalide.\n");
-        return -1;
-    }
+//     printf("0. Retour\nQuel objet utiliser ? ");
+//     int choix;
+//     if (scanf("%d", &choix) != 1) {
+//         int c;
+//         while ((c = getchar()) != '\n' && c != EOF) { }   // vider la saisie invalide
+//         printf("Saisie invalide.\n");
+//         return -1;
+//     }
 
-    if (choix == 0) return -1;
+//     if (choix == 0) return -1;
 
-    Object *o = objetNumero(j->Inventaire, choix);
-    if (o == NULL) {
-        printf("Numéro invalide.\n");
-        return -1;
-    }
-    utiliserObject(j, o->nm_object, cible);
-    return 0;
-}
+//     Object *o = objetNumero(j->Inventaire, choix);
+//     if (o == NULL) {
+//         printf("Numéro invalide.\n");
+//         return -1;
+//     }
+//     utiliserObject(j, o->nm_object, cible);
+//     return 0;
+// }

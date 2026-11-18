@@ -14,9 +14,10 @@
  * @brief Initialise la liste chaînée en mettant son pointeur à NULL.
  * @param d Pointeur vers le pointeur de la liste à initialiser
  */
-void initialiser(DataGame **d) {
-    if (d != NULL) {
-        *d = NULL;
+DataGame * initialiser() {
+    DataGame * d = malloc(sizeof(DataGame));
+    if (d!=NULL){
+        return d;
     }
 }
 

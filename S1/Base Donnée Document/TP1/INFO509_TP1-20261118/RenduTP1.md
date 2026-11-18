@@ -706,5 +706,14 @@ Fait lors de la question 2
 ## Modification du Shema
 
 
-
-
+db.dblp.mapReduce(
+    function() {
+        if (!this.author) {
+            emit(cwds, 1);
+        }
+    },
+    function(key, values) {
+        return Array.sum(values); // On additionne les occurrences
+    },
+    { out: "publi_type_auteur" }
+);

@@ -19,8 +19,7 @@ typedef struct DataGame
  * @brief Initialise la liste chaînée.
  * @param d Pointeur vers le pointeur de la liste à initialiser
  */
-void initialiser(DataGame **d);
-
+DataGame * initialiser();
 /** 
  * @brief Affiche la liste chaînée.
  * @param d La liste à afficher
