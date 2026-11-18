@@ -57,7 +57,6 @@ def simplify_formula(F: List[List[int]], lit: int) -> List[List[int]]:
     """
     simplified_F: List[List[int]] = []
 
-    print("la boucle")
     for cl in F:
 
         if lit in cl or -lit in cl: 
@@ -66,7 +65,6 @@ def simplify_formula(F: List[List[int]], lit: int) -> List[List[int]]:
                 nv_clause: List[int] = []
                 for i in cl :
                     if i != -lit:
-                        print(i)
                         nv_clause.append(i)
                 simplified_F.append(nv_clause)
         else :
