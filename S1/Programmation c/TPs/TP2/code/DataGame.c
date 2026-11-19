@@ -7,36 +7,39 @@
 
 /**
  * @file DataGame.c
- * @brief Implémentation des fonctions de gestion de la liste chaînée générale.
+ * @brief Implémentation des fonctions de gestion de la liste chaînée générale du jeu.
  */
 
 /**
- * @brief Initialise la liste chaînée en mettant son pointeur à NULL.
- * @param d Pointeur vers le pointeur de la liste à initialiser
+ * @brief Initialise et alloue dynamiquement un nœud pour la liste chaînée.
+ * @return Un pointeur vers le nouveau nœud initialisé, ou NULL en cas d'échec.
  */
-void initialiser(DataGame **d) {
+DataGame *initialiser(void) {
+    DataGame *d = malloc(sizeof(DataGame));
     if (d != NULL) {
-        *d = NULL;
+        d->element = NULL;
+        d->suivant = NULL;
+        return d;
     }
+    return NULL;
 }
 
 /**
  * @brief Affiche l'élément stocké dans le nœud de la liste.
- * @param d La structure DataGame contenant l'élément à afficher
+ * @param d La structure DataGame contenant l'élément à afficher.
  */
-void afficher(DataGame d){
+void afficher(DataGame d) {
     afficherElement(d.element);
 }
 
 /**
  * @brief Ajoute un nouvel élément en tête de la liste chaînée.
- * @param d Pointeur vers le pointeur de la liste
- * @param elmt Pointeur vers l'élément à ajouter
+ * @param d Pointeur vers le pointeur de la tête de la liste.
+ * @param elmt Pointeur vers l'élément à ajouter.
  */
-void ajouter(DataGame **d, void *elmt)
-{
+void ajouter(DataGame **d, void *elmt) {
     DataGame *NouveauNoeud = malloc(sizeof(DataGame));
-    if (NouveauNoeud == NULL){
+    if (NouveauNoeud == NULL) {
         return;
     }
 
@@ -47,10 +50,12 @@ void ajouter(DataGame **d, void *elmt)
 
 /**
  * @brief Recherche et supprime un élément spécifique de la liste chaînée.
- * @param d Pointeur vers le pointeur de la liste
- * @param elmt Pointeur vers l'élément à supprimer
+ * @param d Pointeur vers le pointeur de la tête de la liste.
+ * @param elmt Pointeur vers l'élément à supprimer.
  */
 void supprimer(DataGame **d, void *elmt) {
+    if (d == NULL || *d == NULL) return;
+
     DataGame *courant = *d;
     DataGame *precedent = NULL;
 
@@ -68,10 +73,15 @@ void supprimer(DataGame **d, void *elmt) {
         precedent->suivant = courant->suivant;
     }
     free(courant);
-
 }
 
-void *chercher(DataGame *d, void * elmt) {
+/**
+ * @brief Recherche un élément spécifique dans la liste chaînée.
+ * @param d Pointeur vers la tête de la liste.
+ * @param elmt Pointeur vers l'élément recherché.
+ * @return Un pointeur vers l'élément trouvé, ou NULL s'il n'est pas présent.
+ */
+void *chercher(DataGame *d, void *elmt) {
     if (elmt == NULL) {
         return NULL;
     }
@@ -83,4 +93,3 @@ void *chercher(DataGame *d, void * elmt) {
     }
     return NULL;
 }
-
