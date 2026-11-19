@@ -1,0 +1,38 @@
+1 - Principe de base
+
+Dans cet exercice, nous allons traiter un double-tas. Un double-tas est une structure basée sur le concept
+de tas vus dans l'exercice précédent.
+La racine du double-tas, ne contient aucun élément.
+Le sous-arbre gauche est un tas classique : chaque élément est plus petit que ses fils.
+Le sous-arbre droit est un tas inversé : chaque élément est plus grand que ses fils.
+De plus, la hauteur du sous-arbre droit doit être égale ou inférieure de 1 à celle du sous-arbre gauche.
+Enfin, les deux sous-arbres sont liés par une propriété de correspondance :
+pour tout noeud du sous-arbre gauche, on considère le noeud situé au même emplacement 
+dans le sous-arbre droit. 
+La valeur du premier doit être inférieure ou égale à celle du second.
+Si ce noeud n'existe pas, on compare avec avec le noeud du sous-arbre droit correspondant au père du noeud
+considéré.
+L'existence de ce noeud est garantie par la contrainte sur les hauteurs.
+
+2 - Précisions sur l'implémentation
+
+Nous avons fait le choix d'utiliser deux tableaux séparés pour les sous-arbres droit et gauche.
+Cela évite des problèmes lors du calcul de l'indice du vis-à-vis du noeud courant de l'arbre gauche.
+En effet, grâce à notre structure, chaque noeud du sous-arbre gauche a le même indice que son vis-à-vis
+dans le sous-arbre droit.
+
+Si nous n'avions utilisé qu'un seul tableau, nous aurions dû calculer les indices en fonction du nombre d'éléments.
+
+Un autre avantage de l'implémentation, lié aux propriétés du tas et du tas inversé, est le suivant :
+On distingue deux cas d'insértion :
+- Le dernier niveau du sous-arbre gauche est complet :
+  On insère à la fin du sous-arbre droit
+
+- Sinon, on insère à la fin du sous-arbre gauche
+
+Après l'insertion, il faut potentiellement remonter l'élément à la bonne place.
+Cependant, on rappelle que gauche[i] doit être plus petit que droit[i].
+En remontant un élément, on devrait se poser, à chaque niveau de l'arbre, la question suivante :
+"Est-ce que l'élément gauche[i] est toujours plus petit que l'élément droit[i] ?".
+Fort heureusement, le père de l'élément gauhe[i] est forcément plus petit que l'élément gauche[i] lui-même. Ainsi, on a père_gauche<élément_gauche<élément_droit.
+La vérification n'est donc jamais nécessaire.
