@@ -2,6 +2,7 @@
 #define EQUIPE_H
 #include "Entite.h"
 #include <stdio.h>
+#include <stdlib.h> 
 
 /**
  * @file Equipe.h

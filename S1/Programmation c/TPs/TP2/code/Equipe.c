@@ -1,4 +1,5 @@
 #include "Equipe.h"
+#include "Joueur.h"
 
 /**
  * @brief Affiche l'ensemble des membres d'une équipe.
@@ -72,11 +73,21 @@ Entité * premierEnnemie(Equipe *e){
 }
 
 /**
- * @brief Permet à l'équipe de fuir (met les PV du premier membre à 0).
- * @param e Pointeur vers l'équipe qui fuit.
+ * @brief Permet à l'équipe de fuir (fait baisser l'aura d'un membre de 1 à 10).
+ * @param e Pointeur vers le joueur qui fuit.
  */
-void fuir(Equipe *e){
-    if (e->membres[0] != NULL) {
-        e->membres[0]->pt_vie = 0; 
-    }
+void fuir(Equipe *e)
+{
+    if (e == NULL || e->nb_membre == 0)
+        return;
+
+    int i = rand() % e->nb_membre;    
+    int perte = 1 + rand() % 10;     
+
+    e->membres[i]->aura -= perte;
+    if (e->membres[i]->aura < 0)
+        e->membres[i]->aura = 0;
+
+    printf("%s perd %d points d'aura en fuyant.\n",
+           e->membres[i]->nom, perte);
 }

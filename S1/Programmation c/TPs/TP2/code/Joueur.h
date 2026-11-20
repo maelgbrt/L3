@@ -2,6 +2,7 @@
 #define JOUEUR_H
 
 #include "DataGame.h"
+#include "Inventaire.h"
 #include <stdio.h>
 
 /**
@@ -32,5 +33,18 @@ void afficherJoueur(Joueur *j);
  * @return Un pointeur vers le joueur initialisé, ou NULL en cas d'échec.
  */
 Joueur *initialiserJoueur(void);
+
+/**
+ * @brief Ajoute de l'XP au joueur et met à jour son niveau (1 niveau tous les 100 XP).
+ * @param j Pointeur vers le joueur.
+ * @param xp Quantité d'XP gagnée.
+ */
+void gagnerXP(Joueur *j, int xp);
+
+/**
+ * @brief Affiche le tableau des caractéristiques d'un joueur.
+ * @param c Tableau des caractéristiques (taille 4).
+ */
+void afficherTableauMocheDeHania(int *c);
 
 #endif

@@ -32,7 +32,7 @@ Joueur *initialiserJoueur(void) {
         printf("Nom : \n");
         scanf("%49s", j->nom); // Limité à 49 caractères pour éviter les dépassements de tampon
         j->niveau = 1;
-        j->XP = 100;
+        j->XP = 0;
         j->Inventaire = NULL;
 
         // Caractéristiques initiales
@@ -55,4 +55,20 @@ void afficherTableauMocheDeHania(int *c) {
     printf("= Vitesse : %d\n", c[1]);
     printf("= Chance : %d\n", c[2]);
     printf("= Agilité : %d\n", c[3]);
+}
+
+void gagnerXP(Joueur *j, int xp)
+{
+    if (j == NULL || xp <= 0)
+        return;
+
+    int ancienNiveau = j->niveau;
+
+    j->XP += xp;
+    j->niveau = 1 + j->XP / 100;
+
+    printf("Vous gagnez %d XP (total : %d).\n", xp, j->XP);
+    if (j->niveau > ancienNiveau)
+        printf("NIVEAU SUPERIEUR ! Vous passez du niveau %d au niveau %d !\n",
+               ancienNiveau, j->niveau);
 }

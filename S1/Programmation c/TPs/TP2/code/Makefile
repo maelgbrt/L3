@@ -4,6 +4,10 @@ CFLAGS = -Wall -Wextra -g
 EXEC = tp2
 LIB = libgame.a
 
+TESTDIR = tests
+TEST_SRC = $(TESTDIR)/test_jeu.c
+TEST_EXEC = $(TESTDIR)/test_jeu
+
 LIBSRCS = DataGame.c Element.c Action.c Object.c Joueur.c Inventaire.c Equipe.c Entite.c
 SRCS = tp2.c $(LIBSRCS)
 OBJS = $(SRCS:.c=.o)
@@ -27,6 +31,15 @@ $(EXEC): tp2.o $(LIB)
 # .c ou .h en -> .o
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+
+# Compilation des tests
+$(TEST_EXEC): $(TEST_SRC) $(LIB) $(HEADERS)
+	$(CC) $(CFLAGS) $(TEST_SRC) -L. -lgame -o $(TEST_EXEC)
+
+test: $(TEST_EXEC)
+	./$(TEST_EXEC)
+
 
 clean:
 	rm -f $(OBJS) $(LIB)

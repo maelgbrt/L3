@@ -55,4 +55,15 @@ Entité* initialiseEntite(void);
  */
 bool entiteVivante(Entité *e);
 
+/**
+ * @brief Remplit les champs d'une entité existante.
+ * @param e Pointeur vers l'entité à remplir.
+ * @param nom Nom de l'entité.
+ * @param c Classe de l'entité.
+ * @param pv Points de vie initiaux.
+ * @param endu Points d'endurance initiaux.
+ * @param allie Vrai si l'entité est alliée, faux sinon.
+ */
+void remplirEntite(Entité *e, const char *nom, Classe c, int pv, int endu, bool allie);
+
 #endif

@@ -156,6 +156,205 @@ static DataGame *noeudAction(ActionStruct *a, DataGame *suivant)
     return n;
 }
 
+/* Tire un butin aléatoire après une victoire. */
+static void butinAleatoire(Joueur *j)
+{
+    if (rand() % 100 >= 60)             // 60 % de chance d'avoir un objet
+    {
+        printf("Aucun objet trouve cette fois.\n");
+        return;
+    }
+
+    Object *o = initialiserObject();
+    int tirage = rand() % 100;
+    
+    // 55 % : potion
+    if (tirage < 55)                    
+    {
+        *o = (Object){
+            .effet = SOIN,
+            .nb_element = 1 + rand() % 2,
+            .nm_object = "Potion de Soin",
+            .val = 15};
+    }
+    // 25 % : grande potion
+    else if (tirage < 80)               
+    {
+        *o = (Object){
+            .effet = SOIN,
+            .nb_element = 1,
+            .nm_object = "Grande Potion de Soin",
+            .val = 40};
+    }
+    else                                
+    // 20 % : élixir d'endurance
+    {
+        *o = (Object){
+            .effet = ENDURANCE,
+            .nb_element = 1,
+            .nm_object = "Elixir d'Endurance",
+            .val = 5};
+    }
+
+    printf("BUTIN : vous obtenez %d x %s !\n", o->nb_element, o->nm_object);
+    ajouterObjectInInventaire(j, o);
+}
+
+typedef enum { TOUR_FAIT, TOUR_FUITE, TOUR_QUITTER } ResultatTour;
+
+/* Fait jouer UN allié : on redemande tant que l'action n'est pas valide
+ * (une saisie invalide ou annulée ne consomme pas le tour). */
+static ResultatTour tourAllie(Entité *allie, Joueur *jPrincipal,
+                              Equipe *equipeAllie, Equipe *equipeAdverse)
+{
+    while (1)
+    {
+        afficherEtatEquipe("Ennemis", equipeAdverse);
+        afficherEtatEquipe("Votre equipe", equipeAllie);
+
+        printf("\n====== Tour de %s (PV : %d) ======\n", allie->nom, allie->pt_vie);
+        printf("1 - Attaquer\n");
+        printf("2 - Utiliser un objet\n");
+        printf("3 - Fuir\n");
+        printf("4 - Quitter le jeu\n");
+        printf("Que voulez-vous faire ? \n");
+
+        int choix;
+        if (scanf("%d", &choix) != 1)
+        {
+            viderBuffer();
+            printf("Saisie invalide.\n");
+            continue;
+        }
+
+        switch (choix)
+        {
+        case 1: { // --- ATTAQUER ---
+            ActionStruct *action = choisirAction(allie);
+            if (action == NULL || action->attaque == NULL)
+            {
+                printf("Choix d'action invalide.\n");
+                continue;
+            }
+
+            Entité *cible = choisirMembre(equipeAdverse, "Choisissez votre cible :");
+            if (cible == NULL)
+                continue;
+
+            printf("%s utilise : %s sur %s\n", allie->nom, action->nom, cible->nom);
+            action->attaque(cible);
+            if (!estVivant(cible))
+                printf("%s est KO !\n", cible->nom);
+            return TOUR_FAIT;
+        }
+
+        case 2: { // --- UTILISER UN OBJET ---
+            Object *objet = choisirObjet(jPrincipal);
+            if (objet == NULL)
+                continue;
+
+            printf("Objet choisi : %s\n", objet->nm_object);
+            Entité *cibleAllie = choisirMembre(equipeAllie, "Sur quel membre utiliser l'objet ?");
+            if (cibleAllie == NULL)
+                continue; // l'objet n'est pas consommé
+
+            utiliserObjet(jPrincipal, objet, cibleAllie);
+            return TOUR_FAIT;
+        }
+
+        case 3: // --- FUIR ---
+            printf("Vous tentez de fuir le combat...\n");
+            fuir(equipeAllie);
+            printf("Vous avez pris la fuite !\n");
+            return TOUR_FUITE;
+
+        case 4:
+            return TOUR_QUITTER;
+
+        default:
+            printf("Choix invalide. Veuillez reessayer.\n");
+        }
+    }
+}
+
+/* Phase ennemie : chaque ennemi vivant attaque une cible aléatoire. */
+static void tourEnnemis(Equipe *equipeAdverse, Equipe *equipeAllie)
+{
+    printf("\n######## TOUR DES ENNEMIS ########\n");
+
+    for (int i = 0; i < equipeAdverse->nb_membre; i++)
+    {
+        Entité *ennemi = equipeAdverse->membres[i];
+        if (!estVivant(ennemi))
+            continue;
+        if (nbVivants(equipeAllie) == 0)
+            break;
+
+        Entité *cible = membreVivantAleatoire(equipeAllie);
+        ActionStruct *action = actionAleatoire(ennemi);
+
+        if (action != NULL && action->attaque != NULL)
+        {
+            printf("%s (Ennemi) utilise : %s contre %s !\n",
+                   ennemi->nom, action->nom, cible->nom);
+            action->attaque(cible);
+            if (!estVivant(cible))
+                printf("%s est KO !\n", cible->nom);
+        }
+        else
+        {
+            printf("%s n'a aucune action disponible !\n", ennemi->nom);
+        }
+    }
+}
+
+static Equipe *creerEquipeAdverse(ActionStruct *griffe, ActionStruct *mattraque)
+{
+    static char *noms[] = {"Gerald", "Brutus", "Gobelin", "Orc", "Troll"};
+    int nbNoms = sizeof noms / sizeof noms[0];
+
+    Equipe *eq = initialierEquipe();
+    int nb = 1 + rand() % 3; // 1 à 3 ennemis
+
+    for (int i = 0; i < nb; i++)
+    {
+        DataGame *liste;
+        if (rand() % 2)
+            liste = noeudAction(griffe, noeudAction(mattraque, NULL));
+        else
+            liste = noeudAction(griffe, NULL);
+
+        Entité *e = initialiseEntite();
+        *e = (Entité){
+            .allie = false,
+            .nom = noms[rand() % nbNoms],
+            .classe = GUERRIER,
+            .pt_endurance = 1,
+            .pt_vie = 80 + rand() % 90,
+            .actions = liste,
+        };
+        ajouterEquipe(eq, e);   
+    }
+    return eq;                 
+}
+
+static void libererEquipeAdverse(Equipe *eq)
+{
+    for (int i = 0; i < eq->nb_membre; i++)
+    {
+        Entité *e = eq->membres[i];
+        DataGame *c = e->actions;
+        while (c != NULL)
+        {
+            DataGame *suiv = c->suivant;
+            free(c);
+            c = suiv;
+        }
+        free(e);
+    }
+    free(eq);
+}
+
 /* ==========================================================
  *  MAIN
  * ========================================================== */
@@ -232,193 +431,109 @@ int main()
         .actions = noeudAction(coup_de_poingStruct, NULL)};
     ajouterEquipe(equipeAllie, e4);
 
+        Entité *e5 = initialiseEntite();
+    *e5 = (Entité){
+        .allie = true,
+        .nom = "Daisy",
+        .classe = MAGE,
+        .pt_endurance = 9,
+        .pt_vie = 70,
+        .actions = noeudAction(coup_de_poingStruct,
+                               noeudAction(coup_de_mattraqueStruct, NULL))};
+    ajouterEquipe(equipeAllie, e5);
+
+    Entité *e6 = initialiseEntite();
+    *e6 = (Entité){
+        .allie = true,
+        .nom = "Yoshi",
+        .classe = GUERRIER,
+        .pt_endurance = 11,
+        .pt_vie = 90,
+        .actions = noeudAction(coup_de_poingStruct, NULL)};
+    ajouterEquipe(equipeAllie, e6);
+
+    Entité *e7 = initialiseEntite();
+    *e7 = (Entité){
+        .allie = true,
+        .nom = "Mario",
+        .classe = GUERRIER,
+        .pt_endurance = 14,
+        .pt_vie = 120,
+        .actions = noeudAction(coup_de_poingStruct,
+                               noeudAction(coup_de_mattraqueStruct, NULL))};
+    ajouterEquipe(equipeAllie, e7);
+
     printf("DEBUG: Nombre de membres dans l'equipe = %d\n", equipeAllie->nb_membre);
     afficherEquipe(equipeAllie);
 
     // ÉQUIPE ADVERSE
-    printf("ANNONCE : Vous rencontrez des adversaires\n");
-    Equipe *equipeAdverse = initialierEquipe();
+    Equipe *equipeAdverse = creerEquipeAdverse(coup_ennemi_struct, coup_de_mattraqueStruct);
 
-    Entité *e2 = initialiseEntite();
-    *e2 = (Entité){
-        .allie = false,
-        .nom = "Gerald",
-        .classe = GUERRIER,
-        .pt_endurance = 1,
-        .pt_vie = 157,
-        .actions = noeudAction(coup_ennemi_struct, NULL)};
-    ajouterEquipe(equipeAdverse, e2);
-
-    Entité *e5 = initialiseEntite();
-    *e5 = (Entité){
-        .allie = false,
-        .nom = "Brutus",
-        .classe = GUERRIER,
-        .pt_endurance = 1,
-        .pt_vie = 90,
-        .actions = noeudAction(coup_ennemi_struct,
-                               noeudAction(coup_de_mattraqueStruct, NULL))};
-    ajouterEquipe(equipeAdverse, e5);
 
     printf("\n=================================\n");
     printf("\n=             COMBAT            =\n");
     printf("\n=================================\n");
     printf("Un combat commence.\n");
 
-    // BOUCLE PRINCIPALE DE COMBAT
+    // BOUCLE PRINCIPALE DE COMBAT (tour par tour)
+
+    int numCombat = 1;
+bool quitter = false;
+bool fuite;
+
+do
+{
+    fuite = false;
+    bool victoire = false;
+    printf("\n=== COMBAT n°%d ===\n", numCombat);
+
     while (nbVivants(equipeAllie) > 0 && nbVivants(equipeAdverse) > 0)
     {
-        afficherEtatEquipe("Ennemis", equipeAdverse);
-        afficherEtatEquipe("Votre equipe", equipeAllie);
+        printf("\n######## TOUR DES ALLIES ########\n");
 
-        int choix;
-        printf("\n====== A VOUS DE JOUER ======\n");
-        printf("1 - Attaquer\n");
-        printf("2 - Utiliser un objet\n");
-        printf("3 - Attaque Speciale\n");
-        printf("4 - Fuir\n");
-        printf("5 - Quitter le jeu\n");
-        printf("Que voulez vous faire ? \n");
-
-        if (scanf("%d", &choix) != 1)
+        for (int i = 0; i < equipeAllie->nb_membre; i++)
         {
-            viderBuffer();
-            choix = 0; // -> "Choix invalide"
+            Entité *allie = equipeAllie->membres[i];
+            if (!estVivant(allie)) continue;
+            if (nbVivants(equipeAdverse) == 0) break;
+
+            ResultatTour r = tourAllie(allie, jPrincipal, equipeAllie, equipeAdverse);
+            if (r == TOUR_QUITTER) { quitter = true; break; }
+            if (r == TOUR_FUITE)   { fuite = true;   break; }
         }
 
-        switch (choix)
-        {
-        case 1: { // --- ATTAQUER ---
-            printf("Vous avez decide d'attaquer. \n");
-
-            Entité *attaquant = choisirMembre(equipeAllie, "Choisissez votre attaquant :");
-            if (attaquant == NULL)
-                break;
-
-            ActionStruct *actionChoisie = choisirAction(attaquant);
-            if (actionChoisie == NULL || actionChoisie->attaque == NULL)
-            {
-                printf("Choix d'action invalide.\n");
-                break;
-            }
-
-            Entité *cible = choisirMembre(equipeAdverse, "Choisissez votre cible :");
-            if (cible == NULL)
-                break;
-
-            printf("%s utilise : %s sur %s\n", attaquant->nom, actionChoisie->nom, cible->nom);
-            actionChoisie->attaque(cible);
-
-            if (!estVivant(cible))
-                printf("%s est KO !\n", cible->nom);
+        if (quitter || fuite)
             break;
-        }
 
-        case 2: { // --- UTILISER UN OBJET ---
-             printf("Vous avez choisi d'utiliser un objet.\n");
-
-    Object *objet = choisirObjet(jPrincipal);
-    if (objet == NULL)
-        continue; // annulé ou invalide : le joueur rejoue
-
-    printf("Objet choisi : %s\n", objet->nm_object);
-    Entité *cibleAllie = choisirMembre(equipeAllie, "Sur quel membre utiliser l'objet ?");
-    if (cibleAllie == NULL)
-        continue; // l'objet n'est pas consommé
-
-    utiliserObjet(jPrincipal, objet, cibleAllie);
-    break;
-        }
-
-        case 3: { // --- ATTAQUE SPECIALE ---
-
-            printf("pas dispo");
-            // printf("Vous avez choisi une attaque speciale.\n");
-            // Entité *allieCourant = choisirMembre(equipeAllie, "Qui lance l'attaque speciale ?");
-            // Entité *cibleEnnemie = premierVivant(equipeAdverse);
-
-            // if (allieCourant != NULL && cibleEnnemie != NULL)
-            // {
-            //     if (allieCourant->aura > 50)
-            //     {
-            //         printf("%s declenche une attaque speciale sur %s !\n",
-            //                allieCourant->nom, cibleEnnemie->nom);
-            //     }
-            //     else
-            //     {
-            //         printf("Vous n'avez pas assez d'aura !\n");
-            //     }
-            // }
-            // else
-            // {
-            //     printf("Impossible d'effectuer l'attaque speciale.\n");
-            // }
-            // break;
-        }
-
-        case 4: { // --- FUIR ---
-            printf("Vous tentez de fuir le combat...\n");
-            fuir(equipeAllie);
-            printf("Vous avez pris la fuite !\n");
-            break;
-        }
-
-        case 5: { // --- QUITTER LE JEU ---
-            printf("Fermeture du jeu...\n");
-            free(jPrincipal);
-            free(equipeAllie);
-            free(equipeAdverse);
-            return 0;
-        }
-
-        default:
-            printf("Choix invalide. Veuillez reessayer.\n");
-        }
-
-        // ==========================================
-        // TOUR DES ENNEMIS 
-        // ==========================================
         if (nbVivants(equipeAdverse) > 0 && nbVivants(equipeAllie) > 0)
-        {
-            printf("\n--- Tour des ennemis ---\n");
-
-            for (int i = 0; i < equipeAdverse->nb_membre; i++)
-            {
-                Entité *ennemi = equipeAdverse->membres[i];
-                if (!estVivant(ennemi))
-                    continue;
-                if (nbVivants(equipeAllie) == 0)
-                    break;
-
-                Entité *cible = membreVivantAleatoire(equipeAllie);
-                ActionStruct *action = actionAleatoire(ennemi);
-
-                if (action != NULL && action->attaque != NULL)
-                {
-                    printf("%s (Ennemi) utilise : %s contre %s !\n",
-                           ennemi->nom, action->nom, cible->nom);
-                    action->attaque(cible);
-
-                    if (!estVivant(cible))
-                        printf("%s est KO !\n", cible->nom);
-                }
-                else
-                {
-                    printf("%s n'a aucune action disponible !\n", ennemi->nom);
-                }
-            }
-        }
+            tourEnnemis(equipeAdverse, equipeAllie);
     }
 
-    // Fin du combat
-    if (nbVivants(equipeAllie) == 0)
-        printf("\nVous avez perdu.\n");
+    if (!quitter && !fuite && nbVivants(equipeAllie) > 0)
+        {
+            printf("\nVous avez remporte ce combat !\n");
+            gagnerXP(jPrincipal, 50);
+            butinAleatoire(jPrincipal);
+            victoire = true;
+        }
+
+        if (fuite || victoire)
+        {
+            printf("\nDe nouveaux ennemis apparaissent !\n");
+            libererEquipeAdverse(equipeAdverse);
+            equipeAdverse = creerEquipeAdverse(coup_ennemi_struct, coup_de_mattraqueStruct);
+            numCombat++;
+        }
+    } while (!quitter && nbVivants(equipeAllie) > 0);
+
+    // Fin de partie
+    if (quitter)
+        printf("Fermeture du jeu...\n");
     else
-        printf("\nVous avez remporte ce combat.\n");
+        printf("\nVous avez perdu.\n");
 
-    free(jPrincipal);
+    libererEquipeAdverse(equipeAdverse);
     free(equipeAllie);
-    free(equipeAdverse);
-
+    free(jPrincipal);
     return 0;
 }

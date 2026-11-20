@@ -27,9 +27,9 @@ typedef void (*competence)(Entité *e);
  * @brief Représente une action de jeu (nom, fonction d'attaque et type).
  */
 typedef struct action {
+    TypeElement type;      /**< Type de l'élément */
     char nom[50];          /**< Nom de l'action */
     attaque attaque;       /**< Pointeur vers la fonction d'attaque correspondante */
-    TypeElement type;      /**< Type de l'élément */
 } ActionStruct;
 
 /**
