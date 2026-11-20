@@ -310,7 +310,7 @@ static void tourEnnemis(Equipe *equipeAdverse, Equipe *equipeAllie)
 
 static Equipe *creerEquipeAdverse(ActionStruct *griffe, ActionStruct *mattraque)
 {
-    static char *noms[] = {"Gerald", "Brutus", "Gobelin", "Orc", "Troll"};
+    static char *noms[] = {"Chenille", "Brutus", "Gobelin", "Orc", "Troll"};
     int nbNoms = sizeof noms / sizeof noms[0];
 
     Equipe *eq = initialierEquipe();
@@ -402,7 +402,7 @@ int main()
     Entité *e1 = initialiseEntite();
     *e1 = (Entité){
         .allie = true,
-        .nom = "Toad",
+        .nom = "Python",
         .classe = MAGE,
         .pt_endurance = 12,
         .pt_vie = 80,
@@ -413,7 +413,7 @@ int main()
     Entité *e3 = initialiseEntite();
     *e3 = (Entité){
         .allie = true,
-        .nom = "Luigi",
+        .nom = "Ocaml",
         .classe = GUERRIER,
         .pt_endurance = 10,
         .pt_vie = 100,
@@ -424,7 +424,7 @@ int main()
     Entité *e4 = initialiseEntite();
     *e4 = (Entité){
         .allie = true,
-        .nom = "Peach",
+        .nom = "C++",
         .classe = MAGE,
         .pt_endurance = 8,
         .pt_vie = 60,
@@ -434,7 +434,7 @@ int main()
         Entité *e5 = initialiseEntite();
     *e5 = (Entité){
         .allie = true,
-        .nom = "Daisy",
+        .nom = "Kotlin",
         .classe = MAGE,
         .pt_endurance = 9,
         .pt_vie = 70,
@@ -445,7 +445,7 @@ int main()
     Entité *e6 = initialiseEntite();
     *e6 = (Entité){
         .allie = true,
-        .nom = "Yoshi",
+        .nom = "Java",
         .classe = GUERRIER,
         .pt_endurance = 11,
         .pt_vie = 90,
@@ -455,7 +455,7 @@ int main()
     Entité *e7 = initialiseEntite();
     *e7 = (Entité){
         .allie = true,
-        .nom = "Mario",
+        .nom = "PHP",
         .classe = GUERRIER,
         .pt_endurance = 14,
         .pt_vie = 120,
@@ -463,7 +463,7 @@ int main()
                                noeudAction(coup_de_mattraqueStruct, NULL))};
     ajouterEquipe(equipeAllie, e7);
 
-    printf("DEBUG: Nombre de membres dans l'equipe = %d\n", equipeAllie->nb_membre);
+    //printf("DEBUG: Nombre de membres dans l'equipe = %d\n", equipeAllie->nb_membre);
     afficherEquipe(equipeAllie);
 
     // ÉQUIPE ADVERSE
