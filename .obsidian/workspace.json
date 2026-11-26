@@ -81,16 +81,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "S1/Algorithme/TD/TD6.md",
+                "file": "KleenPack/Shéma du Projet.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TD6"
+              "title": "Shéma du Projet"
+            }
+          },
+          {
+            "id": "30f71db3c6e09b84",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-11-26 10.31.34.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-11-26 10.31.34.excalidraw"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -152,7 +164,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "492987a08a025a52",
@@ -254,24 +267,30 @@
       "daily-notes:Ouvrir la note quotidienne": false,
       "templates:Insérer le modèle": false,
       "command-palette:Ouvrir la palette de commandes": false,
-      "bases:Créer une nouvelle base": false
+      "bases:Créer une nouvelle base": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "7ac8c8f1f9830461",
+  "active": "30f71db3c6e09b84",
   "lastOpenFiles": [
-    "S1/Algorithme/TD/TD3.md",
+    "S1/Programmation c/TPs/TP2/code/tests/test_jeu.c",
+    "S1/Programmation c/TPs/TP2/code/tests/test_jeu",
+    "S1/Programmation c/TPs/TP2/code/tests",
+    "S1/Programmation c/TPs/TP2/GABORIT_BOUDJAJ.zip",
+    "S1/Programmation c/TPs/TP2/Compte rendu_INFO505_GABORIT_BOUDJAJ.pdf",
+    "S1/Algorithme/TP/cr_ex2.txt",
+    "S1/Algorithme/TP/TP3_4/exo2.py",
+    "S1/Algorithme/TP/TP3_4",
+    "S1/Logique/question2.v",
+    "S1/Logique/question 2.v",
+    "S1/Logique/question 2",
+    "Excalidraw/Drawing 2026-11-26 10.31.34.excalidraw.md",
+    "KleenPack/Shéma du Projet.md",
+    "S1/Base Donnée Document/TP1/INFO509_TP1-20261118/RenduTP1 - GABORIT - BOUDJAJ.md",
+    "Sans titre.canvas",
     "S1/Algorithme/TD/TD6.md",
+    "S1/Algorithme/TD/TD3.md",
     "Commandes.md",
-    "S1/Programmation c/TPs/TP2/code/stDA5axS",
-    "S1/Programmation c/TPs/TP2/code/st2DesoN",
-    "S1/Programmation c/TPs/TP2/code/stgZadaL",
-    "S1/Programmation c/TPs/TP2/code/stzBCJfd",
-    "S1/Programmation c/TPs/TP2/code/stbxhtJT",
-    "S1/Programmation c/TPs/TP2/code/stspIKy5",
-    "S1/Programmation c/TPs/TP2/code/stMaJW2l",
-    "S1/Programmation c/TPs/TP2/code/stXmBKti",
-    "S1/Programmation c/TPs/TP2/code/st1WEKqj",
-    "S1/Programmation c/TPs/TP2/code/stdm9987",
     "S1/Programmation c/TPs/TP2/code/html/splitbard.png",
     "S1/Programmation c/TPs/TP2/code/html/splitbar.png",
     "S1/Programmation c/TPs/TP2/code/html/folderclosedd.svg",

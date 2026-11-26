@@ -1,7 +1,8 @@
 Question 1 : Affichez tout les types de publication.
 `db.dblp.distinct("type")`
+<br>
 Réponse:
-```
+```SHELl
 [
   'article',
   'book',
@@ -16,8 +17,9 @@ Réponse:
 Question 2 : Afficher le titre de tout les articles depuis 2002
 
 `db.dblp.find( { mdate: { $gt: "2002-01-01" } } )`
+<br>
 Réponse:
-```
+```SHELL
 [
   {
     _id: ObjectId('595c2c8da7986c08721a8123'),
@@ -282,9 +284,9 @@ Question 4 : Trouvez toutes les publications de Jing Liu
 Question 5 : Triez les résultats précédents par date de publication
 
 `db.dblp.find({author:"Jing Liu"}).sort("mdate")`
-
+<br>
 Réponse : 
-```
+```SHELL
 [
   {
     _id: ObjectId('595c2c56a7986c0872febc3d'),
@@ -337,7 +339,7 @@ Question 6 : Affichez le titre des 5 articles les plus anciens.
 `db> db.dblp.find({},{title: 1,"mdate": 1}).sort({"mdate":1}).limit(5)`
 
 Réponse
-```
+```SHELL
 [
   {
     _id: ObjectId('595c2c4fa7986c0872fbf5e3'),
@@ -377,7 +379,7 @@ Réponse: Même réponse que précédent
 
 Question 1 : Trouvez le nombre de publication pour chaque type trié par nombre de publication.
 
-```
+```SHELL
 db.dblp.mapReduce(
     function () {emit(this.type,1)},
     function (key,values) {return Array.sum(values)},
@@ -388,7 +390,7 @@ db.publi_par_type.find().sort({value:-1})
 ```
 
 Réponse : 
-```
+```SHELL
 [
   { _id: 'inproceedings', value: 1738 },
   { _id: 'www', value: 1680 },
@@ -402,7 +404,7 @@ Réponse :
 
 Question 2 : Trouvez le nombre de publication par auteur. Attention certaine publication n'ont pas d'auteur !
 
-```
+```SHELL
 db.dblp.mapReduce(
     function() {
         if (this.author) {
@@ -421,7 +423,7 @@ db.publi_par_auteur.find().sort({ value: -1 });
 ```
 
 Réponse : 
-```
+```SHELL
 [
   { _id: 'Li Zhang', value: 4 },
   { _id: 'Andrea J. Goldsmith', value: 3 },
@@ -449,7 +451,7 @@ Réponse :
 
 Question 3 : Trouvez toutes les publications sans auteur.
 
-```
+```SHELL
 db.dblp.mapReduce(
     function() {
         if (!this.author) {
@@ -673,7 +675,7 @@ Réponse :
 
 Question 4 
 
-```
+```SHELL
 db.dblp.mapReduce(
     function() {
         if (!this.author) {
@@ -681,7 +683,7 @@ db.dblp.mapReduce(
         }
     },
     function(key, values) {
-        return Array.sum(values); // On additionne les occurrences
+        return Array.sum(values); 
     },
     { out: "publi_type_auteur" }
 );
@@ -689,7 +691,7 @@ db.publi_type_auteur.find();
 ```
 
 Réponse : 
-```
+```SHELL
 [
   { _id: 'article', value: 5 },
   { _id: 'proceedings', value: 23 },
@@ -706,14 +708,109 @@ Fait lors de la question 2
 ## Modification du Shema
 
 
+### 3.1 & 3.2
+```SHELL
+var cwds = ["the", "be", "to", "of", "and", "a", "in", "that", "have", "it", "for", "not", "on", "with", "as", "do", "at", "by", "from", "but", "an", "or", "is", "was", "are", "were", "this", "which", "its", "their", "they", "we", "you", "he", "she", "his", "her", "our", "all", "so", "if"];
+
 db.dblp.mapReduce(
     function() {
-        if (!this.author) {
-            emit(cwds, 1);
+        if (this.title) {
+            var words = this.title.toLowerCase().match(/\b[a-zà-ÿ0-9]+\b/g);
+            if (words) {
+                for (var i = 0; i < words.length; i++) {
+                    if (cwds.indexOf(words[i]) === -1) {
+                        emit(words[i], 1);
+                    }
+                }
+            }
+        }
+    },
+    function(key, values) { return Array.sum(values); },
+    { out: "word_counts" }
+);
+```
+
+### 3.3
+```SHELL
+var topWords = db.word_counts.find().sort({ value: -1 }).limit(20).toArray().map(function(doc) {
+    return doc._id;
+});
+printjson(topWords);
+```
+
+3.4
+```SHELL
+db.dblp.find().forEach(function(doc) {
+    if (doc.title) {
+        var words = doc.title.toLowerCase().match(/\b[a-zà-ÿ0-9]+\b/g);
+        if (words) {
+            var matchedTopics = [];
+            for (var i = 0; i < words.length; i++) {
+                // Si le mot fait partie des top 20 et n'est pas déjà dans le tableau
+                if (topWords.indexOf(words[i]) !== -1 && matchedTopics.indexOf(words[i]) === -1) {
+                    matchedTopics.push(words[i]);
+                }
+            }
+            if (matchedTopics.length > 0) {
+                db.dblp.updateOne(
+                    { _id: doc._id },
+                    { $set: { topics: matchedTopics } }
+                );
+            }
+        }
+    }
+});
+```
+
+### 3.5
+```SHELL
+db.dblp.mapReduce(
+    function() {
+        if (this.topics) {
+            for (var i = 0; i < this.topics.length; i++) {
+                emit(this.topics[i], this.title);
+            }
         }
     },
     function(key, values) {
-        return Array.sum(values); // On additionne les occurrences
+        return values;
     },
-    { out: "publi_type_auteur" }
+    { out: "topics_list" }
 );
+db.topics_list.find();
+```
+
+### 4
+```SHELL
+db.dblp.mapReduce(
+    function() {
+        if (this.authors) {
+            for (var i = 0; i < this.authors.length; i++) {
+                emit(this.authors[i], this._id);
+            }
+        }
+    },
+    function(key, values) {
+        return values; 
+    },
+    { out: "authors_publications" }
+);
+
+// Pour voir le résultat :
+db.authors_publications.find();
+````
+
+
+
+#### Question 4.2
+Ce type de modélisation est utile si on veut éviter de dupliquer les données partout, par exemple si les infos d'un auteur changent souvent et qu'on ne veut pas tout modifier à plein d'endroits différents. Ça aide aussi si un document devient trop lourd et risque de dépasser la limite de 16 Mo de MongoDB à force d'accumuler des éléments.
+
+#### Question 2
+Pour insérer un nouvel article, ça devient plus compliqué. En plus d'ajouter l'article dans la collection principale, il faut aller mettre à jour les documents de chaque auteur concerné pour y ajouter l'ID de la nouvelle publication. Du coup, on perd l'atomicité de MongoDB et on se retrouve obligé de faire plusieurs requêtes d'écriture.
+
+
+#### Question 3
+Ça ralentit fortement le système. Comme les données sont réparties sur plusieurs serveurs, la base doit chercher des infos partout sur le réseau pour faire la jointure, ce qui ruine les performances.
+
+#### Question 4
+Il faut privilégier la dénormalisation. C'est-à-dire regrouper les données ensemble dans un même document (avec des tableaux ou des sous-documents) selon les besoins de lecture, quitte à dupliquer un peu d'information, pour éviter les jointures et garder des requêtes très rapides.

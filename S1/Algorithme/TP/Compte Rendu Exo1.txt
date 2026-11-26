@@ -1,0 +1,40 @@
+Rapport : Fusion de fichiers par Tas Min (Algorithme de Fusion Externe)
+
+Ce document résume le fonctionnement du script Python d'implémentation d'un tas min (min-heap) appliqué à la fusion de fichiers de données triées (technique de fusion externe / k-way merge).
+
+---------------------------------------------------------
+1. Principe général
+---------------------------------------------------------
+L'algorithme permet de fusionner plusieurs fichiers d'entrée déjà triés en un seul fichier globalement trié (MonotonieFinale), en utilisant un tas binaire pour trouver efficacement le plus petit élément courant parmi tous les fichiers ouverts, sans avoir à tout charger en mémoire RAM d'un seul coup.
+
+---------------------------------------------------------
+2. Les fonctions principales
+---------------------------------------------------------
+
+* permuter(tas, ind1, ind2)
+Fonction utilitaire qui échange la position de deux éléments dans le tableau représentant l'arbre binaire (le tas).
+
+* ajouter_tas(t, x)
+- Insère un nouvel élément x (contenant une valeur et son fichier d'origine) à la fin du tas.
+- Fait "remonter" l'élément (bubble-up) tant qu'il est plus petit que son père pour respecter la propriété du tas min (la racine contient toujours le minimum global).
+
+* retirer_min_tas(t)
+- Extrait l'élément minimal situé à la racine (t[1]).
+- Remplace la racine par le dernier élément du tas, puis le fait "descendre" (bubble-down) en comparant avec ses fils pour rétablir l'ordre du tas min.
+- Retourne l'élément extrait.
+
+---------------------------------------------------------
+3. Le déroulement du programme principal (main)
+---------------------------------------------------------
+
+* Initialisation : 
+Ouverture des fichiers source (ex: geeks.txt, lechargeurdeHania.txt).
+Lecture de la première ligne de chaque fichier et insertion dans le tas initial.
+
+* Boucle de fusion : 
+Tant que le tas n'est pas vide, extraction de la valeur minimale globale via "retirer_min_tas".
+Écriture de cette valeur dans le fichier de sortie "MonotonieFinale".
+Lecture de la ligne suivante dans le fichier d'origine correspondant et réinsertion immédiate dans le tas.
+
+* Clôture : 
+Fermeture propre de tous les flux de fichiers à la fin du traitement.
